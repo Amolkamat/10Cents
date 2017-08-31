@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import thunk from "redux-thunk";
 import reducers from "./reducers";
 import PostsIndex from "./components/posts_index";
-import PlaceOrders from "./components/place_orders";
+import PlaceOrders from "./components/order_view";
 import PostsShow from "./components/posts_show";
 
 import BusinessFinderSearch from "./components/business_finder_search"
@@ -17,7 +17,7 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
       <div>
-        <Switch>          
+        <Switch>
           <Route path="/placeOrder/:id" component={PlaceOrders} />
           <Route path="/" component={BusinessFinderSearch} />
         </Switch>

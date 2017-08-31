@@ -9,3 +9,7 @@
 .input-group {
   margin: 20px 0px;
 }
+
+.menuList > .card {
+  height: 100px
+}
