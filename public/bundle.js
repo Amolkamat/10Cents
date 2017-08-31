@@ -52207,36 +52207,47 @@
 	    value: function render() {
 	      var _this3 = this;
 
-	      return _react2.default.createElement(
-	        "form",
-	        { onSubmit: this.onFormSubmit, className: "input-group" },
-	        _react2.default.createElement("input", {
-	          placeholder: "Search by Shop Name",
-	          className: "form-control",
-	          value: this.state.term,
-	          onChange: this.onInputChange
-	        }),
-	        _react2.default.createElement(
-	          "span",
-	          { className: "input-group-btn" },
+	      var loadingIcon;
+	      if (!this.props.currentLocation) {
+	        loadingIcon = _react2.default.createElement("i", { className: "fa fa-cog fa-spin fa-3x fa-fw margin-bottom" });
+	        return _react2.default.createElement(
+	          "div",
+	          { className: "loading-icon" },
+	          loadingIcon
+	        );
+	      } else {
+
+	        return _react2.default.createElement(
+	          "form",
+	          { onSubmit: this.onFormSubmit, className: "input-group" },
+	          _react2.default.createElement("input", {
+	            placeholder: "Search by Shop Name",
+	            className: "form-control",
+	            value: this.state.term,
+	            onChange: this.onInputChange
+	          }),
 	          _react2.default.createElement(
-	            "button",
-	            { type: "submit", className: "btn btn-secondary" },
-	            "Submit"
-	          )
-	        ),
-	        this.props.currentLocation ? _react2.default.createElement(
-	          "span",
-	          { className: "input-group-btn" },
-	          _react2.default.createElement(
-	            "button",
-	            { type: "button", className: "btn btn-secondary", onClick: function onClick() {
-	                return _this3.props.fetchRestaurants(_this3.props.currentLocation.lat, _this3.props.currentLocation.lon);
-	              } },
-	            "Get Google Location"
-	          )
-	        ) : null
-	      );
+	            "span",
+	            { className: "input-group-btn" },
+	            _react2.default.createElement(
+	              "button",
+	              { type: "submit", className: "btn btn-secondary" },
+	              "Submit"
+	            )
+	          ),
+	          this.props.currentLocation ? _react2.default.createElement(
+	            "span",
+	            { className: " row input-group-btn" },
+	            _react2.default.createElement(
+	              "button",
+	              { type: "button", className: "btn btn-secondary", onClick: function onClick() {
+	                  return _this3.props.fetchRestaurants(_this3.props.currentLocation.lat, _this3.props.currentLocation.lon);
+	                } },
+	              "Get Google Shops"
+	            )
+	          ) : null
+	        );
+	      }
 	    }
 	  }]);
 

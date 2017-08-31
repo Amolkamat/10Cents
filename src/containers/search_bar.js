@@ -40,27 +40,43 @@ class SearchBar extends Component {
   }
 
   render() {
-    return (
-      <form onSubmit={this.onFormSubmit} className="input-group">
-        <input
-          placeholder="Search by Shop Name"
-          className="form-control"
-          value={this.state.term}
-          onChange={this.onInputChange}
-        />
-        <span className="input-group-btn">
-          <button type="submit" className="btn btn-secondary">Submit</button>
-        </span>
-        {
-          this.props.currentLocation ?
-          <span className="input-group-btn">
-            <button type="button" className="btn btn-secondary" onClick = {() => this.props.fetchRestaurants(this.props.currentLocation.lat,this.props.currentLocation.lon)}>Get Google Location</button>
-          </span>
-          : null
+
+    var loadingIcon;
+        if (!this.props.currentLocation) {
+            loadingIcon = <i className="fa fa-cog fa-spin fa-3x fa-fw margin-bottom"></i>;
+            return (
+              <div className="loading-icon">{loadingIcon}</div>
+            )
+        } else  {
+
+            return (
+              <form onSubmit={this.onFormSubmit} className="input-group">
+                <input
+                  placeholder="Search by Shop Name"
+                  className="form-control"
+                  value={this.state.term}
+                  onChange={this.onInputChange}
+                />
+                <span className="input-group-btn">
+                  <button type="submit" className="btn btn-secondary">Submit</button>
+                </span>
+                {
+                  this.props.currentLocation ?
+                  <span className=" input-group-btn">
+                    <button type="button" className="btn btn-secondary" onClick = {() => this.props.fetchRestaurants(this.props.currentLocation.lat,this.props.currentLocation.lon)}>Get Google Shops</button>
+                  </span>
+                  : null
+                }
+
+              </form>
+            )
+
         }
 
-      </form>
-    );
+
+
+
+
   }
 }
 

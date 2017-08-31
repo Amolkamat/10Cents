@@ -13,3 +13,8 @@
 .menuList > .card {
   height: 100px
 }
+
+.loading-icon {
+          margin-top: 0em;
+          text-align: center;
+      }
