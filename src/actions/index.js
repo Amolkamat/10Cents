@@ -7,9 +7,19 @@ export const DELETE_POST = "delete_post";
 export const ADD_PLACE = "add_place";
 export const FETCH_RESTAURANTS = "fetch_restaurants"
 export const GET_MENU = "get_menu"
+export const SEND_MESSAGE = "send_message"
 
 const ROOT_URL = "http://reduxblog.herokuapp.com/api";
 const API_KEY = "?key=PAPERCLIP1234";
+
+export function sendMessage() {
+  const request = axios.get("/api/sendMessage");
+
+  return {
+    type: SEND_MESSAGE,
+    payload: request
+  };
+}
 
 export function fetchBusiness() {
   //const request = axios.get(`${ROOT_URL}/posts${API_KEY}`);

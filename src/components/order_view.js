@@ -14,6 +14,7 @@ export default class OrderView extends Component {
       <div>
         <Header />
       <PlaceOrders id={this.props.match.params.id} />
+      
         <Footer />
       </div>
     );

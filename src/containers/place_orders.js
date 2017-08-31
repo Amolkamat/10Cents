@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { getMenuItems } from "../actions";
+import { getMenuItems,sendMessage } from "../actions";
 
 class PlaceOrders extends Component {
 
@@ -42,6 +42,7 @@ class PlaceOrders extends Component {
             {this.renderMenu()}
 
         </div>
+        <input type="button" value="Send Message" onClick={() => this.props.sendMessage()} />
       </div>
       )
     }
@@ -62,4 +63,4 @@ function mapStateToProps({menu}) {
   return { menu };
 }
 
-export default connect(mapStateToProps, { getMenuItems })(PlaceOrders);
+export default connect(mapStateToProps, { getMenuItems ,sendMessage})(PlaceOrders);
