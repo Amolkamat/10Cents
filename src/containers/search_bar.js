@@ -1,16 +1,28 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchBusiness } from "../actions/index";
+import { fetchBusiness, addPlace,fetchRestaurants } from "../actions/index";
 import { bindActionCreators } from "redux";
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { term: "" };
+    this.state = {
+      term: ""
+    };
+
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+  }
+
+  componentDidMount() {
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.props.addPlace(position.coords.latitude, position.coords.longitude)
+      })
+    }
   }
 
   onInputChange(event) {
@@ -37,13 +49,22 @@ class SearchBar extends Component {
         <span className="input-group-btn">
           <button type="submit" className="btn btn-secondary">Submit</button>
         </span>
+        {
+          this.props.currentLocation ?
+          <span className="input-group-btn">
+            <button type="button" className="btn btn-secondary" onClick = {() => this.props.fetchRestaurants(this.props.currentLocation.lat,this.props.currentLocation.lon)}>Get Google Location</button>
+          </span>
+          :null
+        }
+
+
       </form>
     );
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchBusiness }, dispatch);
+function mapStateToProps({ currentLocation}) {
+  return { currentLocation };
 }
 
-export default connect(null, mapDispatchToProps)(SearchBar);
+export default connect(mapStateToProps, {fetchBusiness ,addPlace,fetchRestaurants})(SearchBar);

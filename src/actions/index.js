@@ -4,6 +4,8 @@ export const FETCH_BUSINESS = "fetch_business";
 export const FETCH_POST = "fetch_post";
 export const CREATE_POST = "create_post";
 export const DELETE_POST = "delete_post";
+export const ADD_PLACE = "add_place";
+export const FETCH_RESTAURANTS = "fetch_restaurants"
 
 const ROOT_URL = "http://reduxblog.herokuapp.com/api";
 const API_KEY = "?key=PAPERCLIP1234";
@@ -50,6 +52,46 @@ export function getMenuItems() {
     payload: request
   };
 }
+
+
+export function addPlace(lat,lon) {
+
+  return {
+    type: ADD_PLACE,
+    payload: {lat:lat,lon:lon}
+  }
+}
+
+export function setNearbySearchResult(results,status) {
+  console.log(results);
+
+    return {
+        type: FETCH_RESTAURANTS,
+        payload: {results,status}
+    };
+}
+
+export function fetchRestaurants(lat = '40.3324413', lon = '-74.5589624') {
+    return (dispatch) => {
+        console.log('Here Mane');
+        var currentLocation = new google.maps.LatLng('40.3324413' , '-74.5589624');
+        var request = {
+            location: currentLocation,
+            radius: '4000',
+            types: ['service']
+        };
+        var service = new google.maps.places.PlacesService(map);
+        console.log(request)
+        service.nearbySearch(request, function(results, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                dispatch(setNearbySearchResult(results,status));
+            }
+        });
+
+    }
+}
+
+
 
 export function createPost(values, callback) {
   const request = axios
