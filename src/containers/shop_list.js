@@ -16,18 +16,16 @@ class ShopList extends Component {
 
             <div className="card-block">
               <h4 className="card-title"> {shop.name}</h4>
-              <p className="card-text">
+              <p className="card-text">    </p>
                 {shop.hasOwnProperty('opening_hours') ?
                             shop.opening_hours.open_now ?
                             <div className="open-now"><i className="fa fa-clock-o" aria-hidden="true"></i> Open now!</div>
                             : <div className="closed-now"><i className="fa fa-clock-o" aria-hidden="true"></i> Currently closed</div>
                         : ''}
-             </p>
 
+           <p>
+             <Link to={`/placeOrder/${shop.id}`}>
 
-
-             <p>
-             <Link to={'/posts/new'}>
               Place Order
             </Link>
           </p>

@@ -6,6 +6,7 @@ export const CREATE_POST = "create_post";
 export const DELETE_POST = "delete_post";
 export const ADD_PLACE = "add_place";
 export const FETCH_RESTAURANTS = "fetch_restaurants"
+export const GET_MENU = "get_menu"
 
 const ROOT_URL = "http://reduxblog.herokuapp.com/api";
 const API_KEY = "?key=PAPERCLIP1234";
