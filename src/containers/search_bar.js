@@ -50,6 +50,7 @@ class SearchBar extends Component {
         } else  {
 
             return (
+              <div>
               <form onSubmit={this.onFormSubmit} className="input-group">
                 <input
                   placeholder="Search by Shop Name"
@@ -60,15 +61,18 @@ class SearchBar extends Component {
                 <span className="input-group-btn">
                   <button type="submit" className="btn btn-secondary">Submit</button>
                 </span>
-                {
-                  this.props.currentLocation ?
-                  <span className=" input-group-btn">
-                    <button type="button" className="btn btn-secondary" onClick = {() => this.props.fetchRestaurants(this.props.currentLocation.lat,this.props.currentLocation.lon)}>Get Google Shops</button>
-                  </span>
-                  : null
-                }
+                </form>
+                <div className = "col-md-5 col-md-offset-5">
+                  {
+                    this.props.currentLocation ?
+                    <button type="button" className="btn btn-primary" onClick = {() => this.props.fetchRestaurants(this.props.currentLocation.lat,this.props.currentLocation.lon)}>Get Google Shops</button>
 
-              </form>
+                    : null
+                  }
+                </div>
+
+              </div>
+
             )
 
         }

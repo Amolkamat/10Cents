@@ -18,7 +18,10 @@ class BusinessFinderSearch extends Component {
       <div>
         <SearchBar />
         <BusinessList />
-        <ShopList />
+        <div className = "row googleShops">
+            <ShopList />
+        </div>
+
       </div>
     );
   }
