@@ -11,14 +11,27 @@ class ShopList extends Component {
   return this.props.googleShop.results.map((shop) => {
     console.log('Rendering Google Shop')
     return (
-        <li
 
-           className = "list-group-item">
-           <Link to={'/posts/new'}>
-            {shop.name}
-          </Link>
+        <div className="card col-lg-3 col-sm-4 col-md-3" key={shop.id}>
 
-        </li>
+            <div className="card-block">
+              <h4 className="card-title"> {shop.name}</h4>
+              <p className="card-text">
+              <Link to={'/posts/new'}>
+               Place Order
+             </Link>
+             </p>
+             <p>
+                Open Now ?: {shop.opening_hours ? (shop.opening_hours.open_now ? 'YES': 'No') : 'NA'}
+             </p>
+
+
+            </div>
+          </div>
+
+
+
+
     )
   })
 }
@@ -32,9 +45,14 @@ class ShopList extends Component {
    console.log('Shopping List')
    console.log(this.props.googleShop.results)
      return (
-       <ul className = "list-group col-sm-4">
-              {this.renderList()}
-             </ul>
+
+         <div className="container shopList">
+           <div className = "row">
+        {this.renderList()}
+
+        </div>
+      </div>
+
            )
 
 
