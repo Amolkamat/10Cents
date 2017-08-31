@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { fetchBusiness, addPlace,fetchRestaurants } from "../actions/index";
 import { bindActionCreators } from "redux";
 
+
 class SearchBar extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +16,7 @@ class SearchBar extends Component {
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
+
 
   componentDidMount() {
 
@@ -54,9 +56,8 @@ class SearchBar extends Component {
           <span className="input-group-btn">
             <button type="button" className="btn btn-secondary" onClick = {() => this.props.fetchRestaurants(this.props.currentLocation.lat,this.props.currentLocation.lon)}>Get Google Location</button>
           </span>
-          :null
+          : null
         }
-
 
       </form>
     );

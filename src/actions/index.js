@@ -63,7 +63,7 @@ export function addPlace(lat,lon) {
 }
 
 export function setNearbySearchResult(results,status) {
-  console.log(results);
+
 
     return {
         type: FETCH_RESTAURANTS,
