@@ -49854,9 +49854,9 @@
 	  };
 	}
 
-	function addMenuToOrder(request) {
+	function addMenuToOrder(request, qty) {
 	  console.log('Menu Item Added');
-	  console.log(request);
+	  console.log(qty);
 	  return {
 	    type: ADD_MENU,
 	    payload: request
@@ -51767,8 +51767,7 @@
 	          "div",
 	          { className: "col-md-4" },
 	          _react2.default.createElement(_order_total2.default, null)
-	        ),
-	        _react2.default.createElement(_footer_view2.default, null)
+	        )
 	      );
 	    }
 	  }]);
@@ -51921,13 +51920,25 @@
 	var PlaceOrders = function (_Component) {
 	  _inherits(PlaceOrders, _Component);
 
-	  function PlaceOrders() {
+	  function PlaceOrders(props) {
 	    _classCallCheck(this, PlaceOrders);
 
-	    return _possibleConstructorReturn(this, (PlaceOrders.__proto__ || Object.getPrototypeOf(PlaceOrders)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (PlaceOrders.__proto__ || Object.getPrototypeOf(PlaceOrders)).call(this, props));
+
+	    _this.state = {
+	      selectValue: 1
+	    };
+
+	    _this.handleChange = _this.handleChange.bind(_this);
+	    return _this;
 	  }
 
 	  _createClass(PlaceOrders, [{
+	    key: "handleChange",
+	    value: function handleChange(e) {
+	      this.setState({ selectValue: e.target.value });
+	    }
+	  }, {
 	    key: "componentDidMount",
 	    value: function componentDidMount() {
 	      var id = this.props.id;
@@ -51945,24 +51956,94 @@
 	          { key: menuItem.id },
 	          _react2.default.createElement(
 	            "div",
-	            { className: "card-block" },
+	            { className: "col-md-6" },
 	            _react2.default.createElement(
-	              "h4",
-	              { className: "card-title" },
-	              " ",
-	              menuItem.name
-	            ),
-	            _react2.default.createElement(
-	              "p",
-	              { className: "card-text" },
-	              "    "
-	            ),
-	            _react2.default.createElement(
-	              "button",
-	              { className: "btn btn-success", onClick: function onClick() {
-	                  return _this2.props.addMenuToOrder(menuItem);
-	                }, type: "button" },
-	              "Add to Order"
+	              "div",
+	              { className: "business-card" },
+	              _react2.default.createElement(
+	                "div",
+	                { className: "media" },
+	                _react2.default.createElement(
+	                  "div",
+	                  { className: "media-body" },
+	                  _react2.default.createElement(
+	                    "h3",
+	                    { heading: "media-heading" },
+	                    " ",
+	                    menuItem.name,
+	                    " "
+	                  ),
+	                  _react2.default.createElement(
+	                    "div",
+	                    { className: "col-md-6" },
+	                    _react2.default.createElement(
+	                      "select",
+	                      { onChange: _this2.handleChange },
+	                      _react2.default.createElement(
+	                        "option",
+	                        null,
+	                        "1"
+	                      ),
+	                      _react2.default.createElement(
+	                        "option",
+	                        null,
+	                        "2"
+	                      ),
+	                      _react2.default.createElement(
+	                        "option",
+	                        null,
+	                        "3"
+	                      ),
+	                      _react2.default.createElement(
+	                        "option",
+	                        null,
+	                        "4"
+	                      ),
+	                      _react2.default.createElement(
+	                        "option",
+	                        null,
+	                        "5"
+	                      ),
+	                      _react2.default.createElement(
+	                        "option",
+	                        null,
+	                        "6"
+	                      ),
+	                      _react2.default.createElement(
+	                        "option",
+	                        null,
+	                        "7"
+	                      ),
+	                      _react2.default.createElement(
+	                        "option",
+	                        null,
+	                        "8"
+	                      ),
+	                      _react2.default.createElement(
+	                        "option",
+	                        null,
+	                        "9"
+	                      ),
+	                      _react2.default.createElement(
+	                        "option",
+	                        null,
+	                        "10"
+	                      )
+	                    )
+	                  ),
+	                  _react2.default.createElement(
+	                    "div",
+	                    { className: "col-md-6" },
+	                    _react2.default.createElement(
+	                      "button",
+	                      { className: "btn btn-primary addToOrderButton", type: "button", onClick: function onClick() {
+	                          return _this2.props.addMenuToOrder(menuItem, _this2.state.selectValue);
+	                        } },
+	                      " Click "
+	                    )
+	                  )
+	                )
+	              )
 	            )
 	          )
 	        );
@@ -51971,8 +52052,6 @@
 	  }, {
 	    key: "render",
 	    value: function render() {
-	      var _this3 = this;
-
 	      if (this.props.menu.length > 0) {
 	        console.log(this.props.menu);
 	        return _react2.default.createElement(
@@ -51982,10 +52061,7 @@
 	            "div",
 	            { className: "row" },
 	            this.renderMenu()
-	          ),
-	          _react2.default.createElement("input", { type: "button", value: "Send Message", onClick: function onClick() {
-	              return _this3.props.sendMessage();
-	            } })
+	          )
 	        );
 	      } else {
 	        return _react2.default.createElement(
@@ -52109,19 +52185,27 @@
 	            "table",
 	            { className: "table table-bordered table-hover" },
 	            _react2.default.createElement(
-	              "th",
+	              "thead",
 	              null,
-	              "Quantity"
-	            ),
-	            _react2.default.createElement(
-	              "th",
-	              null,
-	              "Item"
-	            ),
-	            _react2.default.createElement(
-	              "th",
-	              null,
-	              "Price"
+	              _react2.default.createElement(
+	                "tr",
+	                null,
+	                _react2.default.createElement(
+	                  "th",
+	                  null,
+	                  "Quantity"
+	                ),
+	                _react2.default.createElement(
+	                  "th",
+	                  null,
+	                  "Item"
+	                ),
+	                _react2.default.createElement(
+	                  "th",
+	                  null,
+	                  "Price"
+	                )
+	              )
 	            ),
 	            _react2.default.createElement(
 	              "tbody",

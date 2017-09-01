@@ -53,9 +53,14 @@ class OrderTotal extends Component {
         <div className = "orderTable">
           <h2>Order Total</h2>
             <table className="table table-bordered table-hover">
-              <th>Quantity</th>
-              <th>Item</th>
-              <th>Price</th>
+              <thead>
+                <tr>
+                  <th>Quantity</th>
+                  <th>Item</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+
                 <tbody>
                     {this.populateMenu()}
                 </tbody>
