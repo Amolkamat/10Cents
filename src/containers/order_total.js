@@ -15,9 +15,7 @@ class OrderTotal extends Component {
       <tr key={index}>
         <td>
 
-              {orderItem.id}
-
-
+              {orderItem.quantity}
 
       </td>
 

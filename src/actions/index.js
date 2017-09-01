@@ -65,9 +65,14 @@ export function getMenuItems() {
   };
 }
 
-export function addMenuToOrder(request,qty) {
+export function addMenuToOrder(item,qty) {
   console.log('Menu Item Added');
   console.log(qty)
+  var request = {
+    id: item.id,
+    name: item.name,
+    quantity: qty
+  }
   return {
     type: ADD_MENU,
     payload: request

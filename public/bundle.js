@@ -49854,9 +49854,14 @@
 	  };
 	}
 
-	function addMenuToOrder(request, qty) {
+	function addMenuToOrder(item, qty) {
 	  console.log('Menu Item Added');
 	  console.log(qty);
+	  var request = {
+	    id: item.id,
+	    name: item.name,
+	    quantity: qty
+	  };
 	  return {
 	    type: ADD_MENU,
 	    payload: request
@@ -52137,7 +52142,7 @@
 	          _react2.default.createElement(
 	            "td",
 	            null,
-	            orderItem.id
+	            orderItem.quantity
 	          ),
 	          _react2.default.createElement(
 	            "td",
