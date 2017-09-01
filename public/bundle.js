@@ -75,19 +75,19 @@
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	var _posts_index = __webpack_require__(512);
+	var _posts_index = __webpack_require__(513);
 
 	var _posts_index2 = _interopRequireDefault(_posts_index);
 
-	var _order_view = __webpack_require__(513);
+	var _order_view = __webpack_require__(514);
 
 	var _order_view2 = _interopRequireDefault(_order_view);
 
-	var _posts_show = __webpack_require__(517);
+	var _posts_show = __webpack_require__(519);
 
 	var _posts_show2 = _interopRequireDefault(_posts_show);
 
-	var _business_finder_search = __webpack_require__(518);
+	var _business_finder_search = __webpack_require__(520);
 
 	var _business_finder_search2 = _interopRequireDefault(_business_finder_search);
 
@@ -26126,13 +26126,18 @@
 
 	var _reducer_menuItems2 = _interopRequireDefault(_reducer_menuItems);
 
+	var _order_reducer = __webpack_require__(512);
+
+	var _order_reducer2 = _interopRequireDefault(_order_reducer);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var rootReducer = (0, _redux.combineReducers)({
 	  shop: _business_posts2.default,
 	  currentLocation: _maps_reducer2.default,
 	  googleShop: _shops_reducer2.default,
-	  menu: _reducer_menuItems2.default
+	  menu: _reducer_menuItems2.default,
+	  order: _order_reducer2.default
 	});
 
 	exports.default = rootReducer;
@@ -49774,10 +49779,11 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.SEND_MESSAGE = exports.GET_MENU = exports.FETCH_RESTAURANTS = exports.ADD_PLACE = exports.DELETE_POST = exports.CREATE_POST = exports.FETCH_POST = exports.FETCH_BUSINESS = undefined;
+	exports.ADD_MENU = exports.SEND_MESSAGE = exports.GET_MENU = exports.FETCH_RESTAURANTS = exports.ADD_PLACE = exports.DELETE_POST = exports.CREATE_POST = exports.FETCH_POST = exports.FETCH_BUSINESS = undefined;
 	exports.sendMessage = sendMessage;
 	exports.fetchBusiness = fetchBusiness;
 	exports.getMenuItems = getMenuItems;
+	exports.addMenuToOrder = addMenuToOrder;
 	exports.addPlace = addPlace;
 	exports.setNearbySearchResult = setNearbySearchResult;
 	exports.fetchRestaurants = fetchRestaurants;
@@ -49799,6 +49805,7 @@
 	var FETCH_RESTAURANTS = exports.FETCH_RESTAURANTS = "fetch_restaurants";
 	var GET_MENU = exports.GET_MENU = "get_menu";
 	var SEND_MESSAGE = exports.SEND_MESSAGE = "send_message";
+	var ADD_MENU = exports.ADD_MENU = "add_menu";
 
 	var ROOT_URL = "http://reduxblog.herokuapp.com/api";
 	var API_KEY = "?key=PAPERCLIP1234";
@@ -49843,6 +49850,15 @@
 	  }];
 	  return {
 	    type: GET_MENU,
+	    payload: request
+	  };
+	}
+
+	function addMenuToOrder(request) {
+	  console.log('Menu Item Added');
+	  console.log(request);
+	  return {
+	    type: ADD_MENU,
 	    payload: request
 	  };
 	}
@@ -51546,6 +51562,47 @@
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = function () {
+	    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialUserState;
+	    var action = arguments[1];
+
+	    console.log('Add Menu Item to Order');
+	    switch (action.type) {
+	        case _actions.ADD_MENU:
+	            return _extends({}, state, {
+	                menuList: [].concat(_toConsumableArray(state.menuList), [action.payload])
+	            });
+	        default:
+	            return state;
+	    }
+	};
+
+	var _lodash = __webpack_require__(481);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
+	var _actions = __webpack_require__(482);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	var initialUserState = {
+	    menuList: []
+	};
+
+/***/ }),
+/* 513 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
@@ -51641,7 +51698,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchPosts: _actions.fetchPosts })(PostsIndex);
 
 /***/ }),
-/* 513 */
+/* 514 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -51660,17 +51717,21 @@
 
 	var _reactRouterDom = __webpack_require__(199);
 
-	var _header_view = __webpack_require__(514);
+	var _header_view = __webpack_require__(515);
 
 	var _header_view2 = _interopRequireDefault(_header_view);
 
-	var _footer_view = __webpack_require__(515);
+	var _footer_view = __webpack_require__(516);
 
 	var _footer_view2 = _interopRequireDefault(_footer_view);
 
-	var _place_orders = __webpack_require__(516);
+	var _place_orders = __webpack_require__(517);
 
 	var _place_orders2 = _interopRequireDefault(_place_orders);
+
+	var _order_total = __webpack_require__(518);
+
+	var _order_total2 = _interopRequireDefault(_order_total);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -51697,7 +51758,16 @@
 	        "div",
 	        null,
 	        _react2.default.createElement(_header_view2.default, null),
-	        _react2.default.createElement(_place_orders2.default, { id: this.props.match.params.id }),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "col-md-8" },
+	          _react2.default.createElement(_place_orders2.default, { id: this.props.match.params.id })
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "col-md-4" },
+	          _react2.default.createElement(_order_total2.default, null)
+	        ),
 	        _react2.default.createElement(_footer_view2.default, null)
 	      );
 	    }
@@ -51709,7 +51779,7 @@
 	exports.default = OrderView;
 
 /***/ }),
-/* 514 */
+/* 515 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -51763,7 +51833,7 @@
 	exports.default = Header;
 
 /***/ }),
-/* 515 */
+/* 516 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -51817,7 +51887,7 @@
 	exports.default = Footer;
 
 /***/ }),
-/* 516 */
+/* 517 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -51867,10 +51937,12 @@
 	  }, {
 	    key: "renderMenu",
 	    value: function renderMenu() {
+	      var _this2 = this;
+
 	      return this.props.menu.map(function (menuItem) {
 	        return _react2.default.createElement(
 	          "div",
-	          { className: "card col-lg-3 col-sm-4 col-md-3", key: menuItem.id },
+	          { key: menuItem.id },
 	          _react2.default.createElement(
 	            "div",
 	            { className: "card-block" },
@@ -51886,13 +51958,11 @@
 	              "    "
 	            ),
 	            _react2.default.createElement(
-	              "p",
-	              null,
-	              _react2.default.createElement(
-	                _reactRouterDom.Link,
-	                { to: "/placeOrder/" },
-	                "Add to Order"
-	              )
+	              "button",
+	              { className: "btn btn-success", onClick: function onClick() {
+	                  return _this2.props.addMenuToOrder(menuItem);
+	                }, type: "button" },
+	              "Add to Order"
 	            )
 	          )
 	        );
@@ -51901,7 +51971,7 @@
 	  }, {
 	    key: "render",
 	    value: function render() {
-	      var _this2 = this;
+	      var _this3 = this;
 
 	      if (this.props.menu.length > 0) {
 	        console.log(this.props.menu);
@@ -51914,7 +51984,7 @@
 	            this.renderMenu()
 	          ),
 	          _react2.default.createElement("input", { type: "button", value: "Send Message", onClick: function onClick() {
-	              return _this2.props.sendMessage();
+	              return _this3.props.sendMessage();
 	            } })
 	        );
 	      } else {
@@ -51936,10 +52006,147 @@
 	  return { menu: menu };
 	}
 
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, { getMenuItems: _actions.getMenuItems, sendMessage: _actions.sendMessage })(PlaceOrders);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { getMenuItems: _actions.getMenuItems, addMenuToOrder: _actions.addMenuToOrder, sendMessage: _actions.sendMessage })(PlaceOrders);
 
 /***/ }),
-/* 517 */
+/* 518 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reduxForm = __webpack_require__(246);
+
+	var _reactRouterDom = __webpack_require__(199);
+
+	var _reactRedux = __webpack_require__(160);
+
+	var _actions = __webpack_require__(482);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var OrderTotal = function (_Component) {
+	  _inherits(OrderTotal, _Component);
+
+	  function OrderTotal() {
+	    _classCallCheck(this, OrderTotal);
+
+	    return _possibleConstructorReturn(this, (OrderTotal.__proto__ || Object.getPrototypeOf(OrderTotal)).apply(this, arguments));
+	  }
+
+	  _createClass(OrderTotal, [{
+	    key: "populateMenu",
+	    value: function populateMenu() {
+	      return this.props.order.menuList.map(function (orderItem, index) {
+	        console.log('Order Rendering!');
+	        console.log(orderItem);
+	        return _react2.default.createElement(
+	          "tr",
+	          { key: index },
+	          _react2.default.createElement(
+	            "td",
+	            null,
+	            orderItem.id
+	          ),
+	          _react2.default.createElement(
+	            "td",
+	            null,
+	            orderItem.name
+	          ),
+	          _react2.default.createElement(
+	            "td",
+	            null,
+	            "$5.00"
+	          )
+	        );
+	      });
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      {
+	        console.log(this.props.order);
+	      }
+	      if (this.props.order.menuList.length <= 0) {
+	        return _react2.default.createElement(
+	          "div",
+	          null,
+	          _react2.default.createElement(
+	            "section",
+	            { id: "order-total" },
+	            _react2.default.createElement(
+	              "h2",
+	              null,
+	              "Order Total"
+	            )
+	          )
+	        );
+	      } else {
+	        return _react2.default.createElement(
+	          "div",
+	          { className: "orderTable" },
+	          _react2.default.createElement(
+	            "h2",
+	            null,
+	            "Order Total"
+	          ),
+	          _react2.default.createElement(
+	            "table",
+	            { className: "table table-bordered table-hover" },
+	            _react2.default.createElement(
+	              "th",
+	              null,
+	              "Quantity"
+	            ),
+	            _react2.default.createElement(
+	              "th",
+	              null,
+	              "Item"
+	            ),
+	            _react2.default.createElement(
+	              "th",
+	              null,
+	              "Price"
+	            ),
+	            _react2.default.createElement(
+	              "tbody",
+	              null,
+	              this.populateMenu()
+	            )
+	          )
+	        );
+	      }
+	    }
+	  }]);
+
+	  return OrderTotal;
+	}(_react.Component);
+
+	function mapStateToProps(_ref) {
+	  var order = _ref.order;
+
+	  return { order: order };
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { getMenuItems: _actions.getMenuItems, sendMessage: _actions.sendMessage })(OrderTotal);
+
+/***/ }),
+/* 519 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -52058,7 +52265,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchPost: _actions.fetchPost, deletePost: _actions.deletePost })(PostsShow);
 
 /***/ }),
-/* 518 */
+/* 520 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -52079,15 +52286,15 @@
 
 	var _actions = __webpack_require__(482);
 
-	var _search_bar = __webpack_require__(519);
+	var _search_bar = __webpack_require__(521);
 
 	var _search_bar2 = _interopRequireDefault(_search_bar);
 
-	var _business_list = __webpack_require__(520);
+	var _business_list = __webpack_require__(522);
 
 	var _business_list2 = _interopRequireDefault(_business_list);
 
-	var _shop_list = __webpack_require__(522);
+	var _shop_list = __webpack_require__(524);
 
 	var _shop_list2 = _interopRequireDefault(_shop_list);
 
@@ -52135,7 +52342,7 @@
 	exports.default = BusinessFinderSearch;
 
 /***/ }),
-/* 519 */
+/* 521 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -52271,7 +52478,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchBusiness: _index.fetchBusiness, addPlace: _index.addPlace, fetchRestaurants: _index.fetchRestaurants })(SearchBar);
 
 /***/ }),
-/* 520 */
+/* 522 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -52288,7 +52495,7 @@
 
 	var _reactRedux = __webpack_require__(160);
 
-	var _business_list_item = __webpack_require__(521);
+	var _business_list_item = __webpack_require__(523);
 
 	var _business_list_item2 = _interopRequireDefault(_business_list_item);
 
@@ -52365,7 +52572,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { getMenuItems: _actions.getMenuItems })(BusinessList);
 
 /***/ }),
-/* 521 */
+/* 523 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -52425,7 +52632,7 @@
 	exports.default = BusinessListItem;
 
 /***/ }),
-/* 522 */
+/* 524 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";

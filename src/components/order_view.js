@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Header from './header_view.js'
 import Footer from './footer_view.js'
 import PlaceOrders from '../containers/place_orders';
+import OrderTotal from '../containers/order_total';
+
 export default class OrderView extends Component {
 
 
@@ -13,9 +15,16 @@ export default class OrderView extends Component {
     return (
       <div>
         <Header />
-      <PlaceOrders id={this.props.match.params.id} />
-      
-        <Footer />
+        <div className = "col-md-8">
+            <PlaceOrders id={this.props.match.params.id} />
+        </div>
+
+        <div className = "col-md-4">
+            <OrderTotal />
+        </div>
+
+
+    
       </div>
     );
   }

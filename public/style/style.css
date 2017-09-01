@@ -1,6 +1,4 @@
-.card{
-    height: 200px;
-}
+
 
 .shopList {
   margin-top:10px;
@@ -20,4 +18,9 @@
       }
 .googleShops {
   margin: 20px 0px;
+}
+
+.orderTable {
+
+  overflow: auto;
 }

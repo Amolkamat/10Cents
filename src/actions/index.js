@@ -8,6 +8,7 @@ export const ADD_PLACE = "add_place";
 export const FETCH_RESTAURANTS = "fetch_restaurants"
 export const GET_MENU = "get_menu"
 export const SEND_MESSAGE = "send_message"
+export const ADD_MENU = "add_menu"
 
 const ROOT_URL = "http://reduxblog.herokuapp.com/api";
 const API_KEY = "?key=PAPERCLIP1234";
@@ -60,6 +61,15 @@ export function getMenuItems() {
   ]
   return {
     type: GET_MENU,
+    payload: request
+  };
+}
+
+export function addMenuToOrder(request) {
+  console.log('Menu Item Added');
+  console.log(request)
+  return {
+    type: ADD_MENU,
     payload: request
   };
 }
