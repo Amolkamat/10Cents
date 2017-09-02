@@ -15,7 +15,10 @@ export default class OrderView extends Component {
     return (
       <div>
         <Header />
-        <div className = "col-md-8">
+        <div className="row">
+
+
+        <div className = "menuItemList col-md-8">
             <PlaceOrders id={this.props.match.params.id} />
         </div>
 
@@ -23,8 +26,8 @@ export default class OrderView extends Component {
             <OrderTotal />
         </div>
 
+        </div>
 
-    
       </div>
     );
   }

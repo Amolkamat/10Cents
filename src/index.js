@@ -8,6 +8,7 @@ import reducers from "./reducers";
 import PostsIndex from "./components/posts_index";
 import PlaceOrders from "./components/order_view";
 import PostsShow from "./components/posts_show";
+import BusinessLogin from "./components/business_login_view";
 
 import BusinessFinderSearch from "./components/business_finder_search"
 
@@ -18,6 +19,7 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Switch>
+          <Route path="/businessLogin" component={BusinessLogin} />
           <Route path="/placeOrder/:id" component={PlaceOrders} />
           <Route path="/" component={BusinessFinderSearch} />
         </Switch>

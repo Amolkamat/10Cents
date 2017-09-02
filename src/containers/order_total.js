@@ -48,8 +48,21 @@ class OrderTotal extends Component {
       else {
       return (
         <div className = "orderTable">
-          <h2>Order Total</h2>
+
             <table className="table table-outer-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>
+
+                  </th>
+                  <th>
+                    Your Order!
+                  </th>
+                  <th>
+
+                  </th>
+                </tr>
+              </thead>
               <thead>
                 <tr>
                   <th>Item</th>
