@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'production') {
 var MONGODB = "mongodb://heroku_pp0xjzqd:4emv3h0q3itv7ct7ij9rabjhn8@ds159013.mlab.com:59013/heroku_pp0xjzqd";
 }
 else {
-var MONGODB = "mongodb://localhost/hwNYTScrape";
+var MONGODB = "mongodb://localhost/tenCents";
 }
 
 

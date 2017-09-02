@@ -49821,8 +49821,8 @@
 	var ROOT_URL = "http://reduxblog.herokuapp.com/api";
 	var API_KEY = "?key=PAPERCLIP1234";
 
-	function createBusiness(data, callback) {
-	  var request = _axios2.default.get("/business/create").then(function () {
+	function createBusiness(user, callback) {
+	  var request = _axios2.default.post("/business/create", user).then(function () {
 	    return callback();
 	  });
 
@@ -78270,13 +78270,24 @@
 	    _this.handleFormSubmit = function (event) {
 
 	      console.log(_this.state);
-
-	      _this.props.createBusiness(_this.state, function () {
+	      var user = {
+	        email: _this.state.email,
+	        password: _this.state.password,
+	        shopPlaceId: _this.state.placeId,
+	        shopPlaceAddress: _this.state.address
+	      };
+	      _this.props.createBusiness(user, function () {
 	        _this.props.history.push("/");
 	      });
 	    };
 
-	    _this.state = { address: 'San Francisco, CA' };
+	    _this.state = {
+	      address: 'San Francisco, CA',
+	      name: '',
+	      email: '',
+	      password: ''
+
+	    };
 	    _this.onChange = function (address, placeId) {
 	      return _this.setState({ address: address, placeId: placeId });
 	    };
@@ -78284,6 +78295,21 @@
 	  }
 
 	  _createClass(GooglePlaces, [{
+	    key: 'onNameChange',
+	    value: function onNameChange(name) {
+	      this.setState({ name: name });
+	    }
+	  }, {
+	    key: 'onEmailChange',
+	    value: function onEmailChange(email) {
+	      this.setState({ email: email });
+	    }
+	  }, {
+	    key: 'onPasswordChange',
+	    value: function onPasswordChange(password) {
+	      this.setState({ password: password });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _this2 = this;
@@ -78320,7 +78346,9 @@
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'col-sm-9' },
-	              _react2.default.createElement('input', { type: 'text', id: 'firstName', placeholder: 'Full Name', className: 'form-control', autofocus: true })
+	              _react2.default.createElement('input', { type: 'text', value: this.state.name, id: 'firstName', placeholder: 'Full Name', className: 'form-control', onChange: function onChange(event) {
+	                  return _this2.onNameChange(event.target.value);
+	                }, autoFocus: true })
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -78334,7 +78362,9 @@
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'col-sm-9' },
-	              _react2.default.createElement('input', { type: 'email', id: 'email', placeholder: 'Email', className: 'form-control' })
+	              _react2.default.createElement('input', { type: 'email', value: this.state.email, id: 'email', placeholder: 'Email', className: 'form-control', onChange: function onChange(event) {
+	                  return _this2.onEmailChange(event.target.value);
+	                } })
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -78348,7 +78378,9 @@
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'col-sm-9' },
-	              _react2.default.createElement('input', { type: 'password', id: 'password', placeholder: 'Password', className: 'form-control' })
+	              _react2.default.createElement('input', { type: 'password', value: this.state.password, id: 'password', placeholder: 'Password', className: 'form-control', onChange: function onChange(event) {
+	                  return _this2.onPasswordChange(event.target.value);
+	                } })
 	            )
 	          ),
 	          _react2.default.createElement(

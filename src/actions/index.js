@@ -14,8 +14,8 @@ export const CREATE_BUSINESS = "create_business";
 const ROOT_URL = "http://reduxblog.herokuapp.com/api";
 const API_KEY = "?key=PAPERCLIP1234";
 
-export function createBusiness(data,callback) {
-  const request = axios.get("/business/create").then(() => callback());
+export function createBusiness(user,callback) {
+  const request = axios.post("/business/create",user).then(() => callback());
 
   return {
     type: CREATE_BUSINESS,
