@@ -5,13 +5,24 @@ export const FETCH_POST = "fetch_post";
 export const CREATE_POST = "create_post";
 export const DELETE_POST = "delete_post";
 export const ADD_PLACE = "add_place";
-export const FETCH_RESTAURANTS = "fetch_restaurants"
-export const GET_MENU = "get_menu"
-export const SEND_MESSAGE = "send_message"
-export const ADD_MENU = "add_menu"
+export const FETCH_RESTAURANTS = "fetch_restaurants";
+export const GET_MENU = "get_menu";
+export const SEND_MESSAGE = "send_message";
+export const ADD_MENU = "add_menu";
+export const CREATE_BUSINESS = "create_business";
 
 const ROOT_URL = "http://reduxblog.herokuapp.com/api";
 const API_KEY = "?key=PAPERCLIP1234";
+
+export function createBusiness(data,callback) {
+  const request = axios.get("/business/create").then(() => callback());
+
+  return {
+    type: CREATE_BUSINESS,
+    payload: request
+  };
+}
+
 
 export function sendMessage() {
   const request = axios.get("/api/sendMessage");
@@ -196,16 +207,6 @@ export function fetchRestaurants(lat = '40.3324413', lon = '-74.5589624') {
 
 
 
-export function createPost(values, callback) {
-  const request = axios
-    .post(`${ROOT_URL}/posts${API_KEY}`, values)
-    .then(() => callback());
-
-  return {
-    type: CREATE_POST,
-    payload: request
-  };
-}
 
 export function fetchPost(id) {
   const request = axios.get(`${ROOT_URL}/posts/${id}${API_KEY}`);

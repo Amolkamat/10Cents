@@ -75,7 +75,13 @@ app.get("/api/sendMessage", function(req, res) {
 });
 
 
-// -------------------------------------------------
+var business = require('./routes/business');
+var services = require('./routes/services');
+var shops = require('./routes/shops');
+
+app.use('/business', business);
+app.use('/shops', shops);
+app.use('/services', services);
 
 // Listener
 app.listen(PORT, function() {

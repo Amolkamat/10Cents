@@ -1,6 +1,9 @@
 import React from 'react'
 import PlacesAutocomplete , { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
-
+import { connect } from "react-redux";
+import { createBusiness } from "../actions";
+import { Link,withRouter } from "react-router-dom";
+import ReactDOM from 'react-dom';
 
 class GooglePlaces extends React.Component {
   constructor(props) {
@@ -12,10 +15,10 @@ class GooglePlaces extends React.Component {
   handleFormSubmit = (event) => {
 
     console.log(this.state);
-    geocodeByAddress(this.state.address)
-      .then(results => getLatLng(results[0]))
-      .then(latLng => console.log('Success', latLng))
-      .catch(error => console.error('Error', error))
+
+    this.props.createBusiness(this.state, () => {
+      this.props.history.push("/");
+    });
   }
 
   render() {
@@ -60,7 +63,7 @@ class GooglePlaces extends React.Component {
       </div>
     </div>
 
-      
+
 </form>
 
 <div className="col-sm-9 col-sm-offset-3">
@@ -72,4 +75,9 @@ class GooglePlaces extends React.Component {
   }
 }
 
-export default GooglePlaces
+function mapStateToProps(state) {
+  return { posts: state };
+}
+
+
+export default withRouter(connect(mapStateToProps, { createBusiness})(GooglePlaces));

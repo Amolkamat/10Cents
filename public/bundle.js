@@ -49789,7 +49789,8 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.ADD_MENU = exports.SEND_MESSAGE = exports.GET_MENU = exports.FETCH_RESTAURANTS = exports.ADD_PLACE = exports.DELETE_POST = exports.CREATE_POST = exports.FETCH_POST = exports.FETCH_BUSINESS = undefined;
+	exports.CREATE_BUSINESS = exports.ADD_MENU = exports.SEND_MESSAGE = exports.GET_MENU = exports.FETCH_RESTAURANTS = exports.ADD_PLACE = exports.DELETE_POST = exports.CREATE_POST = exports.FETCH_POST = exports.FETCH_BUSINESS = undefined;
+	exports.createBusiness = createBusiness;
 	exports.sendMessage = sendMessage;
 	exports.fetchBusiness = fetchBusiness;
 	exports.getMenuItems = getMenuItems;
@@ -49797,7 +49798,6 @@
 	exports.addPlace = addPlace;
 	exports.setNearbySearchResult = setNearbySearchResult;
 	exports.fetchRestaurants = fetchRestaurants;
-	exports.createPost = createPost;
 	exports.fetchPost = fetchPost;
 	exports.deletePost = deletePost;
 
@@ -49816,9 +49816,21 @@
 	var GET_MENU = exports.GET_MENU = "get_menu";
 	var SEND_MESSAGE = exports.SEND_MESSAGE = "send_message";
 	var ADD_MENU = exports.ADD_MENU = "add_menu";
+	var CREATE_BUSINESS = exports.CREATE_BUSINESS = "create_business";
 
 	var ROOT_URL = "http://reduxblog.herokuapp.com/api";
 	var API_KEY = "?key=PAPERCLIP1234";
+
+	function createBusiness(data, callback) {
+	  var request = _axios2.default.get("/business/create").then(function () {
+	    return callback();
+	  });
+
+	  return {
+	    type: CREATE_BUSINESS,
+	    payload: request
+	  };
+	}
 
 	function sendMessage() {
 	  var request = _axios2.default.get("/api/sendMessage");
@@ -49976,17 +49988,6 @@
 	        dispatch(setNearbySearchResult(results, status));
 	      }
 	    });
-	  };
-	}
-
-	function createPost(values, callback) {
-	  var request = _axios2.default.post(ROOT_URL + "/posts" + API_KEY, values).then(function () {
-	    return callback();
-	  });
-
-	  return {
-	    type: CREATE_POST,
-	    payload: request
 	  };
 	}
 
@@ -78240,6 +78241,16 @@
 
 	var _reactPlacesAutocomplete2 = _interopRequireDefault(_reactPlacesAutocomplete);
 
+	var _reactRedux = __webpack_require__(160);
+
+	var _actions = __webpack_require__(482);
+
+	var _reactRouterDom = __webpack_require__(199);
+
+	var _reactDom = __webpack_require__(159);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -78259,12 +78270,9 @@
 	    _this.handleFormSubmit = function (event) {
 
 	      console.log(_this.state);
-	      (0, _reactPlacesAutocomplete.geocodeByAddress)(_this.state.address).then(function (results) {
-	        return (0, _reactPlacesAutocomplete.getLatLng)(results[0]);
-	      }).then(function (latLng) {
-	        return console.log('Success', latLng);
-	      }).catch(function (error) {
-	        return console.error('Error', error);
+
+	      _this.props.createBusiness(_this.state, function () {
+	        _this.props.history.push("/");
 	      });
 	    };
 
@@ -78376,7 +78384,11 @@
 	  return GooglePlaces;
 	}(_react2.default.Component);
 
-	exports.default = GooglePlaces;
+	function mapStateToProps(state) {
+	  return { posts: state };
+	}
+
+	exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, { createBusiness: _actions.createBusiness })(GooglePlaces));
 
 /***/ }),
 /* 828 */
