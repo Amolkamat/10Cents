@@ -24,11 +24,14 @@ export default class Header extends Component {
                 <LinkContainer to="/businessLogin">
                 <NavItem eventKey={1} href="#">Business Login </NavItem>
               </LinkContainer>
+              <LinkContainer to="/businessRegistration">
+              <NavItem eventKey={2} href="#">Business Sign Up </NavItem>
+            </LinkContainer>
                 <LinkContainer to="/home">
-                <NavItem eventKey={2} href="#">About </NavItem>
+                <NavItem eventKey={3} href="#">About </NavItem>
               </LinkContainer>
-                <NavItem eventKey={2} href="#">App Reviews </NavItem>
-                <NavItem eventKey={2} href="#"> </NavItem>
+                <NavItem eventKey={4} href="#">App Reviews </NavItem>
+                <NavItem eventKey={5} href="#"> </NavItem>
               </Nav>
 
             </Navbar.Collapse>

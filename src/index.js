@@ -9,7 +9,7 @@ import PostsIndex from "./components/posts_index";
 import PlaceOrders from "./components/order_view";
 import PostsShow from "./components/posts_show";
 import BusinessLogin from "./components/business_login_view";
-
+import BusinessRegistrationView from "./components/businessRegistrationView";
 import BusinessFinderSearch from "./components/business_finder_search"
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
@@ -20,6 +20,7 @@ ReactDOM.render(
       <div>
         <Switch>
           <Route path="/businessLogin" component={BusinessLogin} />
+          <Route path="/businessRegistration" component={BusinessRegistrationView} />
           <Route path="/placeOrder/:id" component={PlaceOrders} />
           <Route path="/" component={BusinessFinderSearch} />
         </Switch>
