@@ -49823,13 +49823,44 @@
 	  //const request = axios.get(`${ROOT_URL}/posts${API_KEY}`);
 	  var request = [{
 	    id: 1,
-	    name: 'Coffee Shop'
+	    name: 'Coffee Shop',
+	    price: 5.00
 	  }, {
 	    id: 2,
-	    name: 'Tea Shop'
+	    name: 'Tea Shop',
+	    price: 3.25
 	  }, {
 	    id: 3,
-	    name: 'Google Shop'
+	    name: 'Google Shop',
+	    price: 3.50
+	  }, {
+	    id: 4,
+	    name: 'Donut',
+	    price: 1.50
+	  }, {
+	    id: 5,
+	    name: 'Candy',
+	    price: 5.50
+	  }, {
+	    id: 6,
+	    name: 'Choco Drink',
+	    price: 6.60
+	  }, {
+	    id: 7,
+	    name: 'Peanut Butter',
+	    price: 3.50
+	  }, {
+	    id: 8,
+	    name: 'Chicken Burger',
+	    price: 8.75
+	  }, {
+	    id: 9,
+	    name: 'Milk Shake',
+	    price: 1.00
+	  }, {
+	    id: 10,
+	    name: 'Bread',
+	    price: 1.30
 	  }];
 	  return {
 	    type: FETCH_BUSINESS,
@@ -49840,13 +49871,44 @@
 	function getMenuItems() {
 	  var request = [{
 	    id: 1,
-	    name: 'Menu Coffee'
+	    name: 'Coffee Shop',
+	    price: 5.00
 	  }, {
 	    id: 2,
-	    name: 'Menu Tea'
+	    name: 'Tea Shop',
+	    price: 3.25
 	  }, {
 	    id: 3,
-	    name: 'Menu Google'
+	    name: 'Google Shop',
+	    price: 3.50
+	  }, {
+	    id: 4,
+	    name: 'Donut',
+	    price: 1.50
+	  }, {
+	    id: 5,
+	    name: 'Candy',
+	    price: 5.50
+	  }, {
+	    id: 6,
+	    name: 'Choco Drink',
+	    price: 6.60
+	  }, {
+	    id: 7,
+	    name: 'Peanut Butter',
+	    price: 3.50
+	  }, {
+	    id: 8,
+	    name: 'Chicken Burger',
+	    price: 8.75
+	  }, {
+	    id: 9,
+	    name: 'Milk Shake',
+	    price: 1.00
+	  }, {
+	    id: 10,
+	    name: 'Bread',
+	    price: 1.30
 	  }];
 	  return {
 	    type: GET_MENU,
@@ -49860,7 +49922,8 @@
 	  var request = {
 	    id: item.id,
 	    name: item.name,
-	    quantity: qty
+	    quantity: qty,
+	    price: item.price
 	  };
 	  return {
 	    type: ADD_MENU,
@@ -52152,7 +52215,7 @@
 	          _react2.default.createElement(
 	            "td",
 	            null,
-	            "$5.00"
+	            (parseFloat(orderItem.price) * parseInt(orderItem.quantity)).toFixed(2)
 	          )
 	        );
 	      });
@@ -52188,7 +52251,7 @@
 	          ),
 	          _react2.default.createElement(
 	            "table",
-	            { className: "table table-bordered table-hover" },
+	            { className: "table table-outer-bordered table-hover" },
 	            _react2.default.createElement(
 	              "thead",
 	              null,
@@ -52208,7 +52271,7 @@
 	                _react2.default.createElement(
 	                  "th",
 	                  null,
-	                  "Price"
+	                  "Total Price"
 	                )
 	              )
 	            ),

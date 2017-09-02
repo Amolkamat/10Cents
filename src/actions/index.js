@@ -27,15 +27,53 @@ export function fetchBusiness() {
   const request = [
     {
       id: 1,
-      name: 'Coffee Shop'
+      name: 'Coffee Shop',
+      price: 5.00
     },
     {
       id: 2,
-      name: 'Tea Shop'
+      name: 'Tea Shop',
+      price: 3.25
     },
     {
       id: 3,
-      name: 'Google Shop'
+      name: 'Google Shop',
+      price: 3.50
+    },
+    {
+      id: 4,
+      name: 'Donut',
+      price: 1.50
+    },
+    {
+      id: 5,
+      name: 'Candy',
+      price: 5.50
+    },
+    {
+      id: 6,
+      name: 'Choco Drink',
+      price: 6.60
+    },
+    {
+      id: 7,
+      name: 'Peanut Butter',
+      price: 3.50
+    },
+    {
+      id: 8,
+      name: 'Chicken Burger',
+      price: 8.75
+    },
+    {
+      id: 9,
+      name: 'Milk Shake',
+      price: 1.00
+    },
+    {
+      id: 10,
+      name: 'Bread',
+      price: 1.30
     }
   ]
   return {
@@ -48,15 +86,53 @@ export function getMenuItems() {
   const request = [
     {
       id: 1,
-      name: 'Menu Coffee'
+      name: 'Coffee Shop',
+      price: 5.00
     },
     {
       id: 2,
-      name: 'Menu Tea'
+      name: 'Tea Shop',
+      price: 3.25
     },
     {
       id: 3,
-      name: 'Menu Google'
+      name: 'Google Shop',
+      price: 3.50
+    },
+    {
+      id: 4,
+      name: 'Donut',
+      price: 1.50
+    },
+    {
+      id: 5,
+      name: 'Candy',
+      price: 5.50
+    },
+    {
+      id: 6,
+      name: 'Choco Drink',
+      price: 6.60
+    },
+    {
+      id: 7,
+      name: 'Peanut Butter',
+      price: 3.50
+    },
+    {
+      id: 8,
+      name: 'Chicken Burger',
+      price: 8.75
+    },
+    {
+      id: 9,
+      name: 'Milk Shake',
+      price: 1.00
+    },
+    {
+      id: 10,
+      name: 'Bread',
+      price: 1.30
     }
   ]
   return {
@@ -71,7 +147,8 @@ export function addMenuToOrder(item,qty) {
   var request = {
     id: item.id,
     name: item.name,
-    quantity: qty
+    quantity: qty,
+    price: item.price
   }
   return {
     type: ADD_MENU,

@@ -13,19 +13,18 @@ class OrderTotal extends Component {
       return(
 
       <tr key={index}>
-        <td>
-
-              {orderItem.quantity}
-
-      </td>
 
       <td>
         {orderItem.name}
 
     </td>
-
     <td>
-      $5.00
+
+          {orderItem.quantity}
+
+  </td>
+    <td>
+      {(parseFloat(orderItem.price) * parseInt(orderItem.quantity)).toFixed(2)}
 
   </td>
     </tr>
@@ -50,12 +49,12 @@ class OrderTotal extends Component {
       return (
         <div className = "orderTable">
           <h2>Order Total</h2>
-            <table className="table table-bordered table-hover">
+            <table className="table table-outer-bordered table-hover">
               <thead>
                 <tr>
-                  <th>Quantity</th>
                   <th>Item</th>
-                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Total Price</th>
                 </tr>
               </thead>
 
