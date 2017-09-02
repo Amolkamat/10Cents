@@ -95,7 +95,7 @@
 
 	var _businessRegistrationView2 = _interopRequireDefault(_businessRegistrationView);
 
-	var _business_finder_search = __webpack_require__(828);
+	var _business_finder_search = __webpack_require__(827);
 
 	var _business_finder_search2 = _interopRequireDefault(_business_finder_search);
 
@@ -49822,8 +49822,8 @@
 	var API_KEY = "?key=PAPERCLIP1234";
 
 	function createBusiness(user, callback) {
-	  var request = _axios2.default.post("/business/create", user).then(function () {
-	    return callback();
+	  var request = _axios2.default.post("/business/create", user).then(function (response) {
+	    return callback(response);
 	  });
 
 	  return {
@@ -72882,10 +72882,6 @@
 
 	var _businessRegistration2 = _interopRequireDefault(_businessRegistration);
 
-	var _googlePlaces = __webpack_require__(827);
-
-	var _googlePlaces2 = _interopRequireDefault(_googlePlaces);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -72911,7 +72907,7 @@
 	        "div",
 	        null,
 	        _react2.default.createElement(_header_view2.default, null),
-	        _react2.default.createElement(_googlePlaces2.default, null)
+	        _react2.default.createElement(_businessRegistration2.default, null)
 	      );
 	    }
 	  }]);
@@ -72925,10 +72921,10 @@
 /* 781 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -72937,23 +72933,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRedux = __webpack_require__(160);
-
-	var _reactRouterDom = __webpack_require__(199);
-
-	var _reactBootstrap = __webpack_require__(516);
-
-	var _reactRouterBootstrap = __webpack_require__(772);
-
-	var _reduxForm = __webpack_require__(246);
-
 	var _reactPlacesAutocomplete = __webpack_require__(782);
 
 	var _reactPlacesAutocomplete2 = _interopRequireDefault(_reactPlacesAutocomplete);
 
-	var _googlePlaces = __webpack_require__(827);
+	var _reactRedux = __webpack_require__(160);
 
-	var _googlePlaces2 = _interopRequireDefault(_googlePlaces);
+	var _actions = __webpack_require__(482);
+
+	var _reactRouterDom = __webpack_require__(199);
+
+	var _reactDom = __webpack_require__(159);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -72963,117 +72955,169 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var BusinessRegistration = function (_Component) {
-	    _inherits(BusinessRegistration, _Component);
+	var BusinessRegistration = function (_React$Component) {
+	  _inherits(BusinessRegistration, _React$Component);
 
-	    function BusinessRegistration(props) {
-	        _classCallCheck(this, BusinessRegistration);
+	  function BusinessRegistration(props) {
+	    _classCallCheck(this, BusinessRegistration);
 
-	        var _this = _possibleConstructorReturn(this, (BusinessRegistration.__proto__ || Object.getPrototypeOf(BusinessRegistration)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (BusinessRegistration.__proto__ || Object.getPrototypeOf(BusinessRegistration)).call(this, props));
 
-	        _this.handleFormSubmit = function (event) {
-	            event.preventDefault();
+	    _this.handleFormSubmit = function (event) {
 
-	            (0, _reactPlacesAutocomplete.geocodeByAddress)(_this.state.address).then(function (results) {
-	                return (0, _reactPlacesAutocomplete.getLatLng)(results[0]);
-	            }).then(function (latLng) {
-	                return console.log('Success', latLng);
-	            }).catch(function (error) {
-	                return console.error('Error', error);
-	            });
-	        };
+	      console.log(_this.state);
+	      var user = {
+	        email: _this.state.email,
+	        password: _this.state.password,
+	        shopPlaceId: _this.state.placeId,
+	        shopPlaceAddress: _this.state.address
+	      };
+	      _this.props.createBusiness(user, function (response) {
+	        console.log(user);
+	        _this.props.history.push('/placeOrder/' + response.data.shop.placeId);
+	      });
+	    };
 
-	        _this.state = { address: 'San Francisco, CA' };
-	        _this.onChange = function (address) {
-	            return _this.setState({ address: address });
-	        };
-	        return _this;
+	    _this.state = {
+	      address: 'San Francisco, CA',
+	      name: '',
+	      email: '',
+	      password: ''
+
+	    };
+	    _this.onChange = function (address, placeId) {
+	      return _this.setState({ address: address, placeId: placeId });
+	    };
+	    return _this;
+	  }
+
+	  _createClass(BusinessRegistration, [{
+	    key: 'onNameChange',
+	    value: function onNameChange(name) {
+	      this.setState({ name: name });
 	    }
+	  }, {
+	    key: 'onEmailChange',
+	    value: function onEmailChange(email) {
+	      this.setState({ email: email });
+	    }
+	  }, {
+	    key: 'onPasswordChange',
+	    value: function onPasswordChange(password) {
+	      this.setState({ password: password });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
 
-	    _createClass(BusinessRegistration, [{
-	        key: "render",
-	        value: function render() {
+	      var cssClasses = {
+	        input: 'form-control'
 
-	            return _react2.default.createElement(
-	                "div",
-	                null,
-	                _react2.default.createElement(
-	                    "form",
-	                    { className: "form-horizontal", role: "form" },
-	                    _react2.default.createElement(
-	                        "h2",
-	                        { className: "text-center" },
-	                        "Registration Form"
-	                    ),
-	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "form-group" },
-	                        _react2.default.createElement(
-	                            "label",
-	                            { "for": "firstName", className: "col-sm-3 control-label" },
-	                            "Full Name"
-	                        ),
-	                        _react2.default.createElement(
-	                            "div",
-	                            { className: "col-sm-9" },
-	                            _react2.default.createElement("input", { type: "text", id: "firstName", placeholder: "Full Name", className: "form-control", autofocus: true })
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "form-group" },
-	                        _react2.default.createElement(
-	                            "label",
-	                            { "for": "email", className: "col-sm-3 control-label" },
-	                            "Email"
-	                        ),
-	                        _react2.default.createElement(
-	                            "div",
-	                            { className: "col-sm-9" },
-	                            _react2.default.createElement("input", { type: "email", id: "email", placeholder: "Email", className: "form-control" })
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "form-group" },
-	                        _react2.default.createElement(
-	                            "label",
-	                            { "for": "password", className: "col-sm-3 control-label" },
-	                            "Password"
-	                        ),
-	                        _react2.default.createElement(
-	                            "div",
-	                            { className: "col-sm-9" },
-	                            _react2.default.createElement("input", { type: "password", id: "password", placeholder: "Password", className: "form-control" })
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "form-group" },
-	                        _react2.default.createElement(_googlePlaces2.default, null)
-	                    ),
-	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "form-group" },
-	                        _react2.default.createElement(
-	                            "div",
-	                            { className: "col-sm-9 col-sm-offset-3" },
-	                            _react2.default.createElement(
-	                                "button",
-	                                { type: "submit", className: "btn btn-primary btn-block" },
-	                                "Register"
-	                            )
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
+	      };
 
-	    return BusinessRegistration;
-	}(_react.Component);
+	      var inputProps = {
+	        value: this.state.address,
+	        onChange: this.onChange
+	      };
 
-	exports.default = BusinessRegistration;
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'form',
+	          { className: 'form-horizontal' },
+	          _react2.default.createElement(
+	            'h2',
+	            { className: 'text-center' },
+	            'Registration Form'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement(
+	              'label',
+	              { 'for': 'firstName', className: 'col-sm-3 control-label' },
+	              'Full Name'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-sm-9' },
+	              _react2.default.createElement('input', { type: 'text', value: this.state.name, id: 'firstName', placeholder: 'Full Name', className: 'form-control', onChange: function onChange(event) {
+	                  return _this2.onNameChange(event.target.value);
+	                }, autoFocus: true })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement(
+	              'label',
+	              { 'for': 'email', className: 'col-sm-3 control-label' },
+	              'Email'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-sm-9' },
+	              _react2.default.createElement('input', { type: 'email', value: this.state.email, id: 'email', placeholder: 'Email', className: 'form-control', onChange: function onChange(event) {
+	                  return _this2.onEmailChange(event.target.value);
+	                } })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement(
+	              'label',
+	              { 'for': 'password', className: 'col-sm-3 control-label' },
+	              'Password'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-sm-9' },
+	              _react2.default.createElement('input', { type: 'password', value: this.state.password, id: 'password', placeholder: 'Password', className: 'form-control', onChange: function onChange(event) {
+	                  return _this2.onPasswordChange(event.target.value);
+	                } })
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'form-group' },
+	            _react2.default.createElement(
+	              'label',
+	              { 'for': 'places', className: 'col-sm-3 control-label' },
+	              'Find your Business'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'col-sm-9' },
+	              _react2.default.createElement(_reactPlacesAutocomplete2.default, { inputProps: inputProps, classNames: cssClasses })
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'col-sm-9 col-sm-offset-3' },
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'btn btn-primary btn-block registerButton', onClick: function onClick() {
+	                return _this2.handleFormSubmit();
+	              } },
+	            'Register'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return BusinessRegistration;
+	}(_react2.default.Component);
+
+	function mapStateToProps(state) {
+	  return { posts: state };
+	}
+
+	exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, { createBusiness: _actions.createBusiness })(BusinessRegistration));
 
 /***/ }),
 /* 782 */
@@ -78225,207 +78269,6 @@
 /* 827 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactPlacesAutocomplete = __webpack_require__(782);
-
-	var _reactPlacesAutocomplete2 = _interopRequireDefault(_reactPlacesAutocomplete);
-
-	var _reactRedux = __webpack_require__(160);
-
-	var _actions = __webpack_require__(482);
-
-	var _reactRouterDom = __webpack_require__(199);
-
-	var _reactDom = __webpack_require__(159);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var GooglePlaces = function (_React$Component) {
-	  _inherits(GooglePlaces, _React$Component);
-
-	  function GooglePlaces(props) {
-	    _classCallCheck(this, GooglePlaces);
-
-	    var _this = _possibleConstructorReturn(this, (GooglePlaces.__proto__ || Object.getPrototypeOf(GooglePlaces)).call(this, props));
-
-	    _this.handleFormSubmit = function (event) {
-
-	      console.log(_this.state);
-	      var user = {
-	        email: _this.state.email,
-	        password: _this.state.password,
-	        shopPlaceId: _this.state.placeId,
-	        shopPlaceAddress: _this.state.address
-	      };
-	      _this.props.createBusiness(user, function () {
-	        _this.props.history.push("/");
-	      });
-	    };
-
-	    _this.state = {
-	      address: 'San Francisco, CA',
-	      name: '',
-	      email: '',
-	      password: ''
-
-	    };
-	    _this.onChange = function (address, placeId) {
-	      return _this.setState({ address: address, placeId: placeId });
-	    };
-	    return _this;
-	  }
-
-	  _createClass(GooglePlaces, [{
-	    key: 'onNameChange',
-	    value: function onNameChange(name) {
-	      this.setState({ name: name });
-	    }
-	  }, {
-	    key: 'onEmailChange',
-	    value: function onEmailChange(email) {
-	      this.setState({ email: email });
-	    }
-	  }, {
-	    key: 'onPasswordChange',
-	    value: function onPasswordChange(password) {
-	      this.setState({ password: password });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
-
-	      var cssClasses = {
-	        input: 'form-control'
-
-	      };
-
-	      var inputProps = {
-	        value: this.state.address,
-	        onChange: this.onChange
-	      };
-
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'form',
-	          { className: 'form-horizontal' },
-	          _react2.default.createElement(
-	            'h2',
-	            { className: 'text-center' },
-	            'Registration Form'
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'form-group' },
-	            _react2.default.createElement(
-	              'label',
-	              { 'for': 'firstName', className: 'col-sm-3 control-label' },
-	              'Full Name'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'col-sm-9' },
-	              _react2.default.createElement('input', { type: 'text', value: this.state.name, id: 'firstName', placeholder: 'Full Name', className: 'form-control', onChange: function onChange(event) {
-	                  return _this2.onNameChange(event.target.value);
-	                }, autoFocus: true })
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'form-group' },
-	            _react2.default.createElement(
-	              'label',
-	              { 'for': 'email', className: 'col-sm-3 control-label' },
-	              'Email'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'col-sm-9' },
-	              _react2.default.createElement('input', { type: 'email', value: this.state.email, id: 'email', placeholder: 'Email', className: 'form-control', onChange: function onChange(event) {
-	                  return _this2.onEmailChange(event.target.value);
-	                } })
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'form-group' },
-	            _react2.default.createElement(
-	              'label',
-	              { 'for': 'password', className: 'col-sm-3 control-label' },
-	              'Password'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'col-sm-9' },
-	              _react2.default.createElement('input', { type: 'password', value: this.state.password, id: 'password', placeholder: 'Password', className: 'form-control', onChange: function onChange(event) {
-	                  return _this2.onPasswordChange(event.target.value);
-	                } })
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'form-group' },
-	            _react2.default.createElement(
-	              'label',
-	              { 'for': 'places', className: 'col-sm-3 control-label' },
-	              'Find your Business'
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'col-sm-9' },
-	              _react2.default.createElement(_reactPlacesAutocomplete2.default, { inputProps: inputProps, classNames: cssClasses })
-	            )
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'col-sm-9 col-sm-offset-3' },
-	          _react2.default.createElement(
-	            'button',
-	            { className: 'btn btn-primary btn-block registerButton', onClick: function onClick() {
-	                return _this2.handleFormSubmit();
-	              } },
-	            'Register'
-	          )
-	        )
-	      );
-	    }
-	  }]);
-
-	  return GooglePlaces;
-	}(_react2.default.Component);
-
-	function mapStateToProps(state) {
-	  return { posts: state };
-	}
-
-	exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, { createBusiness: _actions.createBusiness })(GooglePlaces));
-
-/***/ }),
-/* 828 */
-/***/ (function(module, exports, __webpack_require__) {
-
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
@@ -78444,15 +78287,15 @@
 
 	var _actions = __webpack_require__(482);
 
-	var _search_bar = __webpack_require__(829);
+	var _search_bar = __webpack_require__(828);
 
 	var _search_bar2 = _interopRequireDefault(_search_bar);
 
-	var _business_list = __webpack_require__(830);
+	var _business_list = __webpack_require__(829);
 
 	var _business_list2 = _interopRequireDefault(_business_list);
 
-	var _shop_list = __webpack_require__(832);
+	var _shop_list = __webpack_require__(831);
 
 	var _shop_list2 = _interopRequireDefault(_shop_list);
 
@@ -78505,7 +78348,7 @@
 	exports.default = BusinessFinderSearch;
 
 /***/ }),
-/* 829 */
+/* 828 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -78641,7 +78484,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchBusiness: _index.fetchBusiness, addPlace: _index.addPlace, fetchRestaurants: _index.fetchRestaurants })(SearchBar);
 
 /***/ }),
-/* 830 */
+/* 829 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -78658,7 +78501,7 @@
 
 	var _reactRedux = __webpack_require__(160);
 
-	var _business_list_item = __webpack_require__(831);
+	var _business_list_item = __webpack_require__(830);
 
 	var _business_list_item2 = _interopRequireDefault(_business_list_item);
 
@@ -78735,7 +78578,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { getMenuItems: _actions.getMenuItems })(BusinessList);
 
 /***/ }),
-/* 831 */
+/* 830 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -78795,7 +78638,7 @@
 	exports.default = BusinessListItem;
 
 /***/ }),
-/* 832 */
+/* 831 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";

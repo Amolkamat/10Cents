@@ -24,6 +24,7 @@ customer = new User(user)
     }
     // Or log the doc
     else {
+      console.log(doc)
         res.json(doc);
     }
   });

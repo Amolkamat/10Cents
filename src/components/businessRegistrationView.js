@@ -5,7 +5,7 @@ import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import Header from './header_view.js'
 import BusinessRegistration from '../containers/businessRegistration'
-import GooglePlaces from "../containers/googlePlaces"
+
 
 export default class BusinessRegistrationView extends Component {
 
@@ -15,7 +15,7 @@ export default class BusinessRegistrationView extends Component {
     return (
       <div>
       <Header />
-      <GooglePlaces />
+      <BusinessRegistration />
 
       </div>
     );
