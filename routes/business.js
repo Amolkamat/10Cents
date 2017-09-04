@@ -8,10 +8,8 @@ router.post('/create' , function(req,res) {
   var user = {
     email: req.body.email,
     password: req.body.password,
-    shop: {
-      placeId: req.body.shopPlaceId,
-      address: req.body.shopPlaceAddress
-    }
+    placeId: req.body.shopPlaceId,
+    address: req.body.shopPlaceAddress
 
   }
 customer = new User(user)
@@ -31,8 +29,15 @@ customer = new User(user)
 
 })
 
+router.get('/get/:id',function(req,res) {
+  console.log(req.params.id);
+  User.findOne({placeId: req.params.id})
+    .exec(function(err,doc) {
+    console.log(doc);
+    res.json(doc);
 
-
+})
+})
 
 
 module.exports = router;

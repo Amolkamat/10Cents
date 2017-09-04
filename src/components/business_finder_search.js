@@ -7,6 +7,8 @@ import BusinessList from "../containers/business_list";
 import ShopList from "../containers/shop_list";
 import Header from './header_view.js'
 
+
+
 class BusinessFinderSearch extends Component {
   componentDidMount() {
 
@@ -18,7 +20,8 @@ class BusinessFinderSearch extends Component {
       <div>
         <Header />
         <SearchBar />
-        <BusinessList />
+
+          <BusinessList />
         <div className = "row googleShops">
             <ShopList />
         </div>
@@ -28,4 +31,9 @@ class BusinessFinderSearch extends Component {
   }
 }
 
-export default BusinessFinderSearch
+
+
+
+
+
+export default BusinessFinderSearch;

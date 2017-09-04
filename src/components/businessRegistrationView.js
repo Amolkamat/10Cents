@@ -15,7 +15,7 @@ export default class BusinessRegistrationView extends Component {
     return (
       <div>
       <Header />
-      <BusinessRegistration />
+          <BusinessRegistration />
 
       </div>
     );

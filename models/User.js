@@ -16,15 +16,13 @@ var UserSchema = new Schema({
     name: {
   		type: String
   	},
-  shop:{
-    placeId: {
+
+  placeId: {
       type: String
     },
-    address: {
+  address: {
   		type: String
   	}
-
-  }
 
 });
 

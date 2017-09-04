@@ -3,8 +3,12 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+var multer  = require('multer')
+var excelToJson = require('convert-excel-to-json');
+var fs = require('fs');
 
-
+var upload = multer( { dest: 'uploads/' } );
+var XLSX = require('xlsx');
 // Create Instance of Express
 var app = express();
 // Sets an initial port. We'll use this later in our listener
@@ -71,6 +75,27 @@ app.get("/api/sendMessage", function(req, res) {
     res.send({success:message.sid})
   }
 });
+
+});
+
+app.post( '/upload',upload.any(), function( req, res, next ) {
+  console.log(req.files);
+  console.log(req.files[0].filename);
+  var filePath = (__dirname +"/uploads/"+ req.files[0].filename);
+
+  var result = excelToJson({
+    sourceFile: filePath,
+    header:{
+          rows: 1 // 2, 3, 4, etc.
+    },
+    columnToKey: {
+        A: 'category',
+        B: 'Item',
+        C: 'price'
+    }
+});
+fs.unlinkSync(filePath);
+res.send(result);
 
 });
 

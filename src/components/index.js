@@ -11,24 +11,12 @@ export const SEND_MESSAGE = "send_message";
 export const ADD_MENU = "add_menu";
 export const CREATE_BUSINESS = "create_business";
 export const POST_MENU = "post_menu";
-export const GET_BUSINESS = "get_business";
-
 
 const ROOT_URL = "http://reduxblog.herokuapp.com/api";
 const API_KEY = "?key=PAPERCLIP1234";
 
-export function getBusiness(id) {
-  var request = axios.get(`/business/get/${id}`).then((response) => console.log(response));
-
-  return {
-    type: GET_BUSINESS,
-    payload: request
-  };
-}
-
 export function postMenu(file) {
-
-  var request = axios.post("/upload",file).then((response) => console.log(response.data.Sheet1));
+  const request = axios.post("/postMenu",file)
 
   return {
     type: POST_MENU,
