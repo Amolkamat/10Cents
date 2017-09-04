@@ -78407,6 +78407,10 @@
 
 	var _header_view2 = _interopRequireDefault(_header_view);
 
+	var _reactPlacesAutocomplete = __webpack_require__(784);
+
+	var _reactPlacesAutocomplete2 = _interopRequireDefault(_reactPlacesAutocomplete);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -78418,29 +78422,72 @@
 	var BusinessFinderSearch = function (_Component) {
 	  _inherits(BusinessFinderSearch, _Component);
 
-	  function BusinessFinderSearch() {
+	  function BusinessFinderSearch(props) {
 	    _classCallCheck(this, BusinessFinderSearch);
 
-	    return _possibleConstructorReturn(this, (BusinessFinderSearch.__proto__ || Object.getPrototypeOf(BusinessFinderSearch)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (BusinessFinderSearch.__proto__ || Object.getPrototypeOf(BusinessFinderSearch)).call(this, props));
+
+	    _this.handleFormSubmit = function (event) {
+
+	      console.log(_this.state);
+
+	      _this.props.history.push("/placeOrder/" + _this.state.placeId);
+
+	      /*  this.props.createBusiness(user, (response) => {
+	          console.log(user)
+	          this.props.history.push(`/businessSetup/${response.data.placeId}`);
+	        }); */
+	    };
+
+	    _this.state = {
+	      address: 'Search where you want to Order! ',
+	      name: '',
+	      email: '',
+	      password: ''
+
+	    };
+	    _this.onChange = function (address, placeId) {
+	      return _this.setState({ address: address, placeId: placeId });
+	    };
+	    return _this;
 	  }
 
 	  _createClass(BusinessFinderSearch, [{
-	    key: "componentDidMount",
-	    value: function componentDidMount() {}
-	  }, {
 	    key: "render",
 	    value: function render() {
+	      var _this2 = this;
+
+	      var cssClasses = {
+	        input: 'form-control'
+
+	      };
+
+	      var inputProps = {
+	        value: this.state.address,
+	        onChange: this.onChange
+	      };
 
 	      return _react2.default.createElement(
 	        "div",
 	        null,
 	        _react2.default.createElement(_header_view2.default, null),
-	        _react2.default.createElement(_search_bar2.default, null),
-	        _react2.default.createElement(_business_list2.default, null),
 	        _react2.default.createElement(
 	          "div",
-	          { className: "row googleShops" },
-	          _react2.default.createElement(_shop_list2.default, null)
+	          { className: "col-lg-5 col-lg-offset-4 col-md-6" },
+	          _react2.default.createElement(_reactPlacesAutocomplete2.default, { inputProps: inputProps, classNames: cssClasses }),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "text-center" },
+	            _react2.default.createElement(
+	              "a",
+	              { href: "#", className: "btn btn-squared-default btn-info placeOrderButton", onClick: function onClick() {
+	                  return _this2.handleFormSubmit();
+	                } },
+	              _react2.default.createElement("i", { className: "fa fa-bell fa-5x" }),
+	              _react2.default.createElement("br", null),
+	              "Place Order!"
+	            )
+	          )
 	        )
 	      );
 	    }

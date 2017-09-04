@@ -30,3 +30,32 @@
 
   overflow: auto;
 }
+.placeOrderButton {
+  margin-top: 100px;
+}
+
+.btn-squared-default
+    {
+        width: 100px !important;
+        height: 100px !important;
+        font-size: 10px;
+        background-color: #F05F40
+    }
+
+        .btn-squared-default:hover
+        {
+            border: 3px solid white;
+            font-weight: 800;
+        }
+
+    .btn-squared-default-plain
+    {
+        width: 100px !important;
+        height: 100px !important;
+        font-size: 10px;
+    }
+
+        .btn-squared-default-plain:hover
+        {
+            border: 0px solid white;
+        }
