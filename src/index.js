@@ -12,8 +12,9 @@ import BusinessLogin from "./components/business_login_view";
 import BusinessRegistrationView from "./components/businessRegistrationView";
 import BusinessFinderSearch from "./components/business_finder_search"
 import BusinessSetupView from "./components/businessSetupView";
+import ReduxPromise from 'redux-promise'
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const createStoreWithMiddleware = applyMiddleware(thunk,ReduxPromise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>

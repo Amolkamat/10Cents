@@ -27,39 +27,56 @@ class BusinessSetup extends Component {
     });
 
   }
+  displayBusinessAddress() {
+
+    return (
+      <h3> {this.props.business.data.address}</h3>
+    )
+  }
 
   render() {
 
-    return (
-      <div>
+    if(!this.props.business) {
+      return (
+        <div> Loading...</div>
+      )
+    } else {
+      return (
+        <div>
+
+          <h1> Welcome John Snow!</h1>
+
+           {this.displayBusinessAddress()}
+
+          <section>
+         <div className="dropzone">
+           <Dropzone onDrop={this.onDrop.bind(this)}>
+             <p>Try dropping some files here, or click to select files to upload.</p>
+           </Dropzone>
+         </div>
+         <aside>
+           <h2>Dropped files</h2>
+           <ul>
+             {
+               this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
+             }
+           </ul>
+         </aside>
+       </section>
+
+        </div>);
+    }
 
 
-        <section>
-       <div className="dropzone">
-         <Dropzone onDrop={this.onDrop.bind(this)}>
-           <p>Try dropping some files here, or click to select files to upload.</p>
-         </Dropzone>
-       </div>
-       <aside>
-         <h2>Dropped files</h2>
-         <ul>
-           {
-             this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
-           }
-         </ul>
-       </aside>
-     </section>
 
-
-
-      </div>
-    );
   }
 }
 
 
+function mapStateToProps({business}) {
+  return { business };
+}
 
 
 
-
-export default connect(null, { postMenu})(BusinessSetup);
+export default connect(mapStateToProps, { postMenu})(BusinessSetup);

@@ -18,8 +18,8 @@ const ROOT_URL = "http://reduxblog.herokuapp.com/api";
 const API_KEY = "?key=PAPERCLIP1234";
 
 export function getBusiness(id) {
-  var request = axios.get(`/business/get/${id}`).then((response) => console.log(response));
-
+  var request = axios.get(`/business/get/${id}`);
+  
   return {
     type: GET_BUSINESS,
     payload: request

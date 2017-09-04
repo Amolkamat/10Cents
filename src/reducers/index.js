@@ -5,13 +5,16 @@ import MapsReducer from "./maps_reducer"
 import ShopsReducer from "./shops_reducer"
 import MenuItemReducer from "./reducer_menuItems"
 import OrderReducer from "./order_reducer"
+import BusinessSetupReducer from "./reducer_BusinessSetup"
 
 const rootReducer = combineReducers({
   shop: BusinessReducer,
   currentLocation: MapsReducer,
   googleShop: ShopsReducer,
   menu: MenuItemReducer,
-  order: OrderReducer
+  order: OrderReducer,
+  business: BusinessSetupReducer
+
 });
 
 export default rootReducer;
