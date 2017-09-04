@@ -6,6 +6,7 @@ import ShopsReducer from "./shops_reducer"
 import MenuItemReducer from "./reducer_menuItems"
 import OrderReducer from "./order_reducer"
 import BusinessSetupReducer from "./reducer_BusinessSetup"
+import PostMenuReducer from "./reducer_postMenu"
 
 const rootReducer = combineReducers({
   shop: BusinessReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   googleShop: ShopsReducer,
   menu: MenuItemReducer,
   order: OrderReducer,
-  business: BusinessSetupReducer
+  business: BusinessSetupReducer,
+  postedMenu: PostMenuReducer
 
 });
 

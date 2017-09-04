@@ -21,7 +21,9 @@ class BusinessSetup extends Component {
 
     var photo = new FormData();
   photo.append('photo', files[0]);
-  this.props.postMenu(photo);
+  console.log('Display Business Id');
+  console.log(this.props.business.data.placeId)
+  this.props.postMenu(photo,this.props.business.data.placeId);
     this.setState({
       files
     });

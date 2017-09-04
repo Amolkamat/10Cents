@@ -6,6 +6,7 @@ var mongoose = require("mongoose");
 var multer  = require('multer')
 var excelToJson = require('convert-excel-to-json');
 var fs = require('fs');
+var User = require("./models/User.js");
 
 var upload = multer( { dest: 'uploads/' } );
 var XLSX = require('xlsx');
@@ -78,7 +79,7 @@ app.get("/api/sendMessage", function(req, res) {
 
 });
 
-app.post( '/upload',upload.any(), function( req, res, next ) {
+app.post( '/upload/:placeId',upload.any(), function( req, res, next ) {
   console.log(req.files);
   console.log(req.files[0].filename);
   var filePath = (__dirname +"/uploads/"+ req.files[0].filename);
@@ -90,12 +91,28 @@ app.post( '/upload',upload.any(), function( req, res, next ) {
     },
     columnToKey: {
         A: 'category',
-        B: 'Item',
+        B: 'item',
         C: 'price'
     }
 });
+console.log("Sheet1");
+console.log(result["Sheet1"]);
+console.log(req.params.placeId);
+
 fs.unlinkSync(filePath);
-res.send(result);
+
+User.update({"placeId":req.params.placeId},{"$set":{menuList:result["Sheet1"]}})
+.exec(function(err,doc) {
+  if(err)
+  {
+    console.log(err)
+  }
+  else {
+    console.log(doc);
+  }
+  res.send(doc);
+
+})
 
 });
 

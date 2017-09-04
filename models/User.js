@@ -1,5 +1,6 @@
 // Require Mongoose
 var mongoose = require('mongoose');
+var Float = require('mongoose-float').loadType(mongoose);
 
 // Create a Schema Class
 var Schema = mongoose.Schema;
@@ -22,7 +23,16 @@ var UserSchema = new Schema({
     },
   address: {
   		type: String
-  	}
+  	},
+    menuList: [{
+      category: {
+        type:String
+      },
+      item: {
+        type: String} ,
+      price: {
+        type: Float}
+    }]
 
 });
 

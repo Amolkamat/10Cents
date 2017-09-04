@@ -18,17 +18,20 @@ const ROOT_URL = "http://reduxblog.herokuapp.com/api";
 const API_KEY = "?key=PAPERCLIP1234";
 
 export function getBusiness(id) {
+
   var request = axios.get(`/business/get/${id}`);
-  
+
   return {
     type: GET_BUSINESS,
     payload: request
   };
 }
 
-export function postMenu(file) {
+export function postMenu(file,placeId) {
 
-  var request = axios.post("/upload",file).then((response) => console.log(response.data.Sheet1));
+  var request = axios.post(`/upload/${placeId}`,file);
+  console.log('Inside Post Menu ');
+  console.log(request);
 
   return {
     type: POST_MENU,
