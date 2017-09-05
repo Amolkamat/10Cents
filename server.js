@@ -24,7 +24,7 @@ else {
 var MONGODB = "mongodb://localhost/tenCents";
 }
 
-var Order = require('./models/Order.js');
+
 
 // Run Morgan for Logging
 app.use(logger("dev"));
@@ -41,6 +41,7 @@ app.use(express.static("public"));
 mongoose.connect(MONGODB);
 var db = mongoose.connection;
 
+var Order = require('./models/Order.js');
 
 db.on("error", function(err) {
   console.log("Mongoose Error: ", err);
