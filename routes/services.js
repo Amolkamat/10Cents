@@ -1,6 +1,7 @@
 var express = require('express');
-var router = express.Router();
+
 var Order = require("../models/Order.js");
+var router = express.Router();
 
 router.post('/createOrder/:id' , function(req,res) {
   console.log(req.params.id);
