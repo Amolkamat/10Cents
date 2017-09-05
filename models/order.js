@@ -1,16 +1,12 @@
 // Require Mongoose
 var mongoose = require('mongoose');
 var Float = require('mongoose-float').loadType(mongoose);
-var autoIncrement = require('mongoose-auto-increment');
+
 // Create a Schema Class
 var Schema = mongoose.Schema;
 
 // Create Article Schema
 var OrderSchema = new Schema({
-
-  id: {
-  		type: Number
-  	},
 
   placeId: {
       type: String
