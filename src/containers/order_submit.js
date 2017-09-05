@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
-import { Link } from "react-router-dom";
+import { Link,withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getMenuItems,sendMessage } from "../actions";
 
@@ -8,6 +8,7 @@ class OrderSubmit extends Component {
 
   handleSubmit() {
     console.log('Hello from Submit');
+    this.props.history.push('/purchase/1');
   }
 
   render() {
@@ -38,4 +39,4 @@ function mapStateToProps({order}) {
 }
 
 
-export default connect(mapStateToProps, { getMenuItems ,sendMessage})(OrderSubmit);
+export default withRouter(connect(mapStateToProps, { getMenuItems ,sendMessage})(OrderSubmit));

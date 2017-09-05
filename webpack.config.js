@@ -5,6 +5,7 @@ module.exports = {
   },
   module: {
     loaders: [
+
       {
         exclude: /node_modules/,
         loader: "babel",
@@ -19,7 +20,8 @@ module.exports = {
           'image-webpack-loader'
         ]
 
-      }
+      },
+      { test: /\.css$/, loader: 'style-loader!css-loader'}
     ]
   },
   resolve: {

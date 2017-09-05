@@ -12,6 +12,7 @@ import BusinessLogin from "./components/business_login_view";
 import BusinessRegistrationView from "./components/businessRegistrationView";
 import BusinessFinderSearch from "./components/business_finder_search"
 import BusinessSetupView from "./components/businessSetupView";
+import PurchaseView from "./components/purchaseView";
 import ReduxPromise from 'redux-promise'
 
 const createStoreWithMiddleware = applyMiddleware(thunk,ReduxPromise)(createStore);
@@ -25,6 +26,7 @@ ReactDOM.render(
           <Route path="/businessRegistration" component={BusinessRegistrationView} />
           <Route path="/placeOrder/:id" component={PlaceOrders} />
           <Route path="/businessSetup/:id" component={BusinessSetupView} />
+          <Route path="/purchase/:id" component={PurchaseView} />
           <Route path="/" component={BusinessFinderSearch} />
         </Switch>
       </div>
