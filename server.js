@@ -24,7 +24,7 @@ else {
 var MONGODB = "mongodb://localhost/tenCents";
 }
 
-
+var Order = require('./models/Order.js');
 
 // Run Morgan for Logging
 app.use(logger("dev"));
