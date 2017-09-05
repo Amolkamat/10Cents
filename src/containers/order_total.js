@@ -34,7 +34,7 @@ class OrderTotal extends Component {
   ) )
   }
   render() {
-    {console.log(this.props.order)}
+
     if(this.props.order.menuList.length<=0){
       return(
         <div>
@@ -75,6 +75,7 @@ class OrderTotal extends Component {
                     {this.populateMenu()}
                 </tbody>
             </table>
+          
         </div>
       )
     }
@@ -82,6 +83,7 @@ class OrderTotal extends Component {
 
 
   }
+
 }
 
 function mapStateToProps({order}) {

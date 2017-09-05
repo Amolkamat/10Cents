@@ -63,10 +63,10 @@ class BusinessFinderSearch extends Component {
 
 
             <a href="#" className="btn btn-squared-default btn-info placeOrderButton" onClick={() => this.handleFormSubmit()}>
-                    <i className="fa fa-bell fa-5x"></i>
+                    <i className="fa fa-bell fa-lg"></i>
                     <br />
                     Place Order!
-                                      
+
                 </a>
 
           </div>

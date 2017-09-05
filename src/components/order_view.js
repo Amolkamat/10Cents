@@ -5,6 +5,8 @@ import Header from './header_view.js'
 import Footer from './footer_view.js'
 import PlaceOrders from '../containers/place_orders';
 import OrderTotal from '../containers/order_total';
+import OrderSubmit from '../containers/order_submit';
+
 
 export default class OrderView extends Component {
 
@@ -23,12 +25,20 @@ export default class OrderView extends Component {
         </div>
 
         <div className = "col-md-4">
+          <div className = "row">
             <OrderTotal />
-        </div>
+          </div>
+          <div className = "row">
+            <div className = "col-md-4 col-md-offset-4">
+                <OrderSubmit />
+            </div>
 
-        </div>
+          </div>
+
 
       </div>
+    </div>
+  </div>
     );
   }
 }

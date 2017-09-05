@@ -130,10 +130,10 @@ export function getMenuItems(placeId) {
 
 export function addMenuToOrder(item,qty) {
   console.log('Menu Item Added');
-  console.log(qty)
+  console.log(item)
   var request = {
     id: item.id,
-    name: item.name,
+    name: item.item,
     quantity: qty,
     price: item.price
   }
