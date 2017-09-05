@@ -17,7 +17,7 @@ class PurchaseView extends Component {
     super(props);
 
     this.onSubmit = this.onSubmit.bind(this);
-    this.orderSuccessMessage = this.orderSuccessMessage.bind(this);
+    
   }
 
   onSubmit() {
@@ -25,19 +25,8 @@ class PurchaseView extends Component {
     console.log('Final Order List');
     console.log(this.props.order.menuList);
     this.props.purchaseOrder(this.props.match.params.id,this.props.order.menuList);
-  }
-  orderSuccessMessage() {
-    console.log(this.props.postedMenu);
+    this.props.history.push('/purchaseSuccess');
 
-    if(!this.props.postedMenu) {
-      return (
-        <div> </div>
-      )
-    }else {
-      return(
-      <PurchaseSuccess />
-      )
-    }
   }
 
   render() {
@@ -67,7 +56,7 @@ class PurchaseView extends Component {
         </div>
         </div>
 
-    {this.orderSuccessMessage()}
+
 
 </div>
     );

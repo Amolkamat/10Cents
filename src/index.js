@@ -28,7 +28,7 @@ ReactDOM.render(
           <Route path="/placeOrder/:id" component={PlaceOrders} />
           <Route path="/businessSetup/:id" component={BusinessSetupView} />
           <Route path="/purchase/:id" component={PurchaseView} />
-          <Route path="/purchaseSuccess/:id" component={PurchaseSuccess} />
+          <Route path="/purchaseSuccess" component={PurchaseSuccess} />
           <Route path="/" component={BusinessFinderSearch} />
         </Switch>
       </div>
