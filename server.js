@@ -23,7 +23,7 @@ var MONGODB = "mongodb://heroku_zn08v06c:ahf4lhkmnd46o4ip0mf3erq74j@ds123124.mla
 else {
 var MONGODB = "mongodb://localhost/tenCents";
 }
-
+var MONGODB = "mongodb://heroku_zn08v06c:ahf4lhkmnd46o4ip0mf3erq74j@ds123124.mlab.com:23124/heroku_zn08v06c";
 var Order = require('./models/Order.js');
 
 // Run Morgan for Logging
