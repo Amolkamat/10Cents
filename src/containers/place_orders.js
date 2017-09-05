@@ -27,15 +27,15 @@ class PlaceOrders extends Component {
     this.props.getMenuItems(id);
   }
   renderMenu() {
-    return this.props.menu.map((menuItem) => {
+    return this.props.menu.data.menuList.map((menuItem,index) => {
       return (
-        <div key={menuItem.id}>
+        <div key={index}>
 
                   <div className="col-md-6">
                  <div className="business-card">
                      <div className="media">
                        <div className = "media-body">
-                         <h3 heading="media-heading"> {menuItem.name} </h3>
+                         <h3 heading="media-heading"> {menuItem.item} </h3>
 
                          <div className = "col-md-6">
                            <select onChange={this.handleChange} >
@@ -71,7 +71,7 @@ class PlaceOrders extends Component {
   }
 
   render() {
-    if(this.props.menu.length > 0)
+    if(this.props.menu.data)
     {
       console.log(this.props.menu)
       return(
