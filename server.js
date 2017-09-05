@@ -7,7 +7,7 @@ var multer  = require('multer')
 var excelToJson = require('convert-excel-to-json');
 var fs = require('fs');
 var User = require("./models/User.js");
-var CustomerOrder = require("./models/CustomerOrder");
+
 
 var upload = multer( { dest: 'uploads/' } );
 var XLSX = require('xlsx');
@@ -15,7 +15,7 @@ var XLSX = require('xlsx');
 var app = express();
 // Sets an initial port. We'll use this later in our listener
 var PORT = process.env.PORT || 3000;
-
+var autoIncrement = require('mongoose-auto-increment');
 
 if (process.env.NODE_ENV === 'production') {
 var MONGODB = "mongodb://heroku_zn08v06c:ahf4lhkmnd46o4ip0mf3erq74j@ds123124.mlab.com:23124/heroku_zn08v06c";
@@ -40,7 +40,8 @@ app.use(express.static("public"));
 // MongoDB Configuration configuration (Change this URL to your own DB)
 mongoose.connect(MONGODB);
 var db = mongoose.connection;
-
+var CustomerOrder = require("./models/CustomerOrder");
+autoIncrement.initialize(mongoose.connection);
 
 
 db.on("error", function(err) {
