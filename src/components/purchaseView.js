@@ -7,16 +7,27 @@ import { CardForm } from 'react-payment';
 import Dialog from 'material-ui/Dialog';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import OrderTotal from '../containers/order_total';
+import { purchaseOrder } from "../actions";
 
-export default class PurchaseView extends Component {
+class PurchaseView extends Component {
+
+  constructor(props)
+  {
+    super(props);
+
+    this.onSubmit = this.onSubmit.bind(this);
+  }
 
   onSubmit() {
-    console.log('Hello from Credit Card');
-
+    console.log(this.props.match.params.id);
+    console.log('Final Order List');
+    console.log(this.props.order.menuList);
+    this.props.purchaseOrder(this.props.match.params.id,this.props.order.menuList);
   }
 
   render() {
 
+    console.log(this.props)
 
     return (
       <div>
@@ -44,3 +55,9 @@ export default class PurchaseView extends Component {
     );
   }
 }
+
+function mapStateToProps({order}) {
+  return { order };
+}
+
+export default connect(mapStateToProps, { purchaseOrder})(PurchaseView);

@@ -10,8 +10,6 @@ import OrderSubmit from '../containers/order_submit';
 
 export default class OrderView extends Component {
 
-
-
   render() {
 
 

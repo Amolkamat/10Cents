@@ -17,6 +17,20 @@ export const GET_BUSINESS = "get_business";
 const ROOT_URL = "http://reduxblog.herokuapp.com/api";
 const API_KEY = "?key=PAPERCLIP1234";
 
+
+export function purchaseOrder(placeId,order) {
+
+  var request = axios.post(`/services/createOrder/${placeId}`,order);
+  console.log('Inside Purchase Menu ');
+  console.log(request);
+
+  return {
+    type: POST_MENU,
+    payload: request
+  };
+}
+
+
 export function getBusiness(id) {
 
   var request = axios.get(`/business/get/${id}`);
