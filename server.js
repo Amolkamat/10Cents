@@ -7,6 +7,7 @@ var multer  = require('multer')
 var excelToJson = require('convert-excel-to-json');
 var fs = require('fs');
 var User = require("./models/User.js");
+var Order = require('./models/Order.js');
 
 var upload = multer( { dest: 'uploads/' } );
 var XLSX = require('xlsx');
@@ -80,6 +81,33 @@ app.get("/api/sendMessage", function(req, res) {
 
 });
 
+app.post('/services/createOrder/:id' , function(req,res) {
+  console.log(req.params.id);
+  console.log('Customer Order');
+  console.log(req.body);
+  var order = {
+    placeId: req.params.id,
+    orderList: req.body
+
+
+  }
+customerOrder = new Order(order)
+
+  customerOrder.save(function(err, doc) {
+    // Log any errors
+    if (err) {
+      console.log(err);
+    }
+    // Or log the doc
+    else {
+      console.log(doc)
+        res.json(doc);
+    }
+  });
+
+})
+
+
 app.post( '/upload/:placeId',upload.any(), function( req, res, next ) {
   console.log(req.files);
   console.log(req.files[0].filename);
@@ -117,12 +145,9 @@ User.update({"placeId":req.params.placeId},{"$set":{menuList:result["Sheet1"]}})
 
 
 var business = require('./routes/business');
-var services = require('./routes/services');
-var shops = require('./routes/shops');
-
 app.use('/business', business);
-app.use('/shops', shops);
-app.use('/services', services);
+
+
 
 // Listener
 app.listen(PORT, function() {

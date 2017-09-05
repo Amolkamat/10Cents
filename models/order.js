@@ -30,6 +30,7 @@ var OrderSchema = new Schema({
 
 });
 
+autoIncrement.initialize(mongoose.connection);
 OrderSchema.plugin(autoIncrement.plugin, 'Order');
 // Create the Article model with Mongoose
 var Order = mongoose.model('Order', OrderSchema);
