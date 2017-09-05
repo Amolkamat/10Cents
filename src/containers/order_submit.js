@@ -6,9 +6,18 @@ import { getMenuItems,sendMessage } from "../actions";
 
 class OrderSubmit extends Component {
 
+  constructor(props)
+  {
+    super(props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+
+
   handleSubmit() {
-    console.log('Hello from Submit');
-    this.props.history.push('/purchase/1');
+    //Call the page to submit Order!
+    this.props.history.push(`/purchase/${this.props.id}`);
   }
 
   render() {

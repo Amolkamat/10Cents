@@ -61,10 +61,7 @@ class PlaceOrders extends Component {
                      </div>
                  </div>
              </div>
-
-
-
-                </div>
+          </div>
 
       )
     })

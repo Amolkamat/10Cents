@@ -11,6 +11,7 @@ import OrderSubmit from '../containers/order_submit';
 export default class OrderView extends Component {
 
 
+
   render() {
 
 
@@ -30,7 +31,7 @@ export default class OrderView extends Component {
           </div>
           <div className = "row">
             <div className = "col-md-4 col-md-offset-4">
-                <OrderSubmit />
+                <OrderSubmit id={this.props.match.params.id}/>
             </div>
 
           </div>
