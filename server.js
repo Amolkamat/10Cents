@@ -96,9 +96,7 @@ app.post( '/upload/:placeId',upload.any(), function( req, res, next ) {
         C: 'price'
     }
 });
-console.log("Sheet1");
-console.log(result["Sheet1"]);
-console.log(req.params.placeId);
+
 
 fs.unlinkSync(filePath);
 
