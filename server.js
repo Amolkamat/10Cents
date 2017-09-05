@@ -7,7 +7,7 @@ var multer  = require('multer')
 var excelToJson = require('convert-excel-to-json');
 var fs = require('fs');
 var User = require("./models/User.js");
-
+var Order = require('./models/Order.js');
 
 var upload = multer( { dest: 'uploads/' } );
 var XLSX = require('xlsx');
@@ -41,7 +41,7 @@ app.use(express.static("public"));
 mongoose.connect(MONGODB);
 var db = mongoose.connection;
 
-var Order = require('./models/Order.js');
+
 
 db.on("error", function(err) {
   console.log("Mongoose Error: ", err);
