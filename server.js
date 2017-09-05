@@ -7,7 +7,7 @@ var multer  = require('multer')
 var excelToJson = require('convert-excel-to-json');
 var fs = require('fs');
 var User = require("./models/User.js");
-var Order = require('./models/Order.js');
+var CustomerOrder = require("./models/CustomerOrder");
 
 var upload = multer( { dest: 'uploads/' } );
 var XLSX = require('xlsx');
@@ -92,7 +92,7 @@ app.post('/services/createOrder/:id' , function(req,res) {
 
 
   }
-customerOrder = new Order(order)
+customerOrder = new CustomerOrder(order)
 
   customerOrder.save(function(err, doc) {
     // Log any errors
