@@ -28,6 +28,7 @@ var OrderSchema = new Schema({
         type: Float}
     }]
 
+
 });
 
 autoIncrement.initialize(mongoose.connection);
