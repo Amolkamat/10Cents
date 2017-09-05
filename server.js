@@ -17,7 +17,7 @@ var PORT = process.env.PORT || 3000;
 
 
 if (process.env.NODE_ENV === 'production') {
-var MONGODB = "mongodb://heroku_pp0xjzqd:4emv3h0q3itv7ct7ij9rabjhn8@ds159013.mlab.com:59013/heroku_pp0xjzqd";
+var MONGODB = "mongodb://heroku_zn08v06c:ahf4lhkmnd46o4ip0mf3erq74j@ds123124.mlab.com:23124/heroku_zn08v06c";
 }
 else {
 var MONGODB = "mongodb://localhost/tenCents";
