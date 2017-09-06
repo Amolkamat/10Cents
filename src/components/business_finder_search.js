@@ -62,7 +62,7 @@ class BusinessFinderSearch extends Component {
           <h1 className="text-center">Local Business is just a click away! </h1>
           <PlacesAutocomplete inputProps={inputProps} classNames={cssClasses}/>
           <div className = "text-center">
-            
+
           <a href="#" className="btn btn-squared-default btn-info placeOrderButton" onClick={() => this.handleFormSubmit()}>
                   <i className="fa fa-bell fa-lg"></i>
                   <br />
@@ -74,6 +74,14 @@ class BusinessFinderSearch extends Component {
   </div>
 </div>
 
+<div className="company-logo-container">
+                    <h4>As Used By</h4>
+                    <img src="/images/logo1.jpeg" />
+                    <img src="/images/logo4.jpg" />
+                    <img src="/images/logo2.jpg" />
+                    <img src="/images/logo3.jpg" />
+
+                </div>
 
 
 
