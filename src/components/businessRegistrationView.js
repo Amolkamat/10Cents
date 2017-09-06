@@ -15,9 +15,23 @@ export default class BusinessRegistrationView extends Component {
     return (
       <div>
       <Header />
-          <BusinessRegistration />
 
-      </div>
+
+
+      <div className="title-cover-landing">
+<div className="title-cover-left"></div>
+<div className="title-cover-right">
+    <div className="title-cover-right-child">
+          
+                  <BusinessRegistration />
+
+    </div>
+</div>
+</div>
+
+
+</div>
+
     );
   }
 }

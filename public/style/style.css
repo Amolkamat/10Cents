@@ -16,6 +16,16 @@ body{
     margin-bottom: 1em;
 }
 
+.business-cover-landing {
+    background-color: #F05F40;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 2em;
+    min-height: 7em;
+    margin-bottom: 1em;
+}
 
 .company-logo-container {
     padding-top: 1em;
@@ -49,6 +59,21 @@ body{
 
   }
 
+  .businessRegistration-cover-left {
+          display: inline-block;
+          width: 0%;
+      }
+      .businessRegistration-cover-right {
+              display: inline-block;
+              width: 100%;
+            }
+    .businessRegistration-cover-right h1 {
+      color: #fff;
+      font-size: 2.5em;
+      margin-bottom: 1.5em;
+
+    }
+
   @media only screen and (min-width: 753px) {
 
 
@@ -67,6 +92,17 @@ body{
             display: inline-block;
             width: 65%;
         }
+
+        .businessRegistration-cover-left {
+
+            background-image: url("/images/onlinePhone.png");
+
+            background-repeat:no-repeat;
+   background-size:contain;
+   height: 250px;
+
+        }
+
 
 }
 

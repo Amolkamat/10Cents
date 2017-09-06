@@ -58,8 +58,7 @@ class BusinessRegistration extends React.Component {
     return (
         <div>
           <form className="form-horizontal">
-    <h2 className="text-center">Registration Form</h2>
-
+  
     <div className="form-group">
                       <label for="firstName" className="col-sm-3 control-label">Full Name</label>
                       <div className="col-sm-9">
