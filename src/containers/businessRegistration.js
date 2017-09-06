@@ -29,7 +29,7 @@ class BusinessRegistration extends React.Component {
     }
     this.props.createBusiness(user, (response) => {
       console.log(user)
-      this.props.history.push(`/businessSetup/${response.data.placeId}`);
+      this.props.history.push(`/businessHomePageView/${response.data.placeId}`);
     });
   }
 

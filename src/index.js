@@ -12,6 +12,7 @@ import BusinessLogin from "./components/business_login_view";
 import BusinessRegistrationView from "./components/businessRegistrationView";
 import BusinessFinderSearch from "./components/business_finder_search"
 import BusinessSetupView from "./components/businessSetupView";
+import BusinessHomePageView from "./components/businessHomePageView";
 import PurchaseView from "./components/purchaseView";
 import PurchaseSuccess from "./components/purchaseSuccess";
 import ReduxPromise from 'redux-promise'
@@ -27,6 +28,7 @@ ReactDOM.render(
           <Route path="/businessRegistration" component={BusinessRegistrationView} />
           <Route path="/placeOrder/:id" component={PlaceOrders} />
           <Route path="/businessSetup/:id" component={BusinessSetupView} />
+          <Route path="/businessHomePageView/:id" component={BusinessHomePageView} />
           <Route path="/purchase/:id" component={PurchaseView} />
           <Route path="/purchaseSuccess" component={PurchaseSuccess} />
           <Route path="/" component={BusinessFinderSearch} />
