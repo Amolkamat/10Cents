@@ -6,7 +6,7 @@ import Footer from './footer_view.js'
 import PlaceOrders from '../containers/place_orders';
 import OrderTotal from '../containers/order_total';
 import OrderSubmit from '../containers/order_submit';
-
+import Notification from "../containers/notification"
 
 export default class OrderView extends Component {
 
@@ -16,6 +16,7 @@ export default class OrderView extends Component {
     return (
       <div>
         <Header />
+        <Notification />
         <div className="row">
 
 

@@ -7,6 +7,7 @@ import MenuItemReducer from "./reducer_menuItems"
 import OrderReducer from "./order_reducer"
 import BusinessSetupReducer from "./reducer_BusinessSetup"
 import PostMenuReducer from "./reducer_postMenu"
+import NotificaitonReducer from "./reducer_notification"
 
 const rootReducer = combineReducers({
   shop: BusinessReducer,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   menu: MenuItemReducer,
   order: OrderReducer,
   business: BusinessSetupReducer,
-  postedMenu: PostMenuReducer
+  postedMenu: PostMenuReducer,
+  notification: NotificaitonReducer
 
 });
 

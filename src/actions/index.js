@@ -12,10 +12,25 @@ export const ADD_MENU = "add_menu";
 export const CREATE_BUSINESS = "create_business";
 export const POST_MENU = "post_menu";
 export const GET_BUSINESS = "get_business";
-
+export const DISPLAY_NOTIFICATION = "display_notification";
 
 const ROOT_URL = "http://reduxblog.herokuapp.com/api";
 const API_KEY = "?key=PAPERCLIP1234";
+
+
+
+export function displayNotification(showNotification, notificationText,notificationType) {
+    var request = {
+      show: showNotification,
+      text: notificationText,
+      type: notificationType
+    }
+
+  return {
+    type: DISPLAY_NOTIFICATION,
+    payload: request
+  };
+}
 
 
 export function purchaseOrder(placeId,order) {
@@ -143,8 +158,6 @@ export function getMenuItems(placeId) {
 }
 
 export function addMenuToOrder(item,qty) {
-  console.log('Menu Item Added');
-  console.log(item)
   var request = {
     id: item.id,
     name: item.item,

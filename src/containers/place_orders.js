@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { getMenuItems,sendMessage,addMenuToOrder } from "../actions";
+import { getMenuItems,sendMessage,addMenuToOrder,displayNotification } from "../actions";
 
 class PlaceOrders extends Component {
 
@@ -16,6 +16,14 @@ class PlaceOrders extends Component {
         }
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(menuItem){
+    this.props.addMenuToOrder(menuItem,this.state.selectValue);
+    this.props.displayNotification(true,'Menu Item Added','add-item-notification');
+
+
   }
 
   handleChange(e){
@@ -53,8 +61,8 @@ class PlaceOrders extends Component {
                          </div>
                          <div className = "col-md-6">
                           <button className="btn btn-primary addToOrderButton" type="button" onClick={()=>
+                            this.handleSubmit(menuItem)
 
-                            this.props.addMenuToOrder(menuItem,this.state.selectValue)
                           } > Click </button>
                         </div>
                       </div>
@@ -99,4 +107,4 @@ function mapStateToProps({menu}) {
 }
 
 
-export default connect(mapStateToProps, { getMenuItems,addMenuToOrder,sendMessage})(PlaceOrders);
+export default connect(mapStateToProps, { getMenuItems,addMenuToOrder,sendMessage,displayNotification})(PlaceOrders);
