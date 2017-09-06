@@ -55,22 +55,25 @@ class BusinessFinderSearch extends Component {
 
 
 
-              <div className="col-lg-5 col-lg-offset-4 col-md-6">
-              <PlacesAutocomplete inputProps={inputProps} classNames={cssClasses}/>
-
-
+        <div className="title-cover-landing">
+  <div className="title-cover-left"></div>
+  <div className="title-cover-right">
+      <div className="title-cover-right-child">
+          <h1 className="text-center">Local Business is just a click away! </h1>
+          <PlacesAutocomplete inputProps={inputProps} classNames={cssClasses}/>
           <div className = "text-center">
+            
+          <a href="#" className="btn btn-squared-default btn-info placeOrderButton" onClick={() => this.handleFormSubmit()}>
+                  <i className="fa fa-bell fa-lg"></i>
+                  <br />
+                  Place Order!
 
-
-            <a href="#" className="btn btn-squared-default btn-info placeOrderButton" onClick={() => this.handleFormSubmit()}>
-                    <i className="fa fa-bell fa-lg"></i>
-                    <br />
-                    Place Order!
-
-                </a>
-
+              </a>
           </div>
-          </div>
+      </div>
+  </div>
+</div>
+
 
 
 
