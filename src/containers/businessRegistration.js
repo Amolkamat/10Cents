@@ -57,8 +57,8 @@ class BusinessRegistration extends React.Component {
 
     return (
         <div>
-          <form className="form-horizontal">
-  
+              <form className="form-horizontal">
+
     <div className="form-group">
                       <label for="firstName" className="col-sm-3 control-label">Full Name</label>
                       <div className="col-sm-9">
@@ -88,7 +88,7 @@ class BusinessRegistration extends React.Component {
 
 </form>
 
-<div className="col-sm-9 col-sm-offset-3">
+<div className="col-sm-3 col-sm-offset-6">
     <button className="btn btn-primary btn-block registerButton" onClick={() => this.handleFormSubmit()}>Register</button>
 </div>
 </div>

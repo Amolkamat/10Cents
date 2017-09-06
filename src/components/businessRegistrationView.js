@@ -19,16 +19,27 @@ export default class BusinessRegistrationView extends Component {
 
 
       <div className="title-cover-landing">
-<div className="title-cover-left"></div>
+        <div className = "text-center businessHeading">
+          <h1>Please register and connect to your Customers instantly</h1>
+        </div>
+<div className="businessRegistration-cover-left"></div>
 <div className="title-cover-right">
     <div className="title-cover-right-child">
-          
+
                   <BusinessRegistration />
 
     </div>
 </div>
 </div>
 
+<div className="company-logo-container">
+                    <h4>Our Partners</h4>
+                    <img src="/images/logo1.jpeg" />
+                    <img src="/images/logo4.jpg" />
+                    <img src="/images/logo2.jpg" />
+                    <img src="/images/logo3.jpg" />
+
+                </div>
 
 </div>
 
