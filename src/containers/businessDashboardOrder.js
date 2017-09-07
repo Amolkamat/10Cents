@@ -23,7 +23,7 @@ class BusinessDashboardOrder extends Component {
   }
 
   renderOrderStats() {
-    if(!this.props.businessOrders.data) {
+    if(this.props.businessOrders.data.length <= 0) {
       return (
 
         <div>
