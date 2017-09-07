@@ -18,8 +18,15 @@ export default class OrderView extends Component {
         <Header />
         <Notification />
         <div className="row">
-
-
+          <div className = "text-center">
+          <h2 className = "placeOrderHeader">Place your Order!</h2>
+          <div className="additional-info-container">
+                    <div className="userProgress">
+                        <div className="twoOfFive">
+                        </div>
+                    </div>
+                  </div>
+          </div>
         <div className = "menuItemList col-md-8">
           <div className="order-cover-landing">
             <PlaceOrders id={this.props.match.params.id} />
