@@ -32,16 +32,15 @@ router.get('/fetchOrders/:id',function(req,res){
       var startDate = moment().startOf('day')
       console.log(startDate.toDate())
   }
-    CustomerOrder.find({placeId: req.params.id,createdAt: {$gte: startDate.toDate()}}, function(err, doc){
+    CustomerOrder.find({placeId: req.params.id,createdAt: {$gte: startDate.toDate()}})
+                  .sort({createdAt: 'desc'})
+                  .exec(function(err, doc){
       if (err)
     {
         res.send(err);
     }
-    console.log('Displaying here');
-    console.log(doc);
-    console.log('Displaying there');
     res.json(doc);
-    })
+  })
 
 
 

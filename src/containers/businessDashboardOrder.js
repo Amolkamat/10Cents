@@ -3,6 +3,8 @@ import { Field, reduxForm } from "redux-form";
 import { Link,withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchOrders} from "../actions";
+import moment from 'moment';
+
 
 class BusinessDashboardOrder extends Component {
 
@@ -16,13 +18,17 @@ class BusinessDashboardOrder extends Component {
     this.props.fetchOrders(id);
   }
 
+  convertTimeStamp(timeStamp){
+    return moment(timeStamp).format("hh:mm:ss A")
+  }
+
   renderOrderStats() {
     if(!this.props.businessOrders.data) {
       return (
 
         <div>
           <h4> Orders Received Today : - </h4>
-          <h4> Last Order Received @:   - </h4>
+          <h4> Last Order Received @: - </h4>
         </div>
       )
 
@@ -31,7 +37,7 @@ class BusinessDashboardOrder extends Component {
       return (
         <div>
           <h4> Orders Received Today : {this.props.businessOrders.data.length}</h4>
-          <h4> Last Order Received:  {this.props.businessOrders.data[0].createdAt.toString()}</h4>
+          <h4> Last Order Received:  {this.convertTimeStamp(this.props.businessOrders.data[0].createdAt)}</h4>
         </div>
       )
 
