@@ -21,7 +21,9 @@ export default class OrderView extends Component {
 
 
         <div className = "menuItemList col-md-8">
+          <div className="order-cover-landing">
             <PlaceOrders id={this.props.match.params.id} />
+          </div>
         </div>
 
         <div className = "col-md-4">

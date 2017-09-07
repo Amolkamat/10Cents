@@ -49,6 +49,19 @@ body{
     margin-bottom: 1em;
 }
 
+.menu-cover-landing {
+    background-color: #F05F40;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 2em;
+    min-height: 7em;
+    margin-bottom: 1em;
+}
+
+
+
 .business-cover-landing {
     background-color: #F05F40;
 
@@ -140,13 +153,6 @@ body{
 }
 
 
-.business-card {
-  border: 1px solid #cccccc;
-  background: #f8f8f8;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 10px;
-}
 
 .shopList {
   margin-top:10px;
@@ -156,9 +162,7 @@ body{
   margin: 20px 0px;
 }
 
-.menuList > .card {
-  height: 100px
-}
+
 
 .loading-icon {
           margin-top: 0em;
@@ -507,4 +511,9 @@ body{
 
 .businessPanel {
   min-height: 300px;
+}
+
+.addToOrderButton {
+  border-radius: 12px;
+  background-color: orange
 }

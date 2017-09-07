@@ -39,7 +39,7 @@ class OrderTotal extends Component {
       return(
         <div>
         <section id="order-total">
-            <h2>Order Total</h2>
+          
 
         </section>
     </div> )
@@ -47,7 +47,7 @@ class OrderTotal extends Component {
       }
       else {
       return (
-        <div className = "orderTable">
+        <div className = "orderTable orderTotal-cover-landing">
 
             <table className="table table-outer-bordered table-hover">
               <thead>
@@ -75,7 +75,7 @@ class OrderTotal extends Component {
                     {this.populateMenu()}
                 </tbody>
             </table>
-          
+
         </div>
       )
     }
