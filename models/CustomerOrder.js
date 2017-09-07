@@ -22,7 +22,10 @@ var CustomerOrderSchema = new Schema({
       },
       price: {
         type: Float}
-    }]
+    }],
+    orderStatus : {
+      type: String
+    }
 
 });
 autoIncrement.initialize(mongoose.connection);

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { getBusiness } from "../actions";
 import BusinessDashboardOrder from "./BusinessDashboardOrder"
 import BusinessDashboardUpload from "./BusinessDashboardUpload"
+import BusinessDashboardProfile from "./BusinessDashboardProfile"
 
 class BusinessDashboard extends Component {
 
@@ -29,7 +30,9 @@ render() {
     </div>
 
         <div className = "col-md-4" >
-      <div className="businessDashboard-cover-right"></div>
+      <div className="businessDashboard-cover-right">
+        <BusinessDashboardProfile />
+      </div>
     </div>
 
 

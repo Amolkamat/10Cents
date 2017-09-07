@@ -49,7 +49,7 @@ class BusinessDashboardUpload extends Component {
           <div className = "text-center" >
 
 
-          <h4 className="dashboardHeader"> Upload Menu Items </h4>
+          <h3 className="dashboardHeader"> Upload Menu Items </h3>
          <div className="dropzone">
                    <Dropzone className="dropzone" onDrop={this.onDrop.bind(this)}>
 

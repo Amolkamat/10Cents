@@ -23,9 +23,17 @@ class BusinessDashboardOrder extends Component {
       return (
         <div>
           <div className= "text-center">
-              <h4 className = "dashboardHeader"> 1 Month Order Dashboard </h4>
+              <h3 className = "dashboardHeader"> Order Dashboard </h3>
           </div>
 
+          <div>
+            <h4> Orders Received Today : </h4>
+            <h4> Last Order Received @:  </h4>
+
+          </div>
+          <div className= "text-center">
+            <button className = "btn btn-primary"> View Orders </button>
+          </div>
         </div>
       )
     }
