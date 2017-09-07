@@ -1,15 +1,16 @@
 import React from 'react'
 import PlacesAutocomplete , { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import { connect } from "react-redux";
-import { createBusiness } from "../actions";
+import { createBusiness,displayNotification,validateShop } from "../actions";
 import { Link,withRouter } from "react-router-dom";
 import ReactDOM from 'react-dom';
+import Notification from './notification';
 
 class BusinessRegistration extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      address: 'San Francisco, CA',
+      address: '',
       name: '',
       email:'',
       password:''
@@ -21,17 +22,40 @@ class BusinessRegistration extends React.Component {
   handleFormSubmit = (event) => {
 
     console.log(this.state);
+    //Validate Form Inputs
+
     const user = {
+      name: this.state.name,
       email: this.state.email,
       password: this.state.password,
       shopPlaceId: this.state.placeId,
       shopPlaceAddress: this.state.address
     }
-    this.props.createBusiness(user, (response) => {
-      console.log(user)
-      this.props.history.push(`/businessHomePageView/${response.data.placeId}`);
-    });
-  }
+
+    if(user.email == "") {
+      this.props.displayNotification(true,'Please enter your Email Address','delete-item-notification');
+      }
+      else if (user.password == ""){
+        this.props.displayNotification(true,'Please enter a Password','delete-item-notification');
+      }
+      else if (user.name == "") {
+        this.props.displayNotification(true,'Please enter your Name','delete-item-notification');
+      } else if(user.shopPlaceAddress == "") {
+        this.props.displayNotification(true,'Please enter a valid Location','delete-item-notification');
+      } else {
+    this.props.validateShop(user.shopPlaceId, (response) => {
+        if (response.data.length > 0) {
+            this.props.displayNotification(true, 'Shop already registered - Please login insted of Registration', 'delete-item-notification');
+        } else {
+            this.props.createBusiness(user, (response) => {
+                this.props.history.push(`/businessHomePageView/${response.data.placeId}`);
+            })
+        }
+
+    })
+
+}
+}
 
   onNameChange(name) {
     this.setState({ name });
@@ -102,4 +126,4 @@ function mapStateToProps(state) {
 }
 
 
-export default withRouter(connect(mapStateToProps, { createBusiness})(BusinessRegistration));
+export default withRouter(connect(mapStateToProps, { createBusiness, displayNotification,validateShop})(BusinessRegistration));

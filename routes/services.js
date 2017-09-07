@@ -46,6 +46,22 @@ router.get('/fetchOrders/:id',function(req,res){
 
 })
 
+router.get('/validateShop/:id',function(req,res){
+  console.log('Shop Validation')
+  if(!req.params.startDate) {
+      var startDate = moment().startOf('day')
+      console.log(startDate.toDate())
+  }
+    User.find({placeId: req.params.id}, function(err,doc) {
+      if(err) {
+        res.send(err);
+      } else {
+        res.json(doc)
+      }
+    })
+
+})
+
 
 router.get("/api/sendMessage", function(req, res) {
   var client = require('twilio')(

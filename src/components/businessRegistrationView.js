@@ -5,7 +5,7 @@ import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import Header from './header_view.js'
 import BusinessRegistration from '../containers/businessRegistration'
-
+import Notification from "../containers/notification"
 
 export default class BusinessRegistrationView extends Component {
 
@@ -16,7 +16,7 @@ export default class BusinessRegistrationView extends Component {
       <div>
       <Header />
 
-
+      <Notification />
 
       <div className="title-cover-landing">
         <div className = "text-center businessHeading">

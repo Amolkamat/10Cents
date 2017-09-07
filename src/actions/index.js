@@ -14,9 +14,22 @@ export const POST_MENU = "post_menu";
 export const GET_BUSINESS = "get_business";
 export const DISPLAY_NOTIFICATION = "display_notification";
 export const FETCH_ORDERS = "fetch_orders";
+export const VALIDATE_SHOP = "validate_shop";
 
-const ROOT_URL = "http://reduxblog.herokuapp.com/api";
+
 const API_KEY = "?key=PAPERCLIP1234";
+
+export function validateShop(placeId,callback) {
+
+      var request = axios.get(`/services/validateShop/${placeId}`).then((response) => callback(response));
+
+  return {
+    type: VALIDATE_SHOP,
+    payload: request
+  };
+}
+
+
 
 export function fetchOrders(placeId,startDate) {
       var request = axios.get(`/services/fetchOrders/${placeId}`);
@@ -97,7 +110,7 @@ export function sendMessage() {
 }
 
 export function fetchBusiness() {
-  //const request = axios.get(`${ROOT_URL}/posts${API_KEY}`);
+
   const request = [
     {
       id: 1,
@@ -190,7 +203,6 @@ export function addPlace(lat,lon) {
 
 export function setNearbySearchResult(results,status) {
 
-
     return {
         type: FETCH_RESTAURANTS,
         payload: {results,status}
@@ -215,27 +227,4 @@ export function fetchRestaurants(lat = '40.3324413', lon = '-74.5589624') {
         });
 
     }
-}
-
-
-
-
-export function fetchPost(id) {
-  const request = axios.get(`${ROOT_URL}/posts/${id}${API_KEY}`);
-
-  return {
-    type: FETCH_POST,
-    payload: request
-  };
-}
-
-export function deletePost(id, callback) {
-  const request = axios
-    .delete(`${ROOT_URL}/posts/${id}${API_KEY}`)
-    .then(() => callback());
-
-  return {
-    type: DELETE_POST,
-    payload: id
-  };
 }
