@@ -40,7 +40,7 @@ class BusinessHomePageView extends Component {
             <h1 class="text-center"> Welcome John Snow!</h1>
              {this.displayBusinessAddress()}
           </div>
-          <BusinessDashboard />
+          <BusinessDashboard/>
         </div>
     );
   }
