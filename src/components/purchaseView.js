@@ -17,7 +17,7 @@ class PurchaseView extends Component {
     super(props);
 
     this.onSubmit = this.onSubmit.bind(this);
-    
+
   }
 
   onSubmit() {
@@ -56,7 +56,7 @@ class PurchaseView extends Component {
         </div>
         </div>
 
-
+        <Footer />
 
 </div>
     );

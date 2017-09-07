@@ -43,7 +43,7 @@ class PlaceOrders extends Component {
 
                   <div className="col-md-6 menu-cover-landing">
 
-                    <Panel header={menuItem.item + "   $" + menuItem.price} >
+                    <Panel header={menuItem.item + "   $" + menuItem.price} bsStyle="success">
                       <div className = "col-md-6">
                         <select onChange={this.handleChange} >
                           <option>1</option>

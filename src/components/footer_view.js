@@ -10,7 +10,14 @@ export default class Footer extends Component {
 
 
     return (
-      <div> Footer Component</div>
+      <div className="company-logo-container">
+                          <h4>As Used By</h4>
+                          <img src="/images/logo1.jpeg" />
+                          <img src="/images/logo4.jpg" />
+                          <img src="/images/logo2.jpg" />
+                          <img src="/images/logo3.jpg" />
+
+                      </div>
     );
   }
 }

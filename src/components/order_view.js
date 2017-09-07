@@ -47,6 +47,7 @@ export default class OrderView extends Component {
 
       </div>
     </div>
+    <Footer />
   </div>
     );
   }

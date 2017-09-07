@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Header from './header_view.js';
+import Footer from "./footer_view"
 import OrderTotal from '../containers/order_total';
 
 class PurchaseSuccess extends Component {
@@ -18,14 +19,14 @@ class PurchaseSuccess extends Component {
 
             <div className="row">
               <div className = "text-center">
-                  <h3> Order Purchase Success - </h3>
-                  <h4> Your Order Number is - {this.props.postedMenu.data._id} </h4>
-          </div>
+                  <h2> Purchase Success Order # {this.props.postedMenu.data._id} </h2>
+                    </div>
         </div>
         <div className = "row" >
-          <h6 className = "text-center"> Your Order Receipt</h6>
+          <h6 className = "text-center"> Receipt</h6>
           <OrderTotal />
         </div>
+        <Footer />
       </div>
 
       );
