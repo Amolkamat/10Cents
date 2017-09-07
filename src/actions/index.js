@@ -13,18 +13,16 @@ export const CREATE_BUSINESS = "create_business";
 export const POST_MENU = "post_menu";
 export const GET_BUSINESS = "get_business";
 export const DISPLAY_NOTIFICATION = "display_notification";
-export const ORDER_CHARTDATA = "order_chartdata";
+export const FETCH_ORDERS = "fetch_orders";
 
 const ROOT_URL = "http://reduxblog.herokuapp.com/api";
 const API_KEY = "?key=PAPERCLIP1234";
 
-export function getOrderChartData() {
-    var request = {
-
-    }
+export function fetchOrders(placeId,startDate) {
+      var request = axios.get(`/services/fetchOrders/${placeId}`);
 
   return {
-    type: ORDER_CHARTDATA,
+    type: FETCH_ORDERS,
     payload: request
   };
 }

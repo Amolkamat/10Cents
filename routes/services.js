@@ -2,15 +2,13 @@ var express = require('express');
 var router = express.Router();
 var User = require("../models/User.js");
 var CustomerOrder = require("../models/CustomerOrder");
+var moment = require('moment');
 
 router.post('/createOrder/:id' , function(req,res) {
-  console.log(req.params.id);
-  console.log('Customer Order');
-  console.log(req.body);
+
   var order = {
     placeId: req.params.id,
     orderList: req.body
-
 
   }
 customerOrder = new CustomerOrder(order)
@@ -29,6 +27,25 @@ customerOrder = new CustomerOrder(order)
 
 })
 
+router.get('/fetchOrders/:id',function(req,res){
+  if(!req.params.startDate) {
+      var startDate = moment().startOf('day')
+      console.log(startDate.toDate())
+  }
+    CustomerOrder.find({placeId: req.params.id,createdAt: {$gte: startDate.toDate()}}, function(err, doc){
+      if (err)
+    {
+        res.send(err);
+    }
+    console.log('Displaying here');
+    console.log(doc);
+    console.log('Displaying there');
+    res.json(doc);
+    })
+
+
+
+})
 
 
 router.get("/api/sendMessage", function(req, res) {

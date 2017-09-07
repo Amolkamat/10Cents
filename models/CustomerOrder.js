@@ -27,7 +27,8 @@ var CustomerOrderSchema = new Schema({
       type: String
     }
 
-});
+
+},{timestamps: true });
 autoIncrement.initialize(mongoose.connection);
 CustomerOrderSchema.plugin(autoIncrement.plugin, 'CustomerOrder');
 // Create the Article model with Mongoose
