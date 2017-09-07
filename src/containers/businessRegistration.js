@@ -40,8 +40,8 @@ class BusinessRegistration extends React.Component {
       }
       else if (user.name == "") {
         this.props.displayNotification(true,'Please enter your Name','delete-item-notification');
-      } else if(user.shopPlaceAddress == "") {
-        this.props.displayNotification(true,'Please enter a valid Location','delete-item-notification');
+      } else if(user.shopPlaceAddress == "" || user.shopPlaceId ==null ) {
+        this.props.displayNotification(true,'Please enter a valid Business Location','delete-item-notification');
       } else {
     this.props.validateShop(user.shopPlaceId, (response) => {
         if (response.data.length > 0) {
