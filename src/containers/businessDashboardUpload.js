@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-
-
 import Dropzone from 'react-dropzone'
-import { postMenu } from "../actions";
+import { postMenu,displayNotification,getUploadedMenu } from "../actions";
 
 class BusinessDashboardUpload extends Component {
   componentDidMount() {
@@ -21,9 +19,9 @@ class BusinessDashboardUpload extends Component {
 
     var photo = new FormData();
   photo.append('photo', files[0]);
-  console.log('Display Business Id');
-  console.log(this.props.business.data.placeId)
-  this.props.postMenu(photo,this.props.business.data.placeId);
+
+  this.props.postMenu(photo,this.props.business.data.placeId,() => this.props.getUploadedMenu(this.props.business.data.placeId));
+  this.props.displayNotification(true,'Menu Items Uploaded - You are all set!','add-item-notification')
     this.setState({
       files
     });
@@ -74,4 +72,4 @@ function mapStateToProps({business}) {
 
 
 
-export default connect(mapStateToProps, { postMenu})(BusinessDashboardUpload);
+export default connect(mapStateToProps, { postMenu,displayNotification,getUploadedMenu})(BusinessDashboardUpload);

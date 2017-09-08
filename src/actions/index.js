@@ -15,9 +15,20 @@ export const GET_BUSINESS = "get_business";
 export const DISPLAY_NOTIFICATION = "display_notification";
 export const FETCH_ORDERS = "fetch_orders";
 export const VALIDATE_SHOP = "validate_shop";
-
+export const UPLOADED_MENU = "uploaded_menu";
 
 const API_KEY = "?key=PAPERCLIP1234";
+
+export function getUploadedMenu(id) {
+
+  var request = axios.get(`/business/get/${id}`);
+
+  return {
+    type: UPLOADED_MENU,
+    payload: request
+  };
+}
+
 
 export function validateShop(placeId,callback) {
 
@@ -78,11 +89,10 @@ export function getBusiness(id) {
   };
 }
 
-export function postMenu(file,placeId) {
+export function postMenu(file,placeId,callback) {
 
-  var request = axios.post(`/upload/${placeId}`,file);
-  console.log('Inside Post Menu ');
-  console.log(request);
+  var request = axios.post(`/upload/${placeId}`,file).then(() => callback());
+
 
   return {
     type: POST_MENU,

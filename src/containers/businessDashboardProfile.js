@@ -6,7 +6,7 @@ import { getOrderChartData} from "../actions";
 
 class BusinessDashboardProfile extends Component {
 
-  
+
 
   render() {
     if(!this.props.business) {
@@ -19,7 +19,7 @@ class BusinessDashboardProfile extends Component {
       return (
         <div>
           <div className= "text-center">
-              <h3 className = "dashboardHeader"> Profile </h3>
+              <h4 className = "dashboardHeader"> Profile </h4>
           </div>
 
           <div>

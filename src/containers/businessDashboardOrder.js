@@ -55,7 +55,7 @@ class BusinessDashboardOrder extends Component {
       return (
         <div>
           <div className= "text-center">
-              <h3 className = "dashboardHeader"> Order Dashboard </h3>
+              <h4 className = "dashboardHeader"> Order Dashboard </h4>
           </div>
           {this.renderOrderStats()}
 

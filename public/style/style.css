@@ -6,7 +6,14 @@ body{
   border: 1px solid #dddddd;
 }
 
-
+.table-borderless > tbody > tr > td,
+.table-borderless > tbody > tr > th,
+.table-borderless > tfoot > tr > td,
+.table-borderless > tfoot > tr > th,
+.table-borderless > thead > tr > td,
+.table-borderless > thead > tr > th {
+    border: none;
+}
 
 
 .table-bordered > thead > tr > th,
@@ -99,6 +106,7 @@ body{
   padding: 2em;
   height: 20em;
   margin-bottom: 1em;
+  overflow: auto;
 }
 
 .title-cover-landing {
@@ -167,6 +175,7 @@ body{
       .businessRegistration-cover-right {
               display: inline-block;
               width: 100%;
+
             }
     .businessRegistration-cover-right h1 {
       color: #fff;

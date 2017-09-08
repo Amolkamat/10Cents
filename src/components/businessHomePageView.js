@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Header from './header_view.js'
 import { getBusiness } from "../actions";
 import BusinessDashboard from '../containers/businessDashboard'
+import Notification from "../containers/notification"
+
 
 class BusinessHomePageView extends Component {
 
@@ -36,6 +38,7 @@ class BusinessHomePageView extends Component {
     return (
       <div>
         <Header />
+        <Notification />
           <div className = "text-center">
             <h1 class="text-center"> Welcome John Snow!</h1>
              {this.displayBusinessAddress()}

@@ -5,6 +5,7 @@ import { getBusiness } from "../actions";
 import BusinessDashboardOrder from "./BusinessDashboardOrder"
 import BusinessDashboardUpload from "./BusinessDashboardUpload"
 import BusinessDashboardProfile from "./BusinessDashboardProfile"
+import BusinessDashboardMenuItems from "./BusinessDashboardMenuItems"
 
 class BusinessDashboard extends Component {
 
@@ -31,9 +32,10 @@ render() {
 
         <div className = "col-md-4" >
       <div className="businessDashboard-cover-right">
-        <BusinessDashboardProfile />
+        <BusinessDashboardMenuItems />
       </div>
     </div>
+
 
 
 
