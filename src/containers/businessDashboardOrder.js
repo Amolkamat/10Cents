@@ -60,7 +60,7 @@ class BusinessDashboardOrder extends Component {
           {this.renderOrderStats()}
 
           <div className= "text-center">
-            <button className = "btn btn-primary"> View Orders  </button>
+            <button className="btn btn-sm addToOrderButton" type="button" > View Orders </button>
           </div>
         </div>
       )

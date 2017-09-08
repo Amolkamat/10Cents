@@ -33,7 +33,7 @@ export function getUploadedMenu(id) {
 export function validateShop(placeId,callback) {
 
       var request = axios.get(`/services/validateShop/${placeId}`).then((response) => callback(response));
-
+    
   return {
     type: VALIDATE_SHOP,
     payload: request

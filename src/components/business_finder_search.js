@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { fetchPost, deletePost } from "../actions";
+import { displayNotification,validateShop} from "../actions";
 import SearchBar from "../containers/search_bar";
 import BusinessList from "../containers/business_list";
 import ShopList from "../containers/shop_list";
-import Header from './header_view.js'
-import PlacesAutocomplete , { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
-
+import Header from './header_view.js';
+import PlacesAutocomplete , { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import Notification from "../containers/notification";
 
 class BusinessFinderSearch extends Component {
   constructor(props) {
@@ -23,14 +23,21 @@ class BusinessFinderSearch extends Component {
   }
   handleFormSubmit =  (event) => {
 
-    console.log(this.state);
+    if(this.state.placeId ==null ) {
+      this.props.displayNotification(true,'Please enter a valid Business Location','delete-item-notification');
+    }
+     else {
+       this.props.validateShop(this.state.placeId, (response) => {
+           if (response.data.length <= 0) {
+               this.props.displayNotification(true, 'Shop has not been Registered!', 'delete-item-notification');
+           } else {
+            this.props.history.push(`/placeOrder/${this.state.placeId}`);
+           }
 
-    this.props.history.push(`/placeOrder/${this.state.placeId}`);
+       })
 
-  /*  this.props.createBusiness(user, (response) => {
-      console.log(user)
-      this.props.history.push(`/businessSetup/${response.data.placeId}`);
-    }); */
+     }
+
   }
 
   render() {
@@ -53,7 +60,7 @@ class BusinessFinderSearch extends Component {
 
         <Header />
 
-
+        <Notification />
 
         <div className="title-cover-landing">
   <div className="title-cover-left"></div>
@@ -95,4 +102,4 @@ class BusinessFinderSearch extends Component {
 
 
 
-export default BusinessFinderSearch;
+export default connect(null, { displayNotification,validateShop})(BusinessFinderSearch);
