@@ -10,6 +10,7 @@ import PostMenuReducer from "./reducer_postMenu"
 import NotificaitonReducer from "./reducer_notification"
 import FetchOrdersReducer from "./reducer_fetchOrders"
 import UploadedMenuReducer from "./reducer_uploadedMenu"
+import LoginReducer from "./reducer_login"
 
 const rootReducer = combineReducers({
   shop: BusinessReducer,
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
   postedMenu: PostMenuReducer,
   notification: NotificaitonReducer,
   businessOrders:FetchOrdersReducer,
-  uploadedMenu: UploadedMenuReducer
+  uploadedMenu: UploadedMenuReducer,
+  userAuthentication: LoginReducer
 
 });
 

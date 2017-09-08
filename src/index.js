@@ -8,7 +8,7 @@ import reducers from "./reducers";
 
 import PlaceOrders from "./components/order_view";
 
-import BusinessLogin from "./components/business_login_view";
+import BusinessLoginView from "./components/business_login_view";
 import BusinessRegistrationView from "./components/businessRegistrationView";
 import BusinessFinderSearch from "./components/business_finder_search"
 import BusinessSetupView from "./components/businessSetupView";
@@ -24,7 +24,7 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Switch>
-          <Route path="/businessLogin" component={BusinessLogin} />
+          <Route path="/businessLogin" component={BusinessLoginView} />
           <Route path="/businessRegistration" component={BusinessRegistrationView} />
           <Route path="/placeOrder/:id" component={PlaceOrders} />
           <Route path="/businessSetup/:id" component={BusinessSetupView} />

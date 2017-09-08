@@ -1,4 +1,6 @@
 import axios from "axios";
+import { browserHistory } from 'react-router'
+import { Link,withRouter } from "react-router-dom";
 
 export const FETCH_BUSINESS = "fetch_business";
 export const FETCH_POST = "fetch_post";
@@ -16,8 +18,26 @@ export const DISPLAY_NOTIFICATION = "display_notification";
 export const FETCH_ORDERS = "fetch_orders";
 export const VALIDATE_SHOP = "validate_shop";
 export const UPLOADED_MENU = "uploaded_menu";
-
+export const MANUAL_LOGIN = "manual_login"
 const API_KEY = "?key=PAPERCLIP1234";
+
+
+
+
+export function manualLogin(data) {
+
+	var request = axios.post('/services/authenticate',data)
+  
+    return {
+      type: MANUAL_LOGIN,
+      payload: request
+    };
+}
+
+
+
+
+
 
 export function getUploadedMenu(id) {
 
@@ -33,7 +53,7 @@ export function getUploadedMenu(id) {
 export function validateShop(placeId,callback) {
 
       var request = axios.get(`/services/validateShop/${placeId}`).then((response) => callback(response));
-    
+
   return {
     type: VALIDATE_SHOP,
     payload: request
