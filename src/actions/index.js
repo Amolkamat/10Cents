@@ -27,7 +27,7 @@ const API_KEY = "?key=PAPERCLIP1234";
 export function manualLogin(data) {
 
 	var request = axios.post('/services/authenticate',data)
-  
+
     return {
       type: MANUAL_LOGIN,
       payload: request
@@ -121,7 +121,7 @@ export function postMenu(file,placeId,callback) {
 }
 
 export function createBusiness(user,callback) {
-  const request = axios.post("/business/create",user).then((response) => callback(response));
+  const request = axios.post("/users/create",user).then((response) => callback(response));
 
   return {
     type: CREATE_BUSINESS,

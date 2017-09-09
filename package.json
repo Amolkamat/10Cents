@@ -28,6 +28,8 @@
   "dependencies": {
     "axios": "^0.16.1",
     "babel-preset-stage-1": "^6.1.18",
+    "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
     "card-react": "^1.2.7",
     "convert-excel-to-json": "^1.2.0",

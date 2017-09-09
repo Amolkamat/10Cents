@@ -102,8 +102,10 @@ User.update({"placeId":req.params.placeId},{"$set":{menuList:result["Sheet1"]}})
 
 var business = require('./routes/business');
 var services = require('./routes/services');
+var users = require('./routes/users')
 app.use('/business', business);
 app.use('/services', services);
+app.use('/users',users)
 
 
 
