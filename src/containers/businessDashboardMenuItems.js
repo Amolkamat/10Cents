@@ -6,9 +6,9 @@ import { getOrderChartData} from "../actions";
 
 class BusinessDashboardProfile extends Component {
 
-  populateMenu() {
+  populateMenu(menuObject) {
 
-    return(this.props.uploadedMenu.data.menuList.map((orderItem,index) => {
+    return(menuObject.map((orderItem,index) => {
 
       return(
 
@@ -34,14 +34,40 @@ class BusinessDashboardProfile extends Component {
 
   render() {
     if(!this.props.uploadedMenu) {
-      return (
-        <div>
-          <div className = "text-center" >
-            <h4 className="dashboardHeader"> No items </h4>
-          </div>
-        </div>
-      )
-    }
+        if(!this.props.business) {
+          return (
+            <div>
+              <div className = "text-center" >
+                <h4 className="dashboardHeader"> No items </h4>
+              </div>
+            </div>
+          )
+        } else {
+          return(
+            <div>
+              <div className = "text-center" >
+              <h4 className="dashboardHeader"> Available Menu Items </h4>
+              </div>
+              <table className="table table-borderless">
+
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+
+                  <tbody>
+                      {this.populateMenu(this.props.business.data.menuList)}
+                  </tbody>
+              </table>
+
+            </div>
+          )
+
+        }
+    } 
+
     else {
         console.log('Menu Item Posted')
         return (
@@ -59,7 +85,7 @@ class BusinessDashboardProfile extends Component {
             </thead>
 
               <tbody>
-                  {this.populateMenu()}
+                  {this.populateMenu(this.props.uploadedMenu.data.menuList)}
               </tbody>
           </table>
 

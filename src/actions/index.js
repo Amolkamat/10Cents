@@ -26,7 +26,7 @@ const API_KEY = "?key=PAPERCLIP1234";
 
 export function manualLogin(data) {
 
-	var request = axios.post('/services/authenticate',data)
+	var request = axios.post('/users/authenticate',data)
 
     return {
       type: MANUAL_LOGIN,

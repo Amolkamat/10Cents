@@ -19,7 +19,7 @@ class BusinessLogin extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-  
+
     if(nextProps.userAuthentication.error) {
         this.props.displayNotification(true,'Error occured during Authentication - Please try again','delete-item-notification');
     }
@@ -42,13 +42,12 @@ class BusinessLogin extends React.Component {
       }
       else {
         // Passed in via react-redux. Returns a promise.
-  this.props.manualLogin({ // this function is passed in via react-redux
-    email,
-    password
-  }, '/businessDashboard') // holds the path to redirect to after login (if any)
-  .then((loginMessage) => {
-    console.log(loginMessage)
-    if (!loginMessage) {
+  this.props.manualLogin(user) // holds the path to redirect to after login (if any)
+  .then((response) => {
+    console.log(response);
+    if (response.payload.data.success) {
+      this.props.history.push(`/businessHomePageView/${response.payload.data.user.placeId}`);
+    } else {
       this.props.displayNotification(true,'Invalid Login Credentials','delete-item-notification');
     }
   })
