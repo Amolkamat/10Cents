@@ -22,7 +22,7 @@ export default class OrderView extends Component {
           <h2 className = "placeOrderHeader">Place your Order!</h2>
           <div className="additional-info-container">
                     <div className="userProgress">
-                        <div className="twoOfFive">
+                        <div className="threeOfFive">
                         </div>
                     </div>
                   </div>

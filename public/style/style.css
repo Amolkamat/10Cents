@@ -64,6 +64,18 @@ body{
     border-radius: 5px 0px 0px 5px;
 }
 
+.fourOfFive {
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    background: #3FB083;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.fa-check-circle {
+  color:  #F05F40;
+}
+
 .dropzone {
   width : 100%;
   height: 180px;

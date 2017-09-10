@@ -37,6 +37,15 @@ class PurchaseView extends Component {
       <div>
 
         <Header />
+        <div className = "text-center">
+        <h2 className = "placeOrderHeader">Place your Order!</h2>
+        <div className="additional-info-container">
+                  <div className="userProgress">
+                      <div className="fourOfFive">
+                      </div>
+                  </div>
+                </div>
+        </div>
         <div class="row">
           <div className = "col-md-4">
             <OrderTotal />

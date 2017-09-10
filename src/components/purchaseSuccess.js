@@ -19,7 +19,13 @@ class PurchaseSuccess extends Component {
 
             <div className="row">
               <div className = "text-center">
-                  <h2> Purchase Success Order # {this.props.postedMenu.data._id} </h2>
+
+                        <h1>You're all set! Order # {this.props.postedMenu.data._id}!</h1>
+                        <div className="confirmation-success">
+                            <i className="fa fa-check-circle fa-5x" aria-hidden="true"></i>
+                        </div>
+
+                  
                     </div>
         </div>
         <div className = "row" >
