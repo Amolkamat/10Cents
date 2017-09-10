@@ -6,6 +6,29 @@ import { getMenuItems,sendMessage } from "../actions";
 
 class OrderTotal extends Component {
 
+  findTotal() {
+    console.log("total being found");
+    var total=0;
+    var display="";
+     this.props.order.menuList.map((orderItem,index) => {
+      total= orderItem.price * orderItem.quantity+total;
+      display=total.toFixed(2);
+      if((display.substring(display.indexOf('.'))).length<3){
+        display+='0';
+      }
+      else if(!display.indexOf('.')){
+        display+='.00';
+      }
+
+    })
+    return(
+      <h3 className="text-center orderTotalHeading"> Total: ${display} </h3>
+        
+      )
+
+  }
+
+
   populateMenu() {
     return( this.props.order.menuList.map((orderItem,index) => {
       console.log('Order Rendering!');
@@ -63,7 +86,7 @@ class OrderTotal extends Component {
                     {this.populateMenu()}
                 </tbody>
             </table>
-
+            {this.findTotal()}
         </div>
       )
     }
