@@ -18,7 +18,8 @@ export const DISPLAY_NOTIFICATION = "display_notification";
 export const FETCH_ORDERS = "fetch_orders";
 export const VALIDATE_SHOP = "validate_shop";
 export const UPLOADED_MENU = "uploaded_menu";
-export const MANUAL_LOGIN = "manual_login"
+export const MANUAL_LOGIN = "manual_login";
+export const GOOGLE_LOCATION = "google_location"
 const API_KEY = "?key=PAPERCLIP1234";
 
 
@@ -102,7 +103,8 @@ export function purchaseOrder(placeId,order) {
 export function getBusiness(id) {
 
   var request = axios.get(`/business/get/${id}`);
-
+	console.log('Get Business Request');
+	console.log(id);
   return {
     type: GET_BUSINESS,
     payload: request
@@ -231,28 +233,29 @@ export function addPlace(lat,lon) {
   }
 }
 
-export function setNearbySearchResult(results,status) {
+export function getGoogleLocation(latitude,longitude) {
 
+	var request = {
+		lat: latitude,
+		long:longitude
+	}
+	console.log('Inside Get Google Location');
     return {
-        type: FETCH_RESTAURANTS,
-        payload: {results,status}
+        type: GOOGLE_LOCATION,
+        payload: request
     };
 }
 
-export function fetchRestaurants(lat = '40.3324413', lon = '-74.5589624') {
+export function getLocation(address) {
     return (dispatch) => {
-        console.log('Here Mane');
-        var currentLocation = new google.maps.LatLng('40.3324413' , '-74.5589624');
-        var request = {
-            location: currentLocation,
-            radius: '4000',
-            types: ['service']
-        };
-        var service = new google.maps.places.PlacesService(map);
-        console.log(request)
-        service.nearbySearch(request, function(results, status) {
+
+        var geocoder = new google.maps.Geocoder();
+
+        geocoder.geocode( { 'address': address}, function(results, status) {
             if (status == google.maps.places.PlacesServiceStatus.OK) {
-                dispatch(setNearbySearchResult(results,status));
+							var latitude = results[0].geometry.location.lat();
+							var longitude = results[0].geometry.location.lng();
+                dispatch(getGoogleLocation(latitude,longitude));
             }
         });
 

@@ -4,15 +4,37 @@ import { Link } from "react-router-dom";
 import Header from './header_view.js';
 import Footer from "./footer_view"
 import OrderTotal from '../containers/order_total';
+import {getLocation,getBusiness} from  "../actions";
+import GoogleMap from "../containers/google_map";
 
 class PurchaseSuccess extends Component {
+  getBusiness() {
+    if(!this.props.business) {
+        this.props.getBusiness(this.props.postedMenu.data.placeId)
 
+    } else {
+      if(!this.props.googleLocation) {
+        this.props.getLocation(this.props.business.data.address);
+
+      } else {
+        console.log('Inside Maps');
+        return(
+                <GoogleMap lat={this.props.googleLocation.lat} lon={this.props.googleLocation.long} />
+        )
+
+        }
+    }
+
+  }
   render() {
     if(!this.props.postedMenu) {
       return (
         <div> </div>
       )
-    } else {
+    } else
+
+
+    {
       return (
         <div>
           <Header />
@@ -25,12 +47,17 @@ class PurchaseSuccess extends Component {
                             <i className="fa fa-check-circle fa-5x" aria-hidden="true"></i>
                         </div>
 
-                  
+
                     </div>
         </div>
         <div className = "row" >
-          <h6 className = "text-center"> Receipt</h6>
-          <OrderTotal />
+          <div className = "col-md-6">
+
+            <OrderTotal />
+          </div>
+          <div className = "col-md-4 col-md-offset-2">
+            {this.getBusiness()}
+          </div>
         </div>
         <Footer />
       </div>
@@ -41,8 +68,8 @@ class PurchaseSuccess extends Component {
   }
 }
 
-function mapStateToProps({postedMenu}) {
-  return {postedMenu};
+function mapStateToProps({postedMenu,business,googleLocation}) {
+  return {postedMenu,business,googleLocation};
 }
 
-export default connect(mapStateToProps, null)(PurchaseSuccess);
+export default connect(mapStateToProps, {getLocation,getBusiness})(PurchaseSuccess);
