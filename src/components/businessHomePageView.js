@@ -27,7 +27,11 @@ class BusinessHomePageView extends Component {
       )
     } else {
       return (
-          <h3> {this.props.business.data.address}</h3>
+        <div>
+          <h1 class="text-center"> Welcome {this.props.business.data.name}!</h1>
+            <h3> {this.props.business.data.address}</h3>
+        </div>
+
           )
     }
 
@@ -40,7 +44,7 @@ class BusinessHomePageView extends Component {
         <Header />
         <Notification />
           <div className = "text-center">
-            <h1 class="text-center"> Welcome John Snow!</h1>
+
              {this.displayBusinessAddress()}
           </div>
           <BusinessDashboard/>
