@@ -35,7 +35,7 @@ export default class OrderView extends Component {
 
         <div className = "col-md-4">
           <div className = "row">
-            <OrderTotal />
+            <OrderTotal displayCloseButton={true}/>
           </div>
           <div className = "row">
             <div className = "col-md-4 col-md-offset-4">

@@ -6,6 +6,22 @@ import { getMenuItems,sendMessage } from "../actions";
 
 class OrderTotal extends Component {
 
+
+  displayCloseButton() {
+    if (this.props.displayCloseButton) {
+      return(
+        <td>
+          <button type="button" className="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+        </td>
+      )
+    } else {
+      return (<td></td>)
+    }
+  }
+
+
   findTotal() {
     console.log("total being found");
     var total=0.10;
@@ -50,6 +66,7 @@ class OrderTotal extends Component {
       {(parseFloat(orderItem.price) * parseInt(orderItem.quantity)).toFixed(2)}
 
   </td>
+    {this.displayCloseButton()}
     </tr>
       )
 
@@ -79,6 +96,7 @@ class OrderTotal extends Component {
                   <th>Item</th>
                   <th>Quantity</th>
                   <th>Total Price</th>
+                  <th></th>
                 </tr>
               </thead>
 
@@ -88,6 +106,7 @@ class OrderTotal extends Component {
                       <td>Convinience Fee</td>
                       <td> - </td>
                       <td>0.10</td>
+                      <td></td>
                     </tr>
                 </tbody>
             </table>
