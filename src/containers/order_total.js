@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { getMenuItems,sendMessage } from "../actions";
+import { getMenuItems,sendMessage,removeMenuItemFromOrder } from "../actions";
 
 class OrderTotal extends Component {
 
 
-  displayCloseButton() {
+  displayCloseButton(index) {
     if (this.props.displayCloseButton) {
       return(
         <td>
-          <button type="button" className="close" aria-label="Close">
+          <button type="button" onClick={()=>this.props.removeMenuItemFromOrder(index)} className="close" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
         </td>
@@ -66,7 +66,7 @@ class OrderTotal extends Component {
       {(parseFloat(orderItem.price) * parseInt(orderItem.quantity)).toFixed(2)}
 
   </td>
-    {this.displayCloseButton()}
+    {this.displayCloseButton(index)}
     </tr>
       )
 
@@ -127,4 +127,4 @@ function mapStateToProps({order}) {
 }
 
 
-export default connect(mapStateToProps, { getMenuItems ,sendMessage})(OrderTotal);
+export default connect(mapStateToProps, { getMenuItems ,sendMessage,removeMenuItemFromOrder})(OrderTotal);

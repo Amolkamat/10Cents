@@ -20,10 +20,9 @@ export const VALIDATE_SHOP = "validate_shop";
 export const UPLOADED_MENU = "uploaded_menu";
 export const MANUAL_LOGIN = "manual_login";
 export const GOOGLE_LOCATION = "google_location"
+export const REMOVE_MENU = "remove_menu"
+
 const API_KEY = "?key=PAPERCLIP1234";
-
-
-
 
 export function manualLogin(data) {
 
@@ -220,6 +219,16 @@ export function addMenuToOrder(item,qty) {
   }
   return {
     type: ADD_MENU,
+    payload: request
+  };
+}
+
+export function removeMenuItemFromOrder(orderItem) {
+	var request = orderItem;
+	console.log('Remove Menu Item');
+	console.log(orderItem);
+  return {
+    type: REMOVE_MENU,
     payload: request
   };
 }
