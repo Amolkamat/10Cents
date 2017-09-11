@@ -132,8 +132,8 @@ export function createBusiness(user,callback) {
 }
 
 
-export function sendMessage(orderId) {
-  const request = axios.get("/api/sendMessage",orderId);
+export function sendMessage(message) {
+  const request = axios.post("/services/sendMessage",message);
 
   return {
     type: SEND_MESSAGE,

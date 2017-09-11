@@ -63,16 +63,18 @@ router.get('/validateShop/:id',function(req,res){
 })
 
 
-router.get("/sendMessage", function(req, res) {
+router.post("/sendMessage", function(req, res) {
   var client = require('twilio')(
     'ACa46cd1c81f2ea7451ad4c51cb0ba19ae',
     'cdd0dc1bc64ca2543671709da54f6bf8'
   );
+    console.log(req.body)
+
 
   client.messages.create({
     from: "+17028307596",
-    to: "+17022414768",
-    body: "This is your New Order!",
+    to: req.body.phone,
+    body: "This is your New Order! " + req.body.orderId ,
 }, function(err, message) {
   if(err){
     console.log(err);

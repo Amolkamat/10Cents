@@ -8,12 +8,43 @@ import {getLocation,getBusiness,sendMessage} from  "../actions";
 import GoogleMap from "../containers/google_map";
 
 class PurchaseSuccess extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      message: false
+    }
+    this.sendMessage = this.sendMessage.bind(this);
+  }
+
+  sendMessage()
+  {
+    console.log('Message State')
+    console.log(this.state)
+
+    if(!this.state.message) {
+      console.log('Inside State Message');
+      var phone = this.props.business.data.phone;
+      var message = {
+        orderId: this.props.postedMenu.data._id,
+        phone: phone
+      }
+      this.props.sendMessage(message);
+        this.setState({message:true});
+    }
+  }
+
   getBusiness() {
     if(!this.props.business) {
         this.props.getBusiness(this.props.postedMenu.data.placeId)
 
     } else {
-      //this.props.sendMessage(this.props.postedMenu.data._id)
+      if(this.props.business.data.phone) {
+
+      this.sendMessage();
+
+      }
+
+
       if(!this.props.googleLocation) {
         this.props.getLocation(this.props.business.data.address);
 
