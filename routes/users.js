@@ -24,8 +24,8 @@ router.post('/create' , function(req,res) {
           email: req.body.email,
           password: req.body.password,
           placeId: req.body.shopPlaceId,
-          address: req.body.shopPlaceAddress
-
+          address: req.body.shopPlaceAddress,
+          phone: req.body.phone
         }
         var customer = new User(user)
         customer.save(function(err, doc) {
@@ -79,7 +79,7 @@ router.post('/authenticate' , function(req,res) {
               res.json(userAuthentication);
             }
         });
-      
+
 
 
       } else {

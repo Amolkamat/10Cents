@@ -3,14 +3,16 @@ var router = express.Router();
 var User = require("../models/User.js");
 
 router.post('/create' , function(req,res) {
+  console.log('Inside Create User');
+  console.log(req.body);
 
-  console.log(req.body.email);
+
   var user = {
     email: req.body.email,
     password: req.body.password,
     placeId: req.body.shopPlaceId,
-    address: req.body.shopPlaceAddress
-
+    address: req.body.shopPlaceAddress,
+    phone: req.body.phone
   }
 customer = new User(user)
 

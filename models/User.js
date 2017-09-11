@@ -18,6 +18,9 @@ var UserSchema = new Schema({
     name: {
   		type: String
   	},
+    phone:{
+      type:Number
+    },
 
   placeId: {
       type: String

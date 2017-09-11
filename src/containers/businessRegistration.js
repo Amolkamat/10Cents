@@ -13,7 +13,8 @@ class BusinessRegistration extends React.Component {
       address: '',
       name: '',
       email:'',
-      password:''
+      password:'',
+      phone: ''
 
    }
     this.onChange = (address,placeId) => this.setState({ address,placeId })
@@ -29,7 +30,8 @@ class BusinessRegistration extends React.Component {
       email: this.state.email,
       password: this.state.password,
       shopPlaceId: this.state.placeId,
-      shopPlaceAddress: this.state.address
+      shopPlaceAddress: this.state.address,
+      phone: this.state.phone
     }
 
     if(user.email == "") {
@@ -73,6 +75,10 @@ class BusinessRegistration extends React.Component {
     this.setState({ password });
   }
 
+  onPhoneChange(phone) {
+    this.setState({ phone });
+  }
+
   render() {
     const cssClasses = {
     input: 'form-control'
@@ -105,6 +111,12 @@ class BusinessRegistration extends React.Component {
         <label for="password" className="col-sm-3 control-label">Password</label>
         <div className="col-sm-9">
             <input type="password" value = {this.state.password} id="password" placeholder="Password" className="form-control" onChange={event => this.onPasswordChange(event.target.value)} />
+        </div>
+    </div>
+    <div className="form-group">
+        <label for="phone" className="col-sm-3 control-label">Phone</label>
+        <div className="col-sm-9">
+            <input type="phone" value = {this.state.phone} id="phone" placeholder="Phone" className="form-control" onChange={event => this.onPhoneChange(event.target.value)} />
         </div>
     </div>
     <div className="form-group">

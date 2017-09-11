@@ -63,7 +63,7 @@ router.get('/validateShop/:id',function(req,res){
 })
 
 
-router.get("/api/sendMessage", function(req, res) {
+router.get("/sendMessage", function(req, res) {
   var client = require('twilio')(
     'ACa46cd1c81f2ea7451ad4c51cb0ba19ae',
     'cdd0dc1bc64ca2543671709da54f6bf8'

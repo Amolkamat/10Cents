@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Header from './header_view.js';
 import Footer from "./footer_view"
 import OrderTotal from '../containers/order_total';
-import {getLocation,getBusiness} from  "../actions";
+import {getLocation,getBusiness,sendMessage} from  "../actions";
 import GoogleMap from "../containers/google_map";
 
 class PurchaseSuccess extends Component {
@@ -13,6 +13,7 @@ class PurchaseSuccess extends Component {
         this.props.getBusiness(this.props.postedMenu.data.placeId)
 
     } else {
+      //this.props.sendMessage(this.props.postedMenu.data._id)
       if(!this.props.googleLocation) {
         this.props.getLocation(this.props.business.data.address);
 
@@ -72,4 +73,4 @@ function mapStateToProps({postedMenu,business,googleLocation}) {
   return {postedMenu,business,googleLocation};
 }
 
-export default connect(mapStateToProps, {getLocation,getBusiness})(PurchaseSuccess);
+export default connect(mapStateToProps, {getLocation,getBusiness,sendMessage})(PurchaseSuccess);
