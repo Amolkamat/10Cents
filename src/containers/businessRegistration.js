@@ -20,6 +20,24 @@ class BusinessRegistration extends React.Component {
     this.onChange = (address,placeId) => this.setState({ address,placeId })
   }
 
+  displayRegisterButton() {
+    console.log('State Address!')
+    console.log(this.state.address);
+
+    if(this.state.address != '' && this.state.placeId) {
+      return(
+        <div className="col-sm-3 col-sm-offset-6">
+            <button className="btn btn-primary btn-block registerButton" onClick={() => this.handleFormSubmit()}>Register</button>
+        </div>
+      )
+
+    } else {
+      return(
+        <div></div>
+      )
+    }
+  }
+
   handleFormSubmit = (event) => {
 
     console.log(this.state);
@@ -128,10 +146,8 @@ class BusinessRegistration extends React.Component {
 
 
 </form>
+  {this.displayRegisterButton()}
 
-<div className="col-sm-3 col-sm-offset-6">
-    <button className="btn btn-primary btn-block registerButton" onClick={() => this.handleFormSubmit()}>Register</button>
-</div>
 </div>
 
     )
