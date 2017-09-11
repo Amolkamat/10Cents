@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { fetchOrders} from "../actions";
 import moment from 'moment';
 import {Panel } from 'react-bootstrap';
+import BusinessDashboardOrderItem from "./BusinessDashboardOrderItem";
 
 class BusinessDashboardOrder extends Component {
 
@@ -35,9 +36,7 @@ class BusinessDashboardOrder extends Component {
 
                         <Panel header={"Order # " + menuItem._id} bsStyle="success">
 
-                            <div className = "col-md-6">
-                             <button className="btn btn-sm addToOrderButton" type="button"> View Details </button>
-                           </div>
+                            <BusinessDashboardOrderItem menuItem = {menuItem.orderList}/>
 
                            <div className = "col-md-6">
                             <button className="btn btn-sm addToOrderButton" type="button"> Delivered </button>
