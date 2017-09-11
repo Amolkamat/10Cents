@@ -25,7 +25,8 @@ router.post('/create' , function(req,res) {
           password: req.body.password,
           placeId: req.body.shopPlaceId,
           address: req.body.shopPlaceAddress,
-          phone: req.body.phone
+          phone: req.body.phone,
+          name:req.body.name
         }
         var customer = new User(user)
         customer.save(function(err, doc) {
