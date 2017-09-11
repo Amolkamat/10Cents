@@ -46,9 +46,9 @@ class BusinessDashboardProfile extends Component {
           return(
             <div>
               <div className = "text-center" >
-              <h4 className="dashboardHeader"> Available Menu Items </h4>
+              <h4 className="dashboardHeader"> Items Posted for Sale </h4>
               </div>
-              <table className="table table-borderless">
+              <table className="table">
 
                 <thead>
                   <tr>
@@ -66,7 +66,7 @@ class BusinessDashboardProfile extends Component {
           )
 
         }
-    } 
+    }
 
     else {
         console.log('Menu Item Posted')
