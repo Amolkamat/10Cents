@@ -32,8 +32,8 @@ router.get('/fetchOrders/:id',function(req,res){
       var startDate = moment().startOf('day')
       console.log(startDate.toDate())
   }
-    CustomerOrder.find({placeId: req.params.id,createdAt: {$gte: startDate.toDate()}})
-                  .sort({createdAt: 'desc'})
+    CustomerOrder.find({placeId: req.params.id,orderStatus:'Placed'})
+                  .sort({createdAt: 'asc'})
                   .exec(function(err, doc){
       if (err)
     {
@@ -45,6 +45,21 @@ router.get('/fetchOrders/:id',function(req,res){
 
 
 })
+
+router.post('/updateOrder',function(req,res){
+    console.log('Update Ordder');
+    console.log(req.body);
+    CustomerOrder.findOneAndUpdate({_id: req.body.orderId}, {$set:{orderStatus:req.body.orderStatus}}, function(err, doc){
+    if(err){
+        console.log("Something wrong when updating data!");
+    }
+    else {
+      res.json(doc);
+    }
+
+})
+});
+
 
 router.get('/validateShop/:id',function(req,res){
   console.log('Shop Validation')

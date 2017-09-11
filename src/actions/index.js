@@ -71,6 +71,24 @@ export function fetchOrders(placeId,startDate) {
   };
 }
 
+export function updateOrder(placeId,orderId,status) {
+
+		console.log('Update_Order from Front End')
+			return (dispatch) => {
+					var order = {
+						orderId: orderId,
+						orderStatus: status
+					}
+					var request = axios.post('/services/updateOrder/',order).then(function(results){
+						if(results) {
+							dispatch(fetchOrders(placeId));
+						}
+
+					})
+				}
+			}
+
+
 
 export function displayNotification(showNotification, notificationText,notificationType) {
     var request = {
@@ -209,6 +227,7 @@ export function getMenuItems(placeId) {
     payload: request
   };
 }
+
 
 export function addMenuToOrder(item,qty) {
   var request = {

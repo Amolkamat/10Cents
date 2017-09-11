@@ -24,7 +24,8 @@ var CustomerOrderSchema = new Schema({
         type: Float}
     }],
     orderStatus : {
-      type: String
+      type: String,
+      default: 'Placed'
     }
 
 

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { Link,withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchOrders} from "../actions";
+import { fetchOrders,updateOrder,displayNotification } from "../actions";
 import moment from 'moment';
 import {Panel } from 'react-bootstrap';
 import BusinessDashboardOrderItem from "./BusinessDashboardOrderItem";
@@ -23,6 +23,7 @@ class BusinessDashboardOrder extends Component {
     return moment(timeStamp).format("hh:mm:ss A")
   }
 
+
   renderOrders() {
       if(this.props.businessOrders){
         console.log(this.props.businessOrders);
@@ -38,8 +39,8 @@ class BusinessDashboardOrder extends Component {
 
                             <BusinessDashboardOrderItem menuItem = {menuItem.orderList}/>
 
-                           <div className = "col-md-6">
-                            <button className="btn btn-sm addToOrderButton" type="button"> Delivered </button>
+                           <div className = "text-center">
+                            <button className="btn btn-sm addToOrderButton" type="button" onClick = {()=>this.props.updateOrder(this.props.business.data.placeId,menuItem._id,"Delivered")}> Delivered </button>
                           </div>
 
                        </Panel>
@@ -112,4 +113,4 @@ function mapStateToProps({business,businessOrders}) {
 }
 
 
-export default withRouter(connect(mapStateToProps, { fetchOrders})(BusinessDashboardOrder));
+export default withRouter(connect(mapStateToProps, { updateOrder,fetchOrders,displayNotification })(BusinessDashboardOrder));
