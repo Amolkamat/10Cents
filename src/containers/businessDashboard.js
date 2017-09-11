@@ -18,22 +18,32 @@ render() {
 
     return (
       <div>
-        <div className = "col-md-4" >
-          <div className="businessDashboard-cover-left">
-            <BusinessDashboardOrder/>
+        <div className = "row">
+          <div className = "col-md-12" >
+            <div className="businessDashboard-cover-left">
+              <BusinessDashboardOrder/>
+            </div>
           </div>
+
+        </div>
+        <div className = "row">
+          <div className = "col-md-6" >
+      <div className="businessDashboard-cover-middle">
+        <BusinessDashboardUpload />
+      </div>
+      </div>
+      <div className = "col-md-6" >
+    <div className="businessDashboard-cover-right">
+      <BusinessDashboardMenuItems />
+    </div>
         </div>
 
-        <div className = "col-md-4" >
-    <div className="businessDashboard-cover-middle">
-      <BusinessDashboardUpload />
-    </div>
-    </div>
 
-        <div className = "col-md-4" >
-      <div className="businessDashboard-cover-right">
-        <BusinessDashboardMenuItems />
-      </div>
+
+
+
+
+
     </div>
 
 

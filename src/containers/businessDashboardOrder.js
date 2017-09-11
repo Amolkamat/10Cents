@@ -4,7 +4,7 @@ import { Link,withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchOrders} from "../actions";
 import moment from 'moment';
-
+import {Panel } from 'react-bootstrap';
 
 class BusinessDashboardOrder extends Component {
 
@@ -20,6 +20,47 @@ class BusinessDashboardOrder extends Component {
 
   convertTimeStamp(timeStamp){
     return moment(timeStamp).format("hh:mm:ss A")
+  }
+
+  renderOrders() {
+      if(this.props.businessOrders){
+        console.log(this.props.businessOrders);
+            return this.props.businessOrders.data.map((menuItem,index) => {
+            console.log(menuItem)
+
+          return (
+            <div key={index}>
+
+                      <div className="col-md-4 menu-cover-landing">
+
+                        <Panel header={"Order # " + menuItem._id} bsStyle="success">
+
+                            <div className = "col-md-6">
+                             <button className="btn btn-sm addToOrderButton" type="button"> View Details </button>
+                           </div>
+
+                           <div className = "col-md-6">
+                            <button className="btn btn-sm addToOrderButton" type="button"> Delivered </button>
+                          </div>
+
+                       </Panel>
+
+                 </div>
+
+
+              </div>
+
+          )
+        })
+      } else {
+        return (
+          <div>
+
+          </div>
+        )
+      }
+
+
   }
 
   renderOrderStats() {
@@ -57,11 +98,8 @@ class BusinessDashboardOrder extends Component {
           <div className= "text-center">
               <h4 className = "dashboardHeader"> Order Dashboard </h4>
           </div>
-          {this.renderOrderStats()}
+          {this.renderOrders()}
 
-          <div className= "text-center">
-            <button className="btn btn-sm addToOrderButton" type="button" > View Orders </button>
-          </div>
         </div>
       )
     }
