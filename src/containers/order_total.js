@@ -8,7 +8,7 @@ class OrderTotal extends Component {
 
   findTotal() {
     console.log("total being found");
-    var total=0;
+    var total=0.10;
     var display="";
      this.props.order.menuList.map((orderItem,index) => {
       total= orderItem.price * orderItem.quantity+total;
@@ -23,7 +23,7 @@ class OrderTotal extends Component {
     })
     return(
       <h3 className="text-center orderTotalHeading"> Total: ${display} </h3>
-        
+
       )
 
   }
@@ -84,9 +84,15 @@ class OrderTotal extends Component {
 
                 <tbody>
                     {this.populateMenu()}
+                    <tr>
+                      <td>Convinience Fee</td>
+                      <td> - </td>
+                      <td>0.10</td>
+                    </tr>
                 </tbody>
             </table>
             {this.findTotal()}
+
         </div>
       )
     }
