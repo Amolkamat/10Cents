@@ -103,7 +103,7 @@ class OrderTotal extends Component {
                 <tbody>
                     {this.populateMenu()}
                     <tr>
-                      <td>Convinience Fee</td>
+                      <td>Convenience Fee</td>
                       <td> - </td>
                       <td>0.10</td>
                       <td></td>
