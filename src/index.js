@@ -16,7 +16,7 @@ import BusinessHomePageView from "./components/businessHomePageView";
 import PurchaseView from "./components/purchaseView";
 import PurchaseSuccess from "./components/purchaseSuccess";
 import ReduxPromise from 'redux-promise'
-
+ 
 const createStoreWithMiddleware = applyMiddleware(thunk,ReduxPromise)(createStore);
 
 ReactDOM.render(
