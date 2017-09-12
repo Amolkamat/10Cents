@@ -50,8 +50,7 @@ class PurchaseView extends Component {
           <div className = "col-md-4">
             <OrderTotal />
           </div>
-        </div>
-        <div className="row" >
+
           <div className = "col-md-4 col-md-offset-2">
 
           <MuiThemeProvider>
@@ -64,6 +63,9 @@ class PurchaseView extends Component {
   </MuiThemeProvider>
         </div>
         </div>
+
+
+
 
         <Footer />
 

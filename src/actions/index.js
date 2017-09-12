@@ -130,7 +130,7 @@ export function getBusiness(id) {
 
 export function postMenu(file,placeId,callback) {
 
-  var request = axios.post(`/upload/${placeId}`,file).then(() => callback());
+  var request = axios.post(`/services/upload/${placeId}`,file).then(() => callback());
 
 
   return {
