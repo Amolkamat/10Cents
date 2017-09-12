@@ -46,7 +46,7 @@ class PurchaseView extends Component {
                   </div>
                 </div>
         </div>
-        <div class="row">
+        <div className="row">
           <div className = "col-md-4">
             <OrderTotal />
           </div>
