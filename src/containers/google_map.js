@@ -24,7 +24,15 @@ class GoogleMap extends Component {
   }
 
   render() {
-    return <div className ="map" ref="map" />;
+    return (
+      <div>
+          <div className = "text-center">
+              <h3> Map to your Location!</h3>
+          </div>
+
+          <div className ="map" ref="map" />;
+      </div>
+    )
   }
 }
 

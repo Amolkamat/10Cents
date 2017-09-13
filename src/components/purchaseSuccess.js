@@ -51,7 +51,16 @@ class PurchaseSuccess extends Component {
       } else {
         console.log('Inside Maps');
         return(
+              <div>
+
+
                 <GoogleMap lat={this.props.googleLocation.lat} lon={this.props.googleLocation.long} />
+                <div className="row text-center">
+                    <h6> <em> {this.props.business.data.address}</em> </h6>
+                </div>
+
+
+                </div>
         )
 
         }
@@ -81,7 +90,7 @@ class PurchaseSuccess extends Component {
 
             <OrderTotal />
           </div>
-          <div className = "col-md-4 col-md-offset-2">
+          <div className = "col-md-6">
             {this.getBusiness()}
           </div>
         </div>
