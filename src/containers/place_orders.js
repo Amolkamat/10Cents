@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getMenuItems,sendMessage,addMenuToOrder,displayNotification } from "../actions";
 import {Panel } from 'react-bootstrap';
+import Dropdown from 'react-dropdown'
+
 
 class PlaceOrders extends Component {
 
@@ -28,7 +30,9 @@ class PlaceOrders extends Component {
   }
 
   handleChange(e){
-    this.setState({selectValue:e.target.value});
+    console.log('New Drop down select');
+    console.log(e)
+    this.setState({selectValue:e.value});
   }
 
   componentDidMount() {
@@ -37,38 +41,37 @@ class PlaceOrders extends Component {
   }
   renderMenu() {
     return this.props.menu.data.menuList.map((menuItem,index) => {
-        console.log(menuItem)
+      var options = [
+'1', '2', '3','4','5','6','7','8','9','10'
+];
+const defaultOption = options[0];
       return (
+
         <div key={index}>
 
-                  <div className="col-md-6 menu-cover-landing">
+
+
+                  <div className="col-md-6 col-sm-6 col-xs-6 menu-cover-landing">
 
                     <Panel header={menuItem.item + "   $" + menuItem.price} bsStyle="success">
-                      <div className = "col-md-6">
-                        <select onChange={this.handleChange} >
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                          <option>6</option>
-                          <option>7</option>
-                          <option>8</option>
-                          <option>9</option>
-                          <option>10</option>
-                         </select>
+
+
+                      <div className = "row">
+                      <div className = "col-md-6 col-sm-6 col-xs-6">
+                        <Dropdown options={options} onChange={this.handleChange} value={defaultOption} placeholder="Select an option" />
                       </div>
-                      <div className = "col-md-6">
+                      <div className = "col-md-6 col-sm-6 col-xs-6">
                        <button className="btn btn-sm addToOrderButton" type="button" onClick={()=>
                          this.handleSubmit(menuItem)
 
                        } > Add To Order </button>
                      </div>
+                      </div>
 
         </Panel>
 
-             </div>
 
+             </div>
 
           </div>
 

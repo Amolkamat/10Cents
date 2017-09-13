@@ -27,18 +27,18 @@ export default class OrderView extends Component {
                     </div>
                   </div>
           </div>
-        <div className = "menuItemList col-md-8">
+        <div className = "menuItemList col-md-8 col-sm-12 col-xs-12">
           <div className="order-cover-landing">
             <PlaceOrders id={this.props.match.params.id} />
           </div>
         </div>
 
-        <div className = "col-md-4">
+        <div className = "col-md-4  col-sm-12 col-xs-12">
           <div className = "row">
             <OrderTotal displayCloseButton={true}/>
           </div>
           <div className = "row">
-            <div className = "col-md-4 col-md-offset-4">
+            <div className = "col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4 ">
                 <OrderSubmit id={this.props.match.params.id}/>
             </div>
 
