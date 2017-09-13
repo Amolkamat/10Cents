@@ -16,15 +16,17 @@ class BusinessDashboard extends Component {
   componentWillReceiveProps(nextProps) {
     console.log('Props from Main Dashboard!');
     console.log(nextProps.postedMenu);
+    if(nextProps.postedMenu) {
+      if(nextProps.postedMenu.data && nextProps.postedMenu.data.error) {
+        console.log('WooHoo');
+        console.log(nextProps.uploadedMenu)
+        this.props.displayNotification(true,'Authentication Error - Please logOut and login back','delete-item-notification');
+      } else if(nextProps.postedMenu != this.props.postedMenu) {
+        this.props.getUploadedMenu(this.props.business.data.placeId)
+        this.props.displayNotification(true,'Menu Items Uploaded - You are all set!','add-item-notification');
+      };
+    }
 
-    if(nextProps.postedMenu && nextProps.postedMenu.data && nextProps.postedMenu.data.error) {
-      console.log('WooHoo');
-      console.log(nextProps.uploadedMenu)
-      this.props.displayNotification(true,'Authentication Error - Please logOut and login back','delete-item-notification');
-    } else if(nextProps.postedMenu) {
-      this.props.getUploadedMenu(this.props.business.data.placeId)
-      this.props.displayNotification(true,'Menu Items Uploaded - You are all set!','add-item-notification');
-    };
   }
 render() {
 
