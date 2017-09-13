@@ -20,11 +20,11 @@ class BusinessDashboardUpload extends Component {
     var photo = new FormData();
   photo.append('photo', files[0]);
 
-  this.props.postMenu(photo,this.props.business.data.placeId,() => this.props.getUploadedMenu(this.props.business.data.placeId));
-  this.props.displayNotification(true,'Menu Items Uploaded - You are all set!','add-item-notification')
+  this.props.postMenu(photo,this.props.business.data.placeId);
+  /*this.props.displayNotification(true,'Menu Items Uploaded - You are all set!','add-item-notification');
     this.setState({
       files
-    });
+    }); */
 
   }
   displayBusinessAddress() {

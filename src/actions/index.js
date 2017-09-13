@@ -73,13 +73,6 @@ export function getUserFromStorage() {
   }
 }
 
-export default function setAuthorizationToken(token) {
-  if (token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  } else {
-    delete axios.defaults.headers.common['Authorization'];
-  }
-}
 
 export function manualLogin(data) {
 	return dispatch => {
@@ -185,18 +178,20 @@ export function purchaseOrder(placeId,order) {
 export function getBusiness(id) {
 
   var request = axios.get(`/business/get/${id}`);
-	console.log('Get Business Request');
-	console.log(id);
+
   return {
     type: GET_BUSINESS,
     payload: request
   };
 }
 
+
+
 export function postMenu(file,placeId,callback) {
 
-  var request = axios.post(`/services/upload/${placeId}`,file).then(() => callback());
+	var token = localStorage.getItem('jwtToken');
 
+  var request = axios.post(`/services/upload/${placeId}`,file);
 
   return {
     type: POST_MENU,
@@ -211,6 +206,14 @@ export function createBusiness(user,callback) {
     type: CREATE_BUSINESS,
     payload: request
   };
+}
+
+export default function setAuthorizationToken(token) {
+  if (token) {
+    axios.defaults.headers.common['Authorization'] = `${token}`;
+  } else {
+    delete axios.defaults.headers.common['Authorization'];
+  }
 }
 
 

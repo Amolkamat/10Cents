@@ -30,6 +30,7 @@ class BusinessHomePageView extends Component {
         <div>
           <h1 class="text-center"> Welcome {this.props.business.data.name}!</h1>
             <h3> {this.props.business.data.address}</h3>
+            <BusinessDashboard placeId = {this.props.business.data.placeId}/>
         </div>
 
           )
@@ -47,7 +48,7 @@ class BusinessHomePageView extends Component {
 
              {this.displayBusinessAddress()}
           </div>
-          <BusinessDashboard/>
+
         </div>
     );
   }
