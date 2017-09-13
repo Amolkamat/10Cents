@@ -12,12 +12,27 @@ class BusinessDashboardOrder extends Component {
   constructor(props)
   {
     super(props);
-
+    this.state = {secondsElapsed: 0}
+    this.tick  = this.tick.bind(this);
   }
+
+  tick() {
+    console.log('Im ticking');
+    const { id } = this.props.match.params;
+    this.props.fetchOrders(id);
+    this.setState({secondsElapsed: this.state.secondsElapsed + 1});
+  }
+
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchOrders(id);
+    this.interval = setInterval(this.tick, 5000);
   }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
 
   convertTimeStamp(timeStamp){
     return moment(timeStamp).format("hh:mm:ss A")
