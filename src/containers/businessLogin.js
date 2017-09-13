@@ -43,14 +43,6 @@ class BusinessLogin extends React.Component {
       else {
         // Passed in via react-redux. Returns a promise.
   this.props.manualLogin(user) // holds the path to redirect to after login (if any)
-  .then((response) => {
-    console.log(response);
-    if (response.payload.data.success) {
-      this.props.history.push(`/businessHomePageView/${response.payload.data.user.placeId}`);
-    } else {
-      this.props.displayNotification(true,'Invalid Login Credentials','delete-item-notification');
-    }
-  })
 
         }
 

@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var User = require("../models/User.js");
 var bcrypt = require('bcryptjs');
+var  jwt =  require('jsonwebtoken');
+var  config = require('../config') ;
+
 
 router.post('/create' , function(req,res) {
 
@@ -36,7 +39,8 @@ router.post('/create' , function(req,res) {
             userAuthentication['success'] = false;
             res.json(userAuthentication)
           } else {
-            console.log('Inside Success!');
+
+
             userAuthentication['success'] = true;
             userAuthentication['user'] = doc;
             res.json(userAuthentication);
@@ -73,10 +77,24 @@ router.post('/authenticate' , function(req,res) {
               console.log('Hey its a match');
               userAuthentication['success'] = true;
               userAuthentication['user'] = user;
+
+              console.log('Inside Success!');
+              console.log(user);
+              
+              var token = jwt.sign({
+                id: user._id,
+                email: user.email,
+                address:user.address,
+                placeId: user.placeId
+              }, config.jwtSecret);
+              console.log('JWT token:' + token);
+              userAuthentication['token'] = token;
+
               res.json(userAuthentication);
             } else {
               console.log('Login Failure !');
               userAuthentication['success'] = false;
+
               res.json(userAuthentication);
             }
         });

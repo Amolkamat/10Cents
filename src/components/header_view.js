@@ -33,7 +33,10 @@ export default class Header extends Component {
         <LinkContainer to="/">
           <NavItem eventKey={4} >Home</NavItem>
         </LinkContainer>
-          <NavItem eventKey={5} href="#"></NavItem>
+        <LinkContainer to="/logOut">
+          <NavItem eventKey={5} >Logout</NavItem>
+        </LinkContainer>
+          <NavItem eventKey={6} href="#"></NavItem>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

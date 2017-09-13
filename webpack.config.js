@@ -30,5 +30,6 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     contentBase: "./"
-  }
+  },
+  devtool: "#cheap-module-inline-source-map"
 };

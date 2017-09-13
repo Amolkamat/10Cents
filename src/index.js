@@ -16,7 +16,7 @@ import BusinessHomePageView from "./components/businessHomePageView";
 import PurchaseView from "./components/purchaseView";
 import PurchaseSuccess from "./components/purchaseSuccess";
 import ReduxPromise from 'redux-promise'
- 
+import LogOut from "./containers/logOut"
 const createStoreWithMiddleware = applyMiddleware(thunk,ReduxPromise)(createStore);
 
 ReactDOM.render(
@@ -31,6 +31,8 @@ ReactDOM.render(
           <Route path="/businessHomePageView/:id" component={BusinessHomePageView} />
           <Route path="/purchase/:id" component={PurchaseView} />
           <Route path="/purchaseSuccess" component={PurchaseSuccess} />
+          <Route path="/logOut" component={LogOut} />
+          <Route path="/home" component={BusinessFinderSearch} />
           <Route path="/" component={BusinessFinderSearch} />
         </Switch>
       </div>

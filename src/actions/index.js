@@ -1,6 +1,7 @@
 import axios from "axios";
 import { browserHistory } from 'react-router'
 import { Link,withRouter } from "react-router-dom";
+import jwtDecode from 'jwt-decode';
 
 export const FETCH_BUSINESS = "fetch_business";
 export const FETCH_POST = "fetch_post";
@@ -21,17 +22,81 @@ export const UPLOADED_MENU = "uploaded_menu";
 export const MANUAL_LOGIN = "manual_login";
 export const GOOGLE_LOCATION = "google_location"
 export const REMOVE_MENU = "remove_menu"
+export const SET_CURRENT_USER = "setcurrent_user"
+export const GETUSERFROM_STORAGE =  "getuserfrom_storage";
+export const LOGOUT_USER = "logout_user";
 
 const API_KEY = "?key=PAPERCLIP1234";
 
-export function manualLogin(data) {
 
-	var request = axios.post('/users/authenticate',data)
+export function setCurrentUser(user) {
+	console.log('SET CURRENT USER ACTION');
+	console.log(user);
+	return {
+    type: SET_CURRENT_USER,
+    payload: user
+  };
+}
 
+export function logout() {
+    localStorage.removeItem('jwtToken');
+		console.log('Logged Out!!')
     return {
-      type: MANUAL_LOGIN,
-      payload: request
-    };
+        type: LOGOUT_USER
+    }
+}
+
+export function logoutAndRedirect() {
+	console.log('Logging Out!!')
+	var user = {}
+    return dispatch => {
+        dispatch(logout());
+    }
+
+}
+
+
+
+export function getUserFromStorage() {
+
+	return dispatch => {
+
+	if (localStorage.jwtToken)
+	{
+  	setAuthorizationToken(localStorage.jwtToken);
+  	dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
+		}
+	}
+	return {
+    type: GETUSERFROM_STORAGE,
+    payload: []
+  }
+}
+
+export default function setAuthorizationToken(token) {
+  if (token) {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  } else {
+    delete axios.defaults.headers.common['Authorization'];
+  }
+}
+
+export function manualLogin(data) {
+	return dispatch => {
+	var request = axios.post('/users/authenticate',data).then(res=>{
+		console.log('User Authentication Response');
+		console.log(res);
+		const token = res.data.token;
+		localStorage.setItem('jwtToken', token);
+		setAuthorizationToken(token);
+		dispatch(setCurrentUser(jwtDecode(token)));
+	})
+	}
+	return {
+		type: 'manual_login',
+		payload:[]
+	};
+
 }
 
 

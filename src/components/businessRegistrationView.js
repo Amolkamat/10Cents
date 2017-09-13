@@ -6,9 +6,15 @@ import { LinkContainer } from 'react-router-bootstrap';
 import Header from './header_view.js'
 import BusinessRegistration from '../containers/businessRegistration'
 import Notification from "../containers/notification"
+import { getUserFromStorage } from "../actions";
 
-export default class BusinessRegistrationView extends Component {
 
+class BusinessRegistrationView extends Component {
+
+  componentWillMount()
+  {
+    this.props.getUserFromStorage();
+  }
 
   render() {
 
@@ -46,3 +52,9 @@ export default class BusinessRegistrationView extends Component {
     );
   }
 }
+
+function mapStateToProps({userAuthentication}) {
+  return { userAuthentication};
+}
+
+export default connect(mapStateToProps, {getUserFromStorage})(BusinessRegistrationView);
