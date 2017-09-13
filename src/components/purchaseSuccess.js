@@ -59,14 +59,8 @@ class PurchaseSuccess extends Component {
 
   }
   render() {
-    if(!this.props.postedMenu) {
-      return (
-        <div> </div>
-      )
-    } else
+    if(this.props.postedMenu && this.props.postedMenu.data) {
 
-
-    {
       return (
         <div>
           <Header />
@@ -95,6 +89,16 @@ class PurchaseSuccess extends Component {
       </div>
 
       );
+
+
+
+    } else
+
+
+    {
+      return (
+        <div> </div>
+      )
     }
 
   }
