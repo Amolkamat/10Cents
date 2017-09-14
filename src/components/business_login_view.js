@@ -44,12 +44,17 @@ class BusinessLoginView extends Component {
               <h1>Please login and grow your Business!</h1>
             </div>
 
-    <div className="title-cover-right">
-        <div className="title-cover-right-child">
 
-                      <BusinessLogin />
 
+      <div className="row">
+        <div className = "col-md-6 col-lg-6 col-sm-12 col-xs-">
+           <img class="img-responsive" src="/images/businessGrowth.jpg" height="220"/>
         </div>
+        <div className = "col-md-6 col-xs-12 col-sm-12 col-lg-6">
+            <BusinessLogin />
+        </div>
+
+
     </div>
     </div>
 
