@@ -61,11 +61,16 @@ export function getUserFromStorage() {
 
 	return dispatch => {
 
-	if (localStorage.jwtToken)
+	if (localStorage.jwtToken && (typeof localStorage.jwtToken != "undefined"))
 	{
-  	setAuthorizationToken(localStorage.jwtToken);
-  	dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
+		if(typeof localStorage.jwtToken != "undefined")
+		{
+			localStorage.removeItem('jwtToken');
+		} else {
+			setAuthorizationToken(localStorage.jwtToken);
+	  	dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
 		}
+	}
 	}
 	return {
     type: GETUSERFROM_STORAGE,
