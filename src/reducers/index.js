@@ -11,7 +11,7 @@ import NotificaitonReducer from "./reducer_notification"
 import FetchOrdersReducer from "./reducer_fetchOrders"
 import UploadedMenuReducer from "./reducer_uploadedMenu"
 import LoginReducer from "./reducer_login"
-import BusinessRegistrationReducer from "./reducer_BusinessRegistration"
+
 import GoogleLocationReducer from "./reducer_googleLocation"
 const rootReducer = combineReducers({
   shop: BusinessReducer,

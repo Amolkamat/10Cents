@@ -164,7 +164,7 @@ export function displayNotification(showNotification, notificationText,notificat
 
 export function purchaseOrder(placeId,order) {
 
-  var request = axios.post(`/services/createOrder/${placeId}`,order);
+	var request = axios.post(`/services/createOrder/${placeId}`,order);
   console.log('Inside Purchase Menu ');
   console.log(request);
 
@@ -200,8 +200,17 @@ export function postMenu(file,placeId,callback) {
 }
 
 export function createBusiness(user,callback) {
-  const request = axios.post("/users/create",user).then((response) => callback(response));
-
+  
+	return dispatch => {
+	var request = axios.post("/users/create",user).then(res=>{
+		console.log('User Authentication Response');
+		console.log(res);
+		const token = res.data.token;
+		localStorage.setItem('jwtToken', token);
+		setAuthorizationToken(token);
+		dispatch(setCurrentUser(jwtDecode(token)));
+	})
+	}
   return {
     type: CREATE_BUSINESS,
     payload: request

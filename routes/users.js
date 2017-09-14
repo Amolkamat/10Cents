@@ -43,6 +43,13 @@ router.post('/create' , function(req,res) {
 
             userAuthentication['success'] = true;
             userAuthentication['user'] = doc;
+            var token = jwt.sign({
+              id: user._id,
+              email: user.email,
+              address:user.address,
+              placeId: user.placeId
+            }, config.jwtSecret);
+            userAuthentication['token'] = token;
             res.json(userAuthentication);
           }
         });
@@ -80,7 +87,7 @@ router.post('/authenticate' , function(req,res) {
 
               console.log('Inside Success!');
               console.log(user);
-              
+
               var token = jwt.sign({
                 id: user._id,
                 email: user.email,

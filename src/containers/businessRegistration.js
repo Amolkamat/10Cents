@@ -67,14 +67,7 @@ class BusinessRegistration extends React.Component {
         if (response.data.length > 0) {
             this.props.displayNotification(true, 'Shop already registered - Please login insted of Registration', 'delete-item-notification');
         } else {
-            this.props.createBusiness(user, (response) => {
-                if(response.data.success) {
-                    this.props.history.push(`/businessHomePageView/${response.data.user.placeId}`);
-                } else {
-                  this.props.displayNotification(true, 'User already Registered', 'delete-item-notification');
-                }
-
-            })
+            this.props.createBusiness(user);
         }
 
     })

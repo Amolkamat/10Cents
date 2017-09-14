@@ -17,39 +17,53 @@ class BusinessRegistrationView extends Component {
   }
 
   render() {
+    if(this.props.userAuthentication && this.props.userAuthentication.payload) {
 
-    return (
-      <div>
-      <Header />
-
-      <Notification />
-
-      <div className="title-cover-landing">
-        <div className = "text-center businessHeading">
-          <h1>Please register and connect to your Customers instantly</h1>
+      console.log('Inside Push History');
+      console.log(this.props.userAuthentication);
+      return(
+        <div>
+      {this.props.history.push(`/businessHomePageView/${this.props.userAuthentication.payload.placeId}`)}
         </div>
-<div className="businessRegistration-cover-left"></div>
-<div className="title-cover-right">
-    <div className="title-cover-right-child">
+      )
 
-                  <BusinessRegistration />
 
-    </div>
-</div>
-</div>
+    }
+     else {
+       return (
+         <div>
+         <Header />
 
-<div className="company-logo-container">
-                    <h4>Our Partners</h4>
-                    <img src="/images/logo1.jpeg" />
-                    <img src="/images/logo4.jpg" />
-                    <img src="/images/logo2.jpg" />
-                    <img src="/images/logo3.jpg" />
+         <Notification />
 
-                </div>
+         <div className="title-cover-landing">
+           <div className = "text-center businessHeading">
+             <h1>Please register and connect to your Customers instantly</h1>
+           </div>
+   <div className="businessRegistration-cover-left"></div>
+   <div className="title-cover-right">
+       <div className="title-cover-right-child">
 
-</div>
+                     <BusinessRegistration />
 
-    );
+       </div>
+   </div>
+   </div>
+
+   <div className="company-logo-container">
+                       <h4>Our Partners</h4>
+                       <img src="/images/logo1.jpeg" />
+                       <img src="/images/logo4.jpg" />
+                       <img src="/images/logo2.jpg" />
+                       <img src="/images/logo3.jpg" />
+
+                   </div>
+
+   </div>
+
+       );
+     }
+    
   }
 }
 
