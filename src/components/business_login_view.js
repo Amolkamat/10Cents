@@ -6,7 +6,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import Header from './header_view.js'
 import BusinessLogin from "../containers/BusinessLogin"
 import Notification from "../containers/notification"
-import { getUserFromStorage } from "../actions";
+import { getUserFromStorage,displayNotification } from "../actions";
 
 class BusinessLoginView extends Component {
 
@@ -15,18 +15,22 @@ class BusinessLoginView extends Component {
     this.props.getUserFromStorage();
   }
 
-  
+
   render() {
     if(this.props.userAuthentication && this.props.userAuthentication.payload) {
 
       console.log('Inside Push History');
       console.log(this.props.userAuthentication);
-      return(
-        <div>
-      {this.props.history.push(`/businessHomePageView/${this.props.userAuthentication.payload.placeId}`)}
-        </div>
-      )
-
+      if(this.props.userAuthentication.payload.authenticationFailure && this.props.userAuthentication.payload.displayMessage) {
+        this.props.displayNotification(true,'Invalid Authentication - Please relogin!','delete-item-notification');
+      }
+      else {
+        return(
+          <div>
+        {this.props.history.push(`/businessHomePageView/${this.props.userAuthentication.payload.placeId}`)}
+          </div>
+        )
+      }
 
     }
       else {
@@ -73,4 +77,4 @@ function mapStateToProps({userAuthentication}) {
   return { userAuthentication};
 }
 
-export default connect(mapStateToProps, {getUserFromStorage})(BusinessLoginView);
+export default connect(mapStateToProps, {getUserFromStorage,displayNotification})(BusinessLoginView);

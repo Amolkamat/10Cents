@@ -32,6 +32,12 @@ const API_KEY = "?key=PAPERCLIP1234";
 export function setCurrentUser(user) {
 	console.log('SET CURRENT USER ACTION');
 	console.log(user);
+	if(typeof user === typeof undefined)  {
+		user =  {
+			authenticationFailure: true,
+			displayMessage:true
+		}
+	}
 	return {
     type: SET_CURRENT_USER,
     payload: user
@@ -63,8 +69,24 @@ export function getUserFromStorage() {
 
 	if (localStorage.jwtToken)
 	{
-			setAuthorizationToken(localStorage.jwtToken);
-	  	dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
+		console.log('Token from Local Storage!!');
+
+			if(localStorage.getItem('jwtToken') != 'undefined')
+			{
+				console.log('Inside Token Setup!')
+				console.log(typeof localStorage.getItem('jwtToken') )
+
+				setAuthorizationToken(localStorage.jwtToken);
+				dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
+			}
+			 else {
+				 console.log('Outside Token Setup!')
+				 localStorage.removeItem('jwtToken');
+				 dispatch(setCurrentUser({
+		 			authenticationFailure: true,
+					displayMessage:false
+		 		}));
+			 }
 	}
 	}
 	return {
@@ -80,9 +102,15 @@ export function manualLogin(data) {
 		console.log('User Authentication Response');
 		console.log(res);
 		const token = res.data.token;
-		localStorage.setItem('jwtToken', token);
-		setAuthorizationToken(token);
-		dispatch(setCurrentUser(jwtDecode(token)));
+		if(typeof token != 'undefined') {
+			localStorage.setItem('jwtToken', token);
+			setAuthorizationToken(token);
+			dispatch(setCurrentUser(jwtDecode(token)));
+		}  else {
+			dispatch(setCurrentUser());
+		}
+
+
 	})
 	}
 	return {
@@ -200,15 +228,21 @@ export function postMenu(file,placeId,callback) {
 }
 
 export function createBusiness(user,callback) {
-  
+
 	return dispatch => {
 	var request = axios.post("/users/create",user).then(res=>{
 		console.log('User Authentication Response');
 		console.log(res);
 		const token = res.data.token;
-		localStorage.setItem('jwtToken', token);
-		setAuthorizationToken(token);
-		dispatch(setCurrentUser(jwtDecode(token)));
+
+		if(typeof token != 'undefined') {
+			localStorage.setItem('jwtToken', token);
+			setAuthorizationToken(token);
+			dispatch(setCurrentUser(jwtDecode(token)));
+		}  else {
+			dispatch(setCurrentUser());
+		}
+
 	})
 	}
   return {

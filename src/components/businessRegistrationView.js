@@ -6,7 +6,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import Header from './header_view.js'
 import BusinessRegistration from '../containers/businessRegistration'
 import Notification from "../containers/notification"
-import { getUserFromStorage } from "../actions";
+import { getUserFromStorage,displayNotification } from "../actions";
 
 
 class BusinessRegistrationView extends Component {
@@ -18,14 +18,16 @@ class BusinessRegistrationView extends Component {
 
   render() {
     if(this.props.userAuthentication && this.props.userAuthentication.payload) {
-
-      console.log('Inside Push History');
-      console.log(this.props.userAuthentication);
-      return(
-        <div>
-      {this.props.history.push(`/businessHomePageView/${this.props.userAuthentication.payload.placeId}`)}
-        </div>
-      )
+      if(this.props.userAuthentication.payload.authenticationFailure && this.props.userAuthentication.payload.displayMessage) {
+        this.props.displayNotification(true,'Error during Authentication - Please register again!','delete-item-notification');
+      }
+      else {
+        return(
+          <div>
+        {this.props.history.push(`/businessHomePageView/${this.props.userAuthentication.payload.placeId}`)}
+          </div>
+        )
+      }
 
 
     }
@@ -63,7 +65,7 @@ class BusinessRegistrationView extends Component {
 
        );
      }
-    
+
   }
 }
 
@@ -71,4 +73,4 @@ function mapStateToProps({userAuthentication}) {
   return { userAuthentication};
 }
 
-export default connect(mapStateToProps, {getUserFromStorage})(BusinessRegistrationView);
+export default connect(mapStateToProps, {getUserFromStorage,displayNotification})(BusinessRegistrationView);
