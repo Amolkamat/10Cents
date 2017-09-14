@@ -61,11 +61,12 @@ export function getUserFromStorage() {
 
 	return dispatch => {
 
-	if (localStorage.jwtToken && (typeof localStorage.jwtToken != "undefined"))
+	if (localStorage.jwtToken)
 	{
-		if(typeof localStorage.jwtToken != "undefined")
+		if(localStorage.getItem('jwtToken' === null)
 		{
 			localStorage.removeItem('jwtToken');
+
 		} else {
 			setAuthorizationToken(localStorage.jwtToken);
 	  	dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
