@@ -63,14 +63,8 @@ export function getUserFromStorage() {
 
 	if (localStorage.jwtToken)
 	{
-		if(localStorage.getItem('jwtToken' === null)
-		{
-			localStorage.removeItem('jwtToken');
-
-		} else {
 			setAuthorizationToken(localStorage.jwtToken);
 	  	dispatch(setCurrentUser(jwtDecode(localStorage.jwtToken)));
-		}
 	}
 	}
 	return {
