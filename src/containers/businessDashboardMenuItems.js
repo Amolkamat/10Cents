@@ -8,27 +8,41 @@ class BusinessDashboardProfile extends Component {
 
   populateMenu(menuObject) {
 
-    return(menuObject.map((orderItem,index) => {
+    if(menuObject && menuObject.length > 0)
+    {
+      return(menuObject.map((orderItem,index) => {
 
-      return(
+        return(
 
-      <tr key={index}>
+        <tr key={index}>
 
+        <td>
+          {orderItem.item}
+
+      </td>
       <td>
-        {orderItem.item}
+
+            {orderItem.price}
 
     </td>
-    <td>
 
-          {orderItem.price}
+      </tr>
+        )
 
-  </td>
-
-    </tr>
-      )
-
+      }
+    ) )
     }
-  ) )
+    else {
+      return (
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      )
+    }
+
+
+
   }
 
 
